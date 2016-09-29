@@ -64,4 +64,17 @@ namespace TCC_Aline.Converters
             throw new NotImplementedException();
         }
     }
+
+    public class FavoriteConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return (value is bool && (bool)value) ? Symbol.SolidStar : Symbol.OutlineStar;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

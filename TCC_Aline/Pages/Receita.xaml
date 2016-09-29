@@ -1,0 +1,74 @@
+﻿<Page
+    x:Class="TCC_Aline.Pages.Receita"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TCC_Aline.Pages"
+    xmlns:converters="using:TCC_Aline.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../ResourceDictionaries/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <converters:FavoriteConverter x:Key="FavoriteConverter"/>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid Background="Beige">
+        <!--definição das colunas principais-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <!--grid com video-->
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <!--cabeçalho receita-->
+                <RowDefinition Height="Auto"/>
+                <!--video-->
+                <RowDefinition Height="2*"/>
+                <!--info receita-->
+                <RowDefinition Height="Auto"/>
+                <!--quantidade de porções-->
+                <RowDefinition Height="Auto"/>
+                <!--comentarios-->
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Padding="5">
+                <ToggleButton x:Name="FavoriteButton" Style="{StaticResource SymbolButton}" >
+                    <ToggleButton.Content>
+                        <SymbolIcon Symbol="{Binding ElementName=FavoriteButton, Path=IsChecked, Converter={StaticResource FavoriteConverter}}"/>
+                    </ToggleButton.Content>
+                </ToggleButton>
+                <TextBlock Text="Bolo de fubá" Style="{ThemeResource SubheaderTextBlockStyle}" Padding="5,0,0,0"/>
+            </StackPanel>
+            <RelativePanel Grid.Row="1" Padding="20,0,20,0">
+                <WebView x:Name="Video" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignBottomWithPanel="True"/>
+            </RelativePanel>
+            <RelativePanel Grid.Row="2" Padding="20,0,20,0">
+                <Grid Background="DarkRed" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="ms-appx:///Assets/Square150x150Logo.scale-200.png" Height="60"/>
+                    <Image Grid.Column="1" Source="ms-appx:///Assets/Square150x150Logo.scale-200.png" Height="60"/>
+                    <Image Grid.Column="2" Source="ms-appx:///Assets/Square150x150Logo.scale-200.png" Height="60"/>
+                </Grid>
+            </RelativePanel>
+            <RelativePanel Grid.Row="3" Padding="20,0,20,0">
+                <TextBox x:Name="Quantidadepessoas" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True"/>    
+            </RelativePanel>
+            <RelativePanel Grid.Row="4" Padding="20,0,20,0">
+                <ListView x:Name="lista" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
+                    <StackPanel Width="{Binding ElementName=Quantidadepessoas,Path=ActualWidth}">
+                        <TextBlock Text="Comentário"/>
+                        <RichEditBox Height="Auto"/>
+                    </StackPanel>
+                </ListView>
+            </RelativePanel>
+        </Grid>
+    </Grid>
+</Page>

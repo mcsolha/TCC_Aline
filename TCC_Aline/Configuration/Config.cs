@@ -1,15 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TCC_Aline.Configuration;
+using TCC_Aline.Helpers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace TCC_Aline.Configuration
 {
+    public enum PageName
+    {
+        [Display(Description = "Home")]
+        Home,
+        [Display(Description = "Receitas")]
+        Receitas,
+        [Display(Description = "Doces")]
+        Doces,
+        [Display(Description = "Salgados")]
+        Salgados,
+        [Display(Description = "Favoritos")]
+        Favoritos,
+        [Display(Description = "Glossário")]
+        Glossario,
+        [Display(Description = "Dicas de Medida")]
+        DicasMedida,
+        [Display(Description = "Técnicas")]
+        Tecnicas,
+        [Display(Description = "Vídeos")]
+        Videos,
+        [Display(Description = "Timer")]
+        Timer
+    }
     public class CustomDataTemplateSelector : DataTemplateSelector
     {
         protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
@@ -60,11 +85,22 @@ namespace TCC_Aline.Configuration
             this.pageName = pageName;
             this._subItem = _subItem;
         }
-        public PageType(string pageName, bool _subItem, string[] _subItens)
+        public PageType(string pageName, bool _subItem, params string[] _subItens)
         {
             this.pageName = pageName;
             this._subItem = _subItem;
             this._subItens = _subItens;
+        }
+
+        public static IEnumerable<PageName> GeneratePageTypes()
+        {
+            foreach (PageName item in Enum.GetValues(typeof(PageName)))
+            {
+                if (!item.Equals(Configuration.PageName.Doces) || !item.Equals(Configuration.PageName.Salgados))
+                {
+                    yield return item;
+                }
+            }
         }
     }
 
@@ -87,14 +123,13 @@ namespace TCC_Aline
         /// </summary>
         private void PopulateSplit()
         {
-            Paginas.Add(new PageType("Home", false));
-            Paginas.Add(new PageType("Receitas", true, new string[] { "Doces", "Salgados" }));
-            Paginas.Add(new PageType("Favoritos", false));
-            Paginas.Add(new PageType("Glossário", false));
-            Paginas.Add(new PageType("Dicas de medidas", false));
-            Paginas.Add(new PageType("Técnicas", false));
-            Paginas.Add(new PageType("Vídeos", false));
-            Paginas.Add(new PageType("Timer", false));
+            foreach (var item in PageType.GeneratePageTypes())
+            {
+                if (item.Equals(PageName.Receitas))
+                    Paginas.Add(new PageType(EnumHelper.GetEnumDescription(item), true, EnumHelper.GetEnumDescription(PageName.Doces), EnumHelper.GetEnumDescription(PageName.Doces)));
+                else
+                    Paginas.Add(new PageType(EnumHelper.GetEnumDescription(item), false));
+            }
         }
     }
 }

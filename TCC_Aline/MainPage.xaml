@@ -244,7 +244,7 @@
         <!--Parte superior-->
         <RelativePanel Grid.Row="0" Background="#547980" Padding="5">
             <!--Botão para abrir menu-->
-            <ToggleButton x:Name="HamburgerButton" RelativePanel.AlignLeftWithPanel="True" Style="{StaticResource SymbolButton}" Click="HamburgerButton_Click" RelativePanel.AlignVerticalCenterWithPanel="True" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" Padding="10">
+            <ToggleButton x:Name="HamburgerButton" RelativePanel.AlignLeftWithPanel="True" Style="{StaticResource SymbolButton}" RelativePanel.AlignVerticalCenterWithPanel="True" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" Padding="10">
                 <ToggleButton.Content>
                     <FontIcon x:Name="hamburger" FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;"/>
                 </ToggleButton.Content>

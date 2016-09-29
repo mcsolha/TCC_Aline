@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TCC_Aline.Configuration;
+using TCC_Aline.Helpers;
+using TCC_Aline.Pages;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -25,11 +28,6 @@ namespace TCC_Aline
         public MainPage()
         {
             this.InitializeComponent();
-        }
-
-        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
-        {
-            
         }
 
         private void SuggestBoxIconClickable_Click(object sender, RoutedEventArgs e)
@@ -60,7 +58,34 @@ namespace TCC_Aline
 
         private void BotaoMenu_Click(object sender, RoutedEventArgs e)
         {
-
+            string content = (sender is Button) ? (sender as Button).Content as string : "";
+            var p = EnumHelper.GetEnumFromDescription<PageName>(content);
+            switch (p)
+            {
+                case PageName.Home:
+                    Frame.Navigate(typeof(Receita));
+                    break;
+                case PageName.Receitas:
+                    break;
+                case PageName.Doces:
+                    break;
+                case PageName.Salgados:
+                    break;
+                case PageName.Favoritos:
+                    break;
+                case PageName.Glossario:
+                    break;
+                case PageName.DicasMedida:
+                    break;
+                case PageName.Tecnicas:
+                    break;
+                case PageName.Videos:
+                    break;
+                case PageName.Timer:
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
