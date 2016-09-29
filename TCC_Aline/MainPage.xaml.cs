@@ -26,5 +26,47 @@ namespace TCC_Aline
         {
             this.InitializeComponent();
         }
+
+        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void SuggestBoxIconClickable_Click(object sender, RoutedEventArgs e)
+        {
+            if ((bool)SuggestBoxIconClickable.IsChecked)
+            {
+                AppName.Visibility = Logo.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                AppName.Visibility = Logo.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (Window.Current.Bounds.Width > 640)
+            {
+                SuggestBoxIconClickable.IsChecked = false;
+                Logo.Visibility = AppName.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void ReceitasChild_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BotaoMenu_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            PopulateSplit();
+            Menu.ItemsSource = Paginas;
+        }
     }
 }

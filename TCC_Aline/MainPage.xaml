@@ -3,11 +3,279 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:TCC_Aline"
+    xmlns:converters="using:TCC_Aline.Converters"
+    xmlns:config="using:TCC_Aline.Configuration"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" SizeChanged="Page_SizeChanged" Loaded="Page_Loaded">
+    <!--Recursos de página-->
+    <Page.Resources>
+        <ResourceDictionary>
+            <!--Recursos de dicionarios-->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ResourceDictionaries/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <!--estilo com subitens-->
+            <DataTemplate x:Key="ForReceitas">
+                <RelativePanel>
+                    <ToggleButton x:Name="BotaoMenu" Content="{Binding Converter={StaticResource PageNameConverter}}" Style="{StaticResource ExpanderHeaderToggleButtonStyle}"/>
+                    <ItemsControl x:Name="MenuSubItens" ItemsSource="{Binding Converter={StaticResource SubItemConverter}}" Visibility="{Binding ElementName=BotaoMenu, Path=IsChecked, Converter={StaticResource VisibilityConverter}}" RelativePanel.Below="BotaoMenu" RelativePanel.RightOf="BotaoMenu">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Vertical" Margin="-70,0,0,0">
+                                </StackPanel>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button x:Name="ReceitasChild" Content="{Binding}" Style="{StaticResource HomeButtonStyle}" Click="ReceitasChild_Click"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </RelativePanel>
+            </DataTemplate>
+            <!--estilo sem subitens-->
+            <DataTemplate x:Key="Others">
+                <RelativePanel>
+                    <Button x:Name="BotaoMenu" Click="BotaoMenu_Click" Content="{Binding Converter={StaticResource PageNameConverter}}" Style="{StaticResource HomeButtonStyle}"/>
+                </RelativePanel>
+            </DataTemplate>
+            <!--Expandir subitens-->
+            <Style x:Key="ExpanderHeaderToggleButtonStyle" TargetType="ToggleButton">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ToggleButton">
+                            <Grid x:Name="RootGrid">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="PointerOver">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                                           Storyboard.TargetProperty="Foreground">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltListAccentMediumBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Pressed">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                                           Storyboard.TargetProperty="Foreground">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAccentBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Disabled">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                                       Storyboard.TargetProperty="Foreground">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseLowBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Checked">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" 
+                                                                       Storyboard.TargetProperty="Foreground">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltListAccentLowBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="CheckedPointerOver">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" 
+                                                                       Storyboard.TargetProperty="Foreground">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltListAccentHighBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="CheckedPressed">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                                           Storyboard.TargetProperty="Foreground">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAccentBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="CheckedDisabled">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                                       Storyboard.TargetProperty="Foreground">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseLowBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualStateGroup.Transitions>
+                                            <VisualTransition To="Pressed">
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="IconTransform" Storyboard.TargetProperty="Angle" From="0" To="90" Duration="0" />
+                                                </Storyboard>
+                                            </VisualTransition>
+                                            <VisualTransition From="CheckedPressed">
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="IconTransform" Storyboard.TargetProperty="Angle" From="90" To="0" Duration="0" />
+                                                </Storyboard>
+                                            </VisualTransition>
+                                            <VisualTransition To="Normal">
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="IconTransform" Storyboard.TargetProperty="Angle" From="90" To="0" Duration="0" />
+                                                </Storyboard>
+                                            </VisualTransition>
+                                        </VisualStateGroup.Transitions>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
 
+                                <ContentPresenter x:Name="ContentPresenter"
+                                          BorderBrush="{TemplateBinding BorderBrush}"
+                                          BorderThickness="{TemplateBinding BorderThickness}"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTransitions="{TemplateBinding ContentTransitions}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Padding="{TemplateBinding Padding}"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          AutomationProperties.AccessibilityView="Raw"/>
+
+                                <FontIcon Glyph="&#xE974;" FontSize="13" Grid.Column="1" RenderTransformOrigin="0.5,0.5">
+                                    <FontIcon.RenderTransform>
+                                        <RotateTransform x:Name="IconTransform" />
+                                    </FontIcon.RenderTransform>
+                                </FontIcon>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!--itens normais-->
+            <Style x:Key="HomeButtonStyle" TargetType="Button">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid x:Name="RootGrid">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="PointerOver">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                                           Storyboard.TargetProperty="Foreground">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltListAccentMediumBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Pressed">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                                           Storyboard.TargetProperty="Foreground">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAccentBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Disabled">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                                       Storyboard.TargetProperty="Foreground">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseLowBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <ContentPresenter x:Name="ContentPresenter"
+                                          BorderBrush="{TemplateBinding BorderBrush}"
+                                          BorderThickness="{TemplateBinding BorderThickness}"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTransitions="{TemplateBinding ContentTransitions}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Padding="{TemplateBinding Padding}"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          AutomationProperties.AccessibilityView="Raw"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!--conversores-->
+            <converters:PageNameConverter x:Key="PageNameConverter"/>
+            <converters:VisibilityConverter x:Key="VisibilityConverter"/>
+            <converters:SubItemConverter x:Key="SubItemConverter"/>
+            <converters:IconConverter x:Key="IconConverter"/>
+            <!--Seletor de estilo de dado-->
+            <config:CustomDataTemplateSelector x:Key="CustomDataTemplateSelector" ReceitasTemplate="{StaticResource ForReceitas}" OthersTemplate="{StaticResource Others}"/>
+        </ResourceDictionary>
+    </Page.Resources>
+    <!--Grid Principal-->
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <!--States para a barra de busca-->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="640"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="SuggestBox.Width" Value="300" />
+                        <Setter Target="SuggestBox.PlaceholderText" Value="Digite o que procura"/>
+                        <Setter Target="SuggestBox.Visibility" Value="Visible"/>
+                        <Setter Target="SuggestBoxIconClickable.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <!--Definição de linhas do grid-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <!--Parte superior-->
+        <RelativePanel Grid.Row="0" Background="#547980" Padding="5">
+            <!--Botão para abrir menu-->
+            <ToggleButton x:Name="HamburgerButton" RelativePanel.AlignLeftWithPanel="True" Style="{StaticResource SymbolButton}" Click="HamburgerButton_Click" RelativePanel.AlignVerticalCenterWithPanel="True" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" Padding="10">
+                <ToggleButton.Content>
+                    <FontIcon x:Name="hamburger" FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;"/>
+                </ToggleButton.Content>
+            </ToggleButton>
+            <!--Logo do app-->
+            <Image x:Name="Logo" Source="ms-appx:///Assets/Square150x150Logo.scale-200.png" Width="50" Height="40" Margin="0" RelativePanel.RightOf="HamburgerButton" RelativePanel.AlignVerticalCenterWithPanel="True"/>
+            <!--Nome do app-->
+            <TextBlock x:Name="AppName" Text="TCC Aline" Style="{StaticResource TitleTextBlockStyle}" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.RightOf="Logo"/>
+            <!--Caixa de busca-->
+            <AutoSuggestBox x:Name="SuggestBox" Visibility="Collapsed" 
+                            QueryIcon="Find" RelativePanel.AlignRightWithPanel="True"
+                            RelativePanel.AlignVerticalCenterWithPanel="True" MaxWidth="500"
+                            />
+            <!--Botão para busca (Tela menor que 640)-->
+            <ToggleButton x:Name="SuggestBoxIconClickable" Style="{StaticResource SymbolButton}" Click="SuggestBoxIconClickable_Click" RelativePanel.AlignRightWith="AppName" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Visibility="Visible" Margin="0,0,0,0">
+                <SymbolIcon x:Name="ActivateFinder" Symbol="{Binding ElementName=SuggestBoxIconClickable, Path=IsChecked, Converter={StaticResource IconConverter}}"/>
+            </ToggleButton>
+            <!--Caixa de busca (Tela menor que 640)-->
+            <AutoSuggestBox x:Name="BigSuggestBox" PlaceholderText="Digite aqui" Visibility="{Binding ElementName=SuggestBoxIconClickable, Path=IsChecked, Converter={StaticResource VisibilityConverter}}" RelativePanel.RightOf="HamburgerButton" RelativePanel.LeftOf="SuggestBoxIconClickable" RelativePanel.AlignVerticalCenterWithPanel="True"/>
+        </RelativePanel>
+        <SplitView Grid.Row="1" Background="#9DE0AD" IsPaneOpen="{Binding ElementName=HamburgerButton, Path=IsChecked}" PaneBackground="#547980" OpenPaneLength="200" DisplayMode="Inline">
+            <SplitView.Pane>
+                <StackPanel Orientation="Vertical" Padding="5">
+                    <ItemsControl x:Name="Menu" ItemTemplateSelector="{StaticResource CustomDataTemplateSelector}"/>
+                </StackPanel>
+            </SplitView.Pane>
+            <Frame x:Name="Frame" Padding="5">
+                <RelativePanel>
+                    <TextBlock Text="TESTE DE FRAME"/>
+                </RelativePanel>
+            </Frame>
+        </SplitView>
     </Grid>
 </Page>
