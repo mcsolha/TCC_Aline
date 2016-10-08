@@ -6,7 +6,7 @@
     xmlns:converters="using:TCC_Aline.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" SizeChanged="Page_SizeChanged" MinWidth="800" MinHeight="640">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -21,15 +21,12 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <!--grid com video-->
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <!--cabeçalho receita-->
                 <RowDefinition Height="Auto"/>
                 <!--video-->
-                <RowDefinition Height="2*"/>
-                <!--info receita-->
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="3*"/>
                 <!--quantidade de porções-->
                 <RowDefinition Height="Auto"/>
                 <!--comentarios-->
@@ -43,11 +40,11 @@
                 </ToggleButton>
                 <TextBlock Text="Bolo de fubá" Style="{ThemeResource SubheaderTextBlockStyle}" Padding="5,0,0,0"/>
             </StackPanel>
-            <RelativePanel Grid.Row="1" Padding="20,0,20,0">
-                <WebView x:Name="Video" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignBottomWithPanel="True"/>
-            </RelativePanel>
-            <RelativePanel Grid.Row="2" Padding="20,0,20,0">
-                <Grid Background="DarkRed" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
+            <RelativePanel Grid.Row="1" Padding="5,0,0,0">
+                <Viewbox x:Name="viewBoxVideo" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True">
+                    <WebView x:Name="Video" MinWidth="560" MinHeight="340" Source="ms-appx-web:///Web/video_page.html" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignBottomWithPanel="True"/>
+                </Viewbox>
+                <Grid Background="DarkRed" RelativePanel.Below="viewBoxVideo" RelativePanel.AlignRightWith="viewBoxVideo" RelativePanel.AlignLeftWith="viewBoxVideo">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
@@ -58,15 +55,18 @@
                     <Image Grid.Column="2" Source="ms-appx:///Assets/Square150x150Logo.scale-200.png" Height="60"/>
                 </Grid>
             </RelativePanel>
-            <RelativePanel Grid.Row="3" Padding="20,0,20,0">
+            <RelativePanel Grid.Row="2" Padding="20,10,20,0">
                 <TextBox x:Name="Quantidadepessoas" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True"/>    
             </RelativePanel>
-            <RelativePanel Grid.Row="4" Padding="20,0,20,0">
+            <RelativePanel Grid.Row="3" Padding="20,0,20,0">
                 <ListView x:Name="lista" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
-                    <StackPanel Width="{Binding ElementName=Quantidadepessoas,Path=ActualWidth}">
-                        <TextBlock Text="Comentário"/>
-                        <RichEditBox Height="Auto"/>
-                    </StackPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                 </ListView>
             </RelativePanel>
         </Grid>

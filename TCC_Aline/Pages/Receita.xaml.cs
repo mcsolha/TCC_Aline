@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -24,9 +25,14 @@ namespace TCC_Aline.Pages
     {
         public Receita()
         {
-            string html = "<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='http://www.youtube.com/embed/66TwgxIJvzE' frameborder='0' allowfullscreen></iframe></div>";
             this.InitializeComponent();
-            Video.NavigateToString(html);
+
+            
+        }
+
+        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Debug.WriteLine("w: " + this.ActualWidth + " h: " + this.ActualHeight);
         }
     }
 }
