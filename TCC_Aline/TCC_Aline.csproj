@@ -98,6 +98,7 @@
     <Compile Include="Configuration\Config.cs" />
     <Compile Include="Converters\Converters.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
+    <Compile Include="Helpers\SizeHelper.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

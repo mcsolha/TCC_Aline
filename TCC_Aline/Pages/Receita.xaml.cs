@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TCC_Aline.Helpers;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -26,13 +28,18 @@ namespace TCC_Aline.Pages
         public Receita()
         {
             this.InitializeComponent();
-
-            
         }
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             Debug.WriteLine("w: " + this.ActualWidth + " h: " + this.ActualHeight);
+            Debug.WriteLine("w: " + Video.ActualWidth + " h: " + Video.ActualHeight);
+            Debug.WriteLine("h: " + itensHeight.ActualHeight);
+        }
+
+        private void metadeSup_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
         }
     }
 }

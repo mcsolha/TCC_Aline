@@ -126,7 +126,7 @@ namespace TCC_Aline
             foreach (var item in PageType.GeneratePageTypes())
             {
                 if (item.Equals(PageName.Receitas))
-                    Paginas.Add(new PageType(EnumHelper.GetEnumDescription(item), true, EnumHelper.GetEnumDescription(PageName.Doces), EnumHelper.GetEnumDescription(PageName.Doces)));
+                    Paginas.Add(new PageType(EnumHelper.GetEnumDescription(item), true, EnumHelper.GetEnumDescription(PageName.Doces), EnumHelper.GetEnumDescription(PageName.Salgados)));
                 else
                     Paginas.Add(new PageType(EnumHelper.GetEnumDescription(item), false));
             }
