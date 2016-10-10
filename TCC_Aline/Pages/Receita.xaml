@@ -136,15 +136,31 @@
                     <RowDefinition x:Name="ingredientesRow" Height="1*"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <ListView Grid.Row="0">
+                <ListView Grid.Row="0" SelectionMode="None">
                     <ListViewHeaderItem>
                         <TextBlock Text="Ingredientes" Style="{StaticResource SubheaderTextBlockStyle}"/>
                     </ListViewHeaderItem>
                     <ListViewItem>
-                        <TextBlock Text="1. Batatas"/>
+                        <TextBlock Text="1. Batatas">
+                            <TextBlock.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="XOTO"/>
+                                    <MenuFlyoutItem Text="XOTO"/>
+                                    <MenuFlyoutItem Text="XOTO"/>
+                                </MenuFlyout>
+                            </TextBlock.ContextFlyout>
+                        </TextBlock>
                     </ListViewItem>
                     <ListViewItem>
-                        <TextBlock Text="2. Batatas"/>
+                        <TextBlock Text="2. Batatas">
+                            <TextBlock.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="XOTO"/>
+                                    <MenuFlyoutItem Text="XOTO"/>
+                                    <MenuFlyoutItem Text="XOTO"/>
+                                </MenuFlyout>
+                            </TextBlock.ContextFlyout>
+                        </TextBlock>
                     </ListViewItem>
                     <ListViewItem>
                         <TextBlock Text="3. Batatas"/>
