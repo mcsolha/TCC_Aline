@@ -69,6 +69,7 @@ namespace TCC_Aline
                     FramePrincipal.Navigate(typeof(Salgados));
                     break;
                 case PageName.Favoritos:
+                    FramePrincipal.Navigate(typeof(Receitas),"Favoritos");
                     break;
                 case PageName.Glossario:
                     break;

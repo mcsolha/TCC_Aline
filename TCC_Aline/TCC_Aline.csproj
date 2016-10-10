@@ -109,6 +109,9 @@
     <Compile Include="Pages\Receita.xaml.cs">
       <DependentUpon>Receita.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Receitas.xaml.cs">
+      <DependentUpon>Receitas.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Salgados.xaml.cs">
       <DependentUpon>Salgados.xaml</DependentUpon>
     </Compile>
@@ -149,6 +152,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Receita.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Receitas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
