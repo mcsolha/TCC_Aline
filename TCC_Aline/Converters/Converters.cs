@@ -10,6 +10,19 @@ using Windows.UI.Xaml.Data;
 
 namespace TCC_Aline.Converters
 {
+    public class GridWidthConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return GridLengthHelper.FromPixels((value as IConvertible).ToDouble(null));
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public class FrameHeightConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
