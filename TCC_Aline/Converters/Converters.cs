@@ -10,6 +10,21 @@ using Windows.UI.Xaml.Data;
 
 namespace TCC_Aline.Converters
 {
+    public class TimeToStringConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            var ts = value is TimeSpan ? (TimeSpan)value : new TimeSpan(0,0,0);
+            
+            return Math.Round(ts.TotalMinutes, 1).ToString();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public class GridWidthConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
@@ -101,7 +116,7 @@ namespace TCC_Aline.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            throw new NotImplementedException();
+            return (Symbol)value == Symbol.SolidStar ? false : true;
         }
     }
 }

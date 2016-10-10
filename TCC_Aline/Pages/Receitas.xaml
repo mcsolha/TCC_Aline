@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converters="using:TCC_Aline.Converters"
+    xmlns:data="using:TCC_Aline.Model"
     mc:Ignorable="d">
     <Page.Resources>
         <ResourceDictionary>
@@ -13,7 +14,8 @@
                 <ResourceDictionary Source="../ResourceDictionaries/Styles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <converters:FavoriteConverter x:Key="FavoriteConverter"/>
-            <DataTemplate x:Name="ItensTemplate">
+            <converters:TimeToStringConverter x:Key="TimeToStringConverter"/>
+            <DataTemplate x:Name="ItensTemplate" x:DataType="data:Receita">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2*"/>
@@ -26,12 +28,12 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Orientation="Horizontal">
-                            <ToggleButton x:Name="FavoriteButton" Style="{StaticResource SymbolButton}" >
+                            <ToggleButton x:Name="FavoriteButton" Style="{StaticResource SymbolButton}" IsChecked="{x:Bind Path=Favorita}" Padding="3">
                                 <ToggleButton.Content>
                                     <SymbolIcon Symbol="{Binding ElementName=FavoriteButton, Path=IsChecked, Converter={StaticResource FavoriteConverter}}"/>
                                 </ToggleButton.Content>
                             </ToggleButton>
-                            <TextBlock Text="RECEITA" VerticalAlignment="Center"/>
+                            <TextBlock Text="{x:Bind Path=Nome}" MaxWidth="100" TextWrapping="Wrap" Style="{StaticResource CaptionTextBlockStyle}" VerticalAlignment="Center"/>
                         </StackPanel>
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
@@ -41,15 +43,15 @@
                             </Grid.ColumnDefinitions>
                             <RelativePanel Grid.Column="0">
                                 <Image x:Name="image" Source="ms-appx:///Assets/Square44x44Logo.targetsize-24_altform-unplated.png" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
-                                <TextBlock Text="30" RelativePanel.AlignHorizontalCenterWith="image" RelativePanel.AlignVerticalCenterWith="image"/>
+                                <TextBlock Text="{x:Bind Path=Preparo, Converter={StaticResource TimeToStringConverter}}" RelativePanel.AlignHorizontalCenterWith="image" RelativePanel.AlignVerticalCenterWith="image"/>
                             </RelativePanel>
                             <RelativePanel Grid.Column="1">
                                 <Image x:Name="image1" Source="ms-appx:///Assets/Square44x44Logo.targetsize-24_altform-unplated.png" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
-                                <TextBlock Text="15" RelativePanel.AlignHorizontalCenterWith="image1" RelativePanel.AlignVerticalCenterWith="image1"/>
+                                <TextBlock Text="{x:Bind Path=Cozimento, Converter={StaticResource TimeToStringConverter}}" RelativePanel.AlignHorizontalCenterWith="image1" RelativePanel.AlignVerticalCenterWith="image1"/>
                             </RelativePanel>
                             <RelativePanel Grid.Column="2">
                                 <Image x:Name="image2" Source="ms-appx:///Assets/Square44x44Logo.targetsize-24_altform-unplated.png" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
-                                <TextBlock Text="30" RelativePanel.AlignHorizontalCenterWith="image2" RelativePanel.AlignVerticalCenterWith="image2"/>
+                                <TextBlock Text="{x:Bind Path=Pessoas}" RelativePanel.AlignHorizontalCenterWith="image2" RelativePanel.AlignVerticalCenterWith="image2"/>
                             </RelativePanel>
                         </Grid>
                     </Grid>
@@ -66,7 +68,7 @@
             <GridViewHeaderItem Grid.Row="0">
                 <TextBlock Text="{x:Bind Path=PageName,Mode=TwoWay}" Style="{StaticResource HeaderTextBlockStyle}"/>
             </GridViewHeaderItem>
-            <GridView x:Name="itens" Grid.Row="1" ItemTemplate="{StaticResource ItensTemplate}">
+            <GridView x:Name="itens" Grid.Row="1" ItemTemplate="{StaticResource ItensTemplate}" SelectionMode="None">
                 <GridView.ItemContainerStyle>
                     <Style TargetType="GridViewItem">
                         <Setter Property="Width" Value="250"/>

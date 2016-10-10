@@ -103,6 +103,9 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Categoria.cs" />
+    <Compile Include="Model\Ingrediente.cs" />
+    <Compile Include="Model\Receita.cs" />
+    <Compile Include="Model\VideoModel.cs" />
     <Compile Include="Pages\Doces.xaml.cs">
       <DependentUpon>Doces.xaml</DependentUpon>
     </Compile>

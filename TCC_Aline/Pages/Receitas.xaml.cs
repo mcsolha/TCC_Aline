@@ -42,7 +42,13 @@ namespace TCC_Aline.Pages
         public Receitas()
         {
             this.InitializeComponent();
-            itens.ItemsSource = new ObservableCollection<string>() { "a", "", "a", "", "", "a", "", "", "a", "", "", "a", "", "", "a", "" };
+            itens.ItemsSource = new ObservableCollection<Model.Receita>()
+            {
+                new Model.Receita() {Nome = "Bolo de Fubá", Preparo = new TimeSpan(0,40,5), Cozimento = new TimeSpan(0,2,5), Favorita = true, Pessoas = 5 },
+                new Model.Receita() {Nome = "Bolo de Banana", Preparo = new TimeSpan(1,5,5), Cozimento = new TimeSpan(0,4,5), Favorita = false, Pessoas = 2 },
+                new Model.Receita() {Nome = "Mousse de Chocolate", Preparo = new TimeSpan(0,20,5), Cozimento = new TimeSpan(1,15,5), Favorita = true, Pessoas = 3 },
+                new Model.Receita() {Nome = "Teta de Nega", Preparo = new TimeSpan(0,15,5), Cozimento = new TimeSpan(0,35,5), Favorita = false, Pessoas = 7 }
+            };
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
