@@ -9,6 +9,7 @@
     xmlns:converters="using:TCC_Aline.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:TCC_Aline.Model"
     mc:Ignorable="d" SizeChanged="Page_SizeChanged" MinWidth="800" MinHeight="640">
     <Page.Resources>
         <ResourceDictionary>
@@ -16,6 +17,8 @@
                 <ResourceDictionary Source="../ResourceDictionaries/Styles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <converters:FavoriteConverter x:Key="FavoriteConverter"/>
+            <converters:TimeToStringConverter x:Name="TimeToStringConverter"/>
+            <converters:ColorConverter x:Name="ColorConverter"/>
         </ResourceDictionary>
     </Page.Resources>
     <RelativePanel Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
@@ -57,12 +60,12 @@
                 </Grid.RowDefinitions>
                 <ListViewHeaderItem >
                     <StackPanel Grid.Row="0" Orientation="Horizontal">
-                        <ToggleButton x:Name="FavoriteButton" Style="{StaticResource SymbolButton}" >
+                        <ToggleButton x:Name="FavoriteButton" Style="{StaticResource SymbolButton}" IsChecked="{x:Bind recpt.Favorita}">
                             <ToggleButton.Content>
                                 <SymbolIcon Symbol="{Binding ElementName=FavoriteButton, Path=IsChecked, Converter={StaticResource FavoriteConverter}}"/>
                             </ToggleButton.Content>
                         </ToggleButton>
-                        <TextBlock Text="Bolo de fubá" Style="{ThemeResource SubheaderTextBlockStyle}" Padding="5,0,0,0"/>
+                        <TextBlock Text="{x:Bind recpt.Nome}" Style="{ThemeResource SubheaderTextBlockStyle}" Padding="5,0,0,0"/>
                     </StackPanel>
                 </ListViewHeaderItem>
                 <!--<StackPanel Grid.Row="0" Orientation="Horizontal" Padding="20,5">
@@ -77,57 +80,46 @@
                     <Viewbox x:Name="viewBoxVideo" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" MaxHeight="300">
                         <WebView x:Name="Video" MinWidth="560" MinHeight="340" Source="ms-appx-web:///Web/video_page.html" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignBottomWithPanel="True"/>
                     </Viewbox>
-                    <Grid x:Name="infoReceita" Background="DarkRed" RelativePanel.Below="viewBoxVideo" RelativePanel.AlignRightWith="viewBoxVideo" RelativePanel.AlignLeftWith="viewBoxVideo">
+                    <Grid x:Name="infoReceita" RelativePanel.Below="viewBoxVideo" RelativePanel.AlignRightWith="viewBoxVideo" RelativePanel.AlignLeftWith="viewBoxVideo">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Source="ms-appx:///Assets/Square150x150Logo.scale-200.png" Height="60"/>
-                        <Image Grid.Column="1" Source="ms-appx:///Assets/Square150x150Logo.scale-200.png" Height="60"/>
-                        <Image Grid.Column="2" Source="ms-appx:///Assets/Square150x150Logo.scale-200.png" Height="60"/>
+                        <RelativePanel Grid.Column="0">
+                            <Image x:Name="image1" Source="ms-appx:///Assets/Square150x150Logo.scale-200.png" Height="60" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
+                            <TextBlock Text="{x:Bind Path=recpt.Preparo,Converter={StaticResource TimeToStringConverter}}" TextWrapping="WrapWholeWords" RelativePanel.AlignHorizontalCenterWith="image1" RelativePanel.AlignVerticalCenterWith="image1" />
+                        </RelativePanel>
+                        <RelativePanel Grid.Column="1">
+                            <Image x:Name="image2" Source="ms-appx:///Assets/Square150x150Logo.scale-200.png" Height="60" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
+                            <TextBlock Text="{x:Bind Path=recpt.Cozimento,Converter={StaticResource TimeToStringConverter}}" TextWrapping="WrapWholeWords" RelativePanel.AlignHorizontalCenterWith="image2" RelativePanel.AlignVerticalCenterWith="image2" />
+                        </RelativePanel>
+                        <RelativePanel Grid.Column="2">
+                            <Image x:Name="image3" Source="ms-appx:///Assets/Square150x150Logo.scale-200.png" Height="60" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
+                            <TextBlock Text="{x:Bind Path=recpt.Pessoas}" TextWrapping="WrapWholeWords" RelativePanel.AlignHorizontalCenterWith="image3" RelativePanel.AlignVerticalCenterWith="image3" />
+                        </RelativePanel>
                     </Grid>
                     <TextBox x:Name="quantPessoas" RelativePanel.AlignLeftWith="viewBoxVideo" RelativePanel.Below="infoReceita" RelativePanel.AlignRightWith="viewBoxVideo"/>
                     <ListViewHeaderItem x:Name="comentHead" RelativePanel.Below="quantPessoas" RelativePanel.AlignLeftWith="viewBoxVideo" RelativePanel.AlignRightWith="viewBoxVideo" Padding="0,8,0,0">
-                        <TextBlock Text="Comentários" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                        <TextBlock Text="Dicas úteis!" Foreground="Black" Style="{StaticResource SubtitleTextBlockStyle}"/>
                     </ListViewHeaderItem>
-                    <ListView x:Name="coments" RelativePanel.Below="comentHead" RelativePanel.AlignLeftWith="viewBoxVideo" RelativePanel.AlignRightWith="viewBoxVideo" RelativePanel.AlignBottomWithPanel="True">
+                    <ListView x:Name="coments" SelectionMode="None" ItemsSource="{x:Bind recpt.Comentarios}" RelativePanel.Below="comentHead" RelativePanel.AlignLeftWith="viewBoxVideo" RelativePanel.AlignRightWith="viewBoxVideo" RelativePanel.AlignBottomWithPanel="True">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                                 <Setter Property="Padding" Value="5,1"/>
                             </Style>
                         </ListView.ItemContainerStyle>
-                        <ListViewItem>
-                            <StackPanel>
-                                <TextBlock Text="Comentário 1"/>
-                                <TextBox/>
-                            </StackPanel>
-                        </ListViewItem>
-                        <ListViewItem>
-                            <StackPanel>
-                                <TextBlock Text="Comentário 1"/>
-                                <TextBox/>
-                            </StackPanel>
-                        </ListViewItem>
-                        <ListViewItem>
-                            <StackPanel>
-                                <TextBlock Text="Comentário 1"/>
-                                <TextBox/>
-                            </StackPanel>
-                        </ListViewItem>
-                        <ListViewItem>
-                            <StackPanel>
-                                <TextBlock Text="Comentário 1"/>
-                                <TextBox/>
-                            </StackPanel>
-                        </ListViewItem>
-                        <ListViewItem>
-                            <StackPanel>
-                                <TextBlock Text="Comentário 1"/>
-                                <TextBox/>
-                            </StackPanel>
-                        </ListViewItem>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical" Padding="0,10,0,0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <SymbolIcon Foreground="HotPink" Symbol="Comment" HorizontalAlignment="Left" Margin="0,0,10,0"/>
+                                        <TextBlock Text="{Binding}" MaxWidth="350" TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
                     </ListView>
                 </RelativePanel>
             </Grid>
@@ -136,67 +128,44 @@
                     <RowDefinition x:Name="ingredientesRow" Height="1*"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <ListView Grid.Row="0" SelectionMode="None">
-                    <ListViewHeaderItem>
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <ListViewHeaderItem Grid.Row="0">
                         <TextBlock Text="Ingredientes" Style="{StaticResource SubheaderTextBlockStyle}"/>
                     </ListViewHeaderItem>
-                    <ListViewItem>
-                        <TextBlock Text="1. Batatas">
-                            <TextBlock.ContextFlyout>
-                                <MenuFlyout>
-                                    <MenuFlyoutItem Text="XOTO"/>
-                                    <MenuFlyoutItem Text="XOTO"/>
-                                    <MenuFlyoutItem Text="XOTO"/>
-                                </MenuFlyout>
-                            </TextBlock.ContextFlyout>
-                        </TextBlock>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <TextBlock Text="2. Batatas">
-                            <TextBlock.ContextFlyout>
-                                <MenuFlyout>
-                                    <MenuFlyoutItem Text="XOTO"/>
-                                    <MenuFlyoutItem Text="XOTO"/>
-                                    <MenuFlyoutItem Text="XOTO"/>
-                                </MenuFlyout>
-                            </TextBlock.ContextFlyout>
-                        </TextBlock>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <TextBlock Text="3. Batatas"/>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <TextBlock Text="4. Batatas"/>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <TextBlock Text="5. Batatas"/>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <TextBlock Text="6. Batatas"/>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <TextBlock Text="7. Batatas"/>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <TextBlock Text="8. Batatas"/>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <TextBlock Text="9. Batatas"/>
-                    </ListViewItem>
-                </ListView>
-                <ListView Grid.Row="1">
+                    <ListView Grid.Row="1" SelectionMode="None" ItemsSource="{x:Bind recpt.Ingredientes}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="data:Ingrediente">
+                                <StackPanel Orientation="Horizontal">
+                                    <SymbolIcon Symbol="More" Margin="0,0,10,0"/>
+                                    <TextBlock Text="{Binding Texto, Mode=TwoWay}" Foreground="{x:Bind Path=Substitutos,Converter={StaticResource ColorConverter}}" Holding="TextBlock_Holding" Tapped="TextBlock_Tapped">
+                                        <FlyoutBase.AttachedFlyout>
+                                            <Flyout>
+                                                <ListView ItemsSource="{x:Bind Substitutos}" SelectionChanged="ListView_SelectionChanged">
+                                                    <ListView.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Text="{Binding}"/>
+                                                        </DataTemplate>
+                                                    </ListView.ItemTemplate>
+                                                </ListView>
+                                            </Flyout>
+                                        </FlyoutBase.AttachedFlyout>
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+                
+                <ListView Grid.Row="1" SelectionMode="None">
                     <ListViewHeaderItem>
                         <TextBlock Text="Modo de Preparo" Style="{StaticResource SubheaderTextBlockStyle}"/>
                     </ListViewHeaderItem>
                     <ListViewItem>
-                        <TextBlock TextWrapping="Wrap" Style="{StaticResource BodyTextBlockStyle}">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla elementum, magna sed pellentesque vestibulum, risus sem mattis lacus, non condimentum erat nisi at libero. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc rutrum libero at augue commodo vehicula. Suspendisse auctor commodo libero, sed vehicula justo gravida a. Integer diam lorem, elementum ultricies condimentum id, aliquet et turpis. Aliquam vitae magna et lorem viverra accumsan. In tellus nisl, volutpat quis ante non, lobortis pharetra arcu. Nulla hendrerit, felis nec sagittis faucibus, mauris magna fermentum nunc, ac lobortis ante metus quis neque. Praesent auctor ipsum eu facilisis elementum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse potenti.
-
-Nam consectetur leo quam, vel finibus lectus bibendum eu. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque gravida aliquet magna, non tempus leo. Quisque ullamcorper felis et metus lacinia mattis. Duis porttitor sem in ultricies varius. Donec sit amet tincidunt arcu. Curabitur finibus purus id blandit interdum. Nulla a scelerisque metus. Nam consectetur sit amet velit a pulvinar. Fusce lacinia metus ac ligula condimentum aliquam. Praesent tempus auctor placerat. Duis vitae orci et leo convallis iaculis sodales in arcu. Aenean vestibulum justo id arcu pulvinar lobortis. Maecenas porttitor lectus scelerisque, vulputate arcu vitae, feugiat eros. Nulla tristique facilisis risus ac maximus. Phasellus rutrum justo nec nisl tristique, in convallis leo vestibulum.
-
-Fusce pretium enim non magna hendrerit, ut pharetra elit bibendum. Nullam ac sapien quam. Praesent pulvinar mi ante, a pharetra neque feugiat id. In aliquam purus sit amet ligula hendrerit finibus. Maecenas ut justo nec leo maximus molestie. Integer nec metus et justo hendrerit vehicula. Quisque consectetur risus a aliquam consectetur. Integer sit amet auctor diam. Nam sed mi et erat hendrerit faucibus volutpat sit amet mi. Sed viverra nisl a sapien maximus iaculis.
-
-Nulla vehicula metus eu fringilla volutpat. Morbi congue condimentum efficitur. Quisque in nulla ut lectus sollicitudin blandit eget ac felis. Cras vehicula, ex et facilisis scelerisque, est urna elementum neque, ac rhoncus sem lacus ut sapien. Integer pellentesque enim massa, ut pretium mi vulputate sit amet. Maecenas dapibus nulla ipsum, ut dictum tellus aliquet sed. Mauris quis odio ac sem consectetur sollicitudin posuere ut orci. Vestibulum faucibus non augue a semper. Vestibulum finibus aliquet hendrerit. Ut ac erat ut enim semper fringilla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                        <TextBlock TextWrapping="Wrap" Style="{StaticResource BodyTextBlockStyle}" Text="{x:Bind recpt.Modopreparo}">
                         </TextBlock>
                     </ListViewItem>
                 </ListView>
