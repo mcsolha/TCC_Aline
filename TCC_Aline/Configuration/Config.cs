@@ -127,7 +127,7 @@ namespace TCC_Aline
             {
                 if (item.Equals(PageName.Receitas))
                     Paginas.Add(new PageType(EnumHelper.GetEnumDescription(item), true, EnumHelper.GetEnumDescription(PageName.Doces), EnumHelper.GetEnumDescription(PageName.Salgados)));
-                else
+                else if(!item.Equals(PageName.Doces) && !item.Equals(PageName.Salgados))
                     Paginas.Add(new PageType(EnumHelper.GetEnumDescription(item), false));
             }
         }

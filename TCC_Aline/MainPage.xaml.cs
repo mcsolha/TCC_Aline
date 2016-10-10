@@ -90,5 +90,10 @@ namespace TCC_Aline
             PopulateSplit();
             Menu.ItemsSource = Paginas;
         }
+
+        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
+        {
+            menuPrincipal.IsPaneOpen = !menuPrincipal.IsPaneOpen;
+        }
     }
 }

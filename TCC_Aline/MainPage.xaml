@@ -246,11 +246,11 @@
         <!--Parte superior-->
         <RelativePanel Grid.Row="0" Background="#547980" Padding="5">
             <!--Botão para abrir menu-->
-            <ToggleButton x:Name="HamburgerButton" RelativePanel.AlignLeftWithPanel="True" Style="{StaticResource SymbolButton}" RelativePanel.AlignVerticalCenterWithPanel="True" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" Padding="10">
-                <ToggleButton.Content>
+            <Button x:Name="HamburgerButton" Click="HamburgerButton_Click" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" Padding="10">
+                <Button.Content>
                     <FontIcon x:Name="hamburger" FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;"/>
-                </ToggleButton.Content>
-            </ToggleButton>
+                </Button.Content>
+            </Button>
             <!--Logo do app-->
             <Image x:Name="Logo" Source="ms-appx:///Assets/Square150x150Logo.scale-200.png" Width="50" Height="40" Margin="0" RelativePanel.RightOf="HamburgerButton" RelativePanel.AlignVerticalCenterWithPanel="True"/>
             <!--Nome do app-->
@@ -267,7 +267,7 @@
             <!--Caixa de busca (Tela menor que 640)-->
             <AutoSuggestBox x:Name="BigSuggestBox" PlaceholderText="Digite aqui" Visibility="{Binding ElementName=SuggestBoxIconClickable, Path=IsChecked, Converter={StaticResource VisibilityConverter}}" RelativePanel.RightOf="HamburgerButton" RelativePanel.LeftOf="SuggestBoxIconClickable" RelativePanel.AlignVerticalCenterWithPanel="True"/>
         </RelativePanel>
-        <SplitView Grid.Row="1" Background="#9DE0AD" IsPaneOpen="{Binding ElementName=HamburgerButton, Path=IsChecked}" PaneBackground="#547980" OpenPaneLength="200" DisplayMode="Inline">
+        <SplitView x:Name="menuPrincipal" Grid.Row="1" Background="#9DE0AD" IsPaneOpen="False" PaneBackground="#547980" OpenPaneLength="200" DisplayMode="Overlay">
             <SplitView.Pane>
                 <StackPanel Orientation="Vertical" Padding="5">
                     <ItemsControl x:Name="Menu" ItemTemplateSelector="{StaticResource CustomDataTemplateSelector}"/>
