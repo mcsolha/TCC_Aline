@@ -67,12 +67,12 @@ namespace TCC_Aline
                         Favorita = true,
                         Pessoas = 55,
                         Ingredientes = new ObservableCollection<Model.Ingrediente>(),
-                        Modopreparo = "Primeiro bata tudo\nDepois se mata\nAgora voce estara no inferno\nCaia da ppk loca",
+                        Modopreparo = "Primeiro bata tudo\nDepois se mata\nAgora voce estara no inferno\nCaia da ppk loca aisdja ashdyahdu xvnxjkvnxcjk sdhrui dfhabdhn wenqmdioqmio jdsnjdsn erybfyeufeh dhfhis siudfnweknw jdsnfj sdbs ubfhwndjkwm smiwefiun ifi suidiwdniw wuiduidjwie isdjodij",
                         Comentarios = new ObservableCollection<string>()
                         {
                             "Para esta receita você deve ficar atento que pode usar itens alternativos.\nOs itens alternativos são sugeridos ao clicar nos ingredientes verdes!",
                             "Quer deixar o prato ainda mais gostoso? Adicione um pouco de queijo ralado antes de levar ao forno e deixe gratinar!!",
-                            "Asdfjaisdjfi asdifjasijfiojaiod asdifjasdfj asuidfjauisdjf sdfdu sudfhusndfiu sdufjusidfuisd sdfusdj sudfhusidfsdui sduisuidfhsui isdjfisdjfn isdfsdui sdufhuisdhfuisdfnui isudfnisdn isudfhnusdifnsdui iusdsudfh isudfsuidfsdui sdifnsuifhsduihf usdfh uisdfhsdui sudf siufhsduih usduhf"
+                            "Asdfjaisdjfi asdifjasijfiojaiod asdifjasdfj asuidfjauisdjf sdfdu sudfhusndfiu sdufjusidfuisd sdfusdj sudfhusidfsdui sduisuidfhsui isdjfisdjfn isdfsdui sdufhuisdhfuisdfnui isudfnisdn isudfhnusdifnsdui iusdsudfh isudfsuidfsdui sdifnsuifhsduihf usdfh uisdfhsdui sudf siufhsduih usduhf sdfjiosfjaiosjdf sdifjuisfj sdfuhsaduifhusdnfaisdnfui kdnfkasd sfushuianfisnf djvdvndnv dfjdjf duhquwjfioqmqwfni sid sfnsuifnajidnfia quiefjuqfisdquin djnjdn suidjfuifiqmiovmio skfjksdoj sdifuiqsfnjsvnin"
                         }
                     };
                     recpt.Ingredientes.Add(new Model.Ingrediente()

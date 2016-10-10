@@ -82,6 +82,7 @@ namespace TCC_Aline.Pages
             OpenWidth = this.ActualWidth;
             LateralMenuFrameWidth = OpenWidth - lateralMenu.PaneClosedWidth;
             ComentWidth = coments.ActualWidth - 20;
+            Debug.WriteLine(this.ActualWidth);
         }
 
         private void Image_Tapped(object sender, TappedRoutedEventArgs e)
