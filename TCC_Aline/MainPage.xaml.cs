@@ -51,11 +51,6 @@ namespace TCC_Aline
             }
         }
 
-        private void ReceitasChild_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void BotaoMenu_Click(object sender, RoutedEventArgs e)
         {
             string content = (sender is Button) ? (sender as Button).Content as string : "";
@@ -63,13 +58,15 @@ namespace TCC_Aline
             switch (p)
             {
                 case PageName.Home:
-                    Frame.Navigate(typeof(Receita));
+                    FramePrincipal.Navigate(typeof(Receita));
                     break;
                 case PageName.Receitas:
                     break;
                 case PageName.Doces:
+                    FramePrincipal.Navigate(typeof(Doces));
                     break;
                 case PageName.Salgados:
+                    FramePrincipal.Navigate(typeof(Salgados));
                     break;
                 case PageName.Favoritos:
                     break;

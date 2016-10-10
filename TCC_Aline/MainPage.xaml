@@ -30,7 +30,7 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Button x:Name="ReceitasChild" Content="{Binding}" Style="{StaticResource HomeButtonStyle}" Click="ReceitasChild_Click"/>
+                                <Button x:Name="ReceitasChild" Content="{Binding}" Style="{StaticResource HomeButtonStyle}" Click="BotaoMenu_Click"/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
@@ -273,7 +273,7 @@
                     <ItemsControl x:Name="Menu" ItemTemplateSelector="{StaticResource CustomDataTemplateSelector}"/>
                 </StackPanel>
             </SplitView.Pane>
-            <Frame x:Name="Frame" Padding="5">
+            <Frame x:Name="FramePrincipal" Padding="5">
                 <RelativePanel>
                     <TextBlock Text="TESTE DE FRAME"/>
                 </RelativePanel>

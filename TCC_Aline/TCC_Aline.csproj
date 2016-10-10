@@ -102,8 +102,15 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Categoria.cs" />
+    <Compile Include="Pages\Doces.xaml.cs">
+      <DependentUpon>Doces.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Receita.xaml.cs">
       <DependentUpon>Receita.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Salgados.xaml.cs">
+      <DependentUpon>Salgados.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserControls\LateralMenu.xaml.cs">
@@ -137,7 +144,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\Doces.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Receita.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Salgados.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
