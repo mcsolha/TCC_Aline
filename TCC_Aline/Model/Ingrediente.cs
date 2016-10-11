@@ -18,7 +18,7 @@ namespace TCC_Aline.Model
         {
             get
             {
-                if (substitutosCollection == null)
+                if (substitutosCollection == null && Substitutos != null)
                 {
                     substitutosCollection = new ObservableCollection<string>();
                     foreach (var item in Substitutos)

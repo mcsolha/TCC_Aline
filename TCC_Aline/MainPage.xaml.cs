@@ -92,6 +92,7 @@ namespace TCC_Aline
         {
             PopulateSplit();
             Menu.ItemsSource = Paginas;
+            FramePrincipal.Navigate(typeof(Home));
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)

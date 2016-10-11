@@ -26,7 +26,7 @@ namespace TCC_Aline.Pages
     /// </summary>
     public sealed partial class Receitas : Page, INotifyPropertyChanged
     {
-        private ObservableCollection<Model.ReceitaData> ReceitasDados = new ObservableCollection<Model.ReceitaData>();
+        private ObservableCollection<ReceitaData> ReceitasDados = new ObservableCollection<ReceitaData>();
         private Configuration.PageName? pageType = null;
 
         private string pageName;
@@ -88,6 +88,12 @@ namespace TCC_Aline.Pages
                 if(!ele.Favorita)
                     ReceitasDados.Remove(ele);
             }
+        }
+
+        private void Image_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            ReceitaData rc = (sender as FrameworkElement).DataContext as ReceitaData;
+            Frame.Navigate(typeof(Receita), rc);
         }
     }
 }

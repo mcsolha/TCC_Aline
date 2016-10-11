@@ -22,18 +22,18 @@
             <Flyout x:Key="info">
                 <TextBlock Text="Clique com o botão direito para visualizar o menu lateral!"/>
             </Flyout>
-        </ResourceDictionary>
+        </ResourceDictionary>   
     </Page.Resources>
-    <RelativePanel Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+    <RelativePanel Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Padding="10,2,2,2">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState>
-                    <VisualState.StateTriggers>
+                    <!--<VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="1220"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="lateralMenu.Visibility" Value="Visible"/>
-                    </VisualState.Setters>
+                    </VisualState.Setters>-->
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
@@ -52,7 +52,7 @@
                 </Grid.RowDefinitions>
                 <ListViewHeaderItem >
                     <StackPanel Grid.Row="0" Orientation="Horizontal">
-                        <ToggleButton x:Name="FavoriteButton" Style="{StaticResource SymbolButton}" IsChecked="{x:Bind recpt.Favorita}">
+                        <ToggleButton x:Name="FavoriteButton" Style="{StaticResource SymbolButton}" IsChecked="{x:Bind Path=recpt.Favorita,Mode=TwoWay}">
                             <ToggleButton.Content>
                                 <SymbolIcon Symbol="{Binding ElementName=FavoriteButton, Path=IsChecked, Converter={StaticResource FavoriteConverter}}"/>
                             </ToggleButton.Content>
@@ -168,7 +168,7 @@
                 </Grid>
             </Grid>
         </Grid>
-        <controls:LateralMenu x:Name="lateralMenu" Visibility="Collapsed" Margin="0,66,0,0" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" PaneClosedWidth="100" PaneOpenWidth="{x:Bind Path=OpenWidth,Mode=TwoWay}" IsOpen="false" Background="DeepPink" FlyoutBase.AttachedFlyout="{StaticResource info}">
+        <controls:LateralMenu x:Name="lateralMenu" Visibility="Visible" Margin="0,66,0,0" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" PaneClosedWidth="100" PaneOpenWidth="{x:Bind Path=OpenWidth,Mode=TwoWay}" IsOpen="false" Background="DeepPink" FlyoutBase.AttachedFlyout="{StaticResource info}">
             <controls:LateralMenu.PaneContent>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -191,7 +191,7 @@
                 </Grid>
             </controls:LateralMenu.PaneContent>
         </controls:LateralMenu>
-        <ListView ItemsSource="{x:Bind Path=messages}" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
+        <!--<ListView ItemsSource="{x:Bind Path=messages}" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -214,7 +214,7 @@
                     </RelativePanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
-        </ListView>
+        </ListView>-->
 
     </RelativePanel>
 </Page>

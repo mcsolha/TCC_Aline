@@ -21,7 +21,7 @@
                         <ColumnDefinition Width="2*"/>
                         <ColumnDefinition Width="1.5*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="{x:Bind Path=Imagem}" Stretch="Fill"/>
+                    <Image Grid.Column="0" Tapped="Image_Tapped" Source="{x:Bind Path=Imagem}" Stretch="Fill"/>
                     <Grid Grid.Column="1">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
