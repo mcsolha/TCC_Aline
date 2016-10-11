@@ -10,7 +10,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:data="using:TCC_Aline.Model"
-    mc:Ignorable="d" SizeChanged="Page_SizeChanged" MinWidth="800" MinHeight="640">
+    mc:Ignorable="d" SizeChanged="Page_SizeChanged" MinWidth="800" MinHeight="640" RightTapped="paginaReceita_RightTapped">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -19,6 +19,9 @@
             <converters:FavoriteConverter x:Key="FavoriteConverter"/>
             <converters:TimeToStringConverter x:Name="TimeToStringConverter"/>
             <converters:ColorConverter x:Name="ColorConverter"/>
+            <Flyout x:Key="info">
+                <TextBlock Text="Clique com o botão direito para visualizar o menu lateral!"/>
+            </Flyout>
         </ResourceDictionary>
     </Page.Resources>
     <RelativePanel Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
@@ -34,30 +37,7 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <!--<SplitView x:Name="barraLateral" Background="Transparent" DisplayMode="CompactOverlay" OpenPaneLength="{Binding ElementName=paginaReceita,Path=ActualWidth}" CompactPaneLength="100" PanePlacement="Right" Margin="0,66,0,0">
-            <SplitView.Pane>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="100"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Tapped="TextBlock_Tapped" Grid.Row="0" Text="Glossário" TextWrapping="WrapWholeWords" Style="{StaticResource FlyoutPickerTitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Row="1" Text="Técnicas" TextWrapping="WrapWholeWords" Style="{StaticResource FlyoutPickerTitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Row="2" Text="Dicas de medidas" TextWrapping="WrapWholeWords" Style="{StaticResource FlyoutPickerTitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Row="3" Text="Timer" TextWrapping="WrapWholeWords" Style="{StaticResource FlyoutPickerTitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Grid>
-                    <Image Source="ms-appx:///Assets/Wide310x150Logo.scale-200.png"/>
-                </Grid>
-            </SplitView.Pane>
-        </SplitView>-->
-        <Grid x:Name="mainContent" Background="Transparent" RelativePanel.AlignRightWithPanel="False" RelativePanel.AlignLeftWithPanel="True">
+        <Grid x:Name="mainContent" Background="Transparent" RelativePanel.AlignRightWithPanel="False" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True">
             <!--definição das colunas principais-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2.02*"/>
@@ -153,7 +133,7 @@
                             <DataTemplate x:DataType="data:Ingrediente">
                                 <StackPanel Orientation="Horizontal">
                                     <SymbolIcon Symbol="More" Margin="0,0,10,0"/>
-                                    <TextBlock Text="{Binding Texto, Mode=TwoWay}" Foreground="{x:Bind Path=Substitutos,Converter={StaticResource ColorConverter}}" Holding="TextBlock_Holding" Tapped="TextBlock_Tapped">
+                                    <TextBlock Text="{Binding Texto, Mode=TwoWay}" Foreground="{x:Bind Path=Substitutos,Converter={StaticResource ColorConverter}}" Tapped="TextBlock_Tapped">
                                         <FlyoutBase.AttachedFlyout>
                                             <Flyout>
                                                 <ListView ItemsSource="{x:Bind Substitutos}" SelectionChanged="ListView_SelectionChanged">
@@ -188,7 +168,7 @@
                 </Grid>
             </Grid>
         </Grid>
-        <controls:LateralMenu x:Name="lateralMenu" Visibility="Collapsed" Margin="0,66,0,0" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" PaneClosedWidth="100" PaneOpenWidth="{x:Bind Path=OpenWidth,Mode=TwoWay}" IsOpen="false" Background="CornflowerBlue">
+        <controls:LateralMenu x:Name="lateralMenu" Visibility="Collapsed" Margin="0,66,0,0" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" PaneClosedWidth="100" PaneOpenWidth="{x:Bind Path=OpenWidth,Mode=TwoWay}" IsOpen="false" Background="DeepPink" FlyoutBase.AttachedFlyout="{StaticResource info}">
             <controls:LateralMenu.PaneContent>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -211,5 +191,30 @@
                 </Grid>
             </controls:LateralMenu.PaneContent>
         </controls:LateralMenu>
+        <ListView ItemsSource="{x:Bind Path=messages}" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <SolidColorBrush Color="Black" Opacity="0.5"/>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:Info">
+                    <RelativePanel>
+                        <TextBlock Text="{x:Bind Message}" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
+                        <Button RelativePanel.AlignRightWithPanel="True" Background="Transparent" Click="Button_Click">
+                            <Viewbox MaxWidth="10">
+                                <SymbolIcon Symbol="Clear"/>
+                            </Viewbox>
+                        </Button>
+                    </RelativePanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
     </RelativePanel>
 </Page>

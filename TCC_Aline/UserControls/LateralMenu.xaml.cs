@@ -34,8 +34,7 @@ namespace TCC_Aline.UserControls
         }
         #endregion
 
-        #region DPs 
-
+        #region DPs
         public UIElement PaneContent
         {
             get { return (UIElement)GetValue(PaneContentProperty); }

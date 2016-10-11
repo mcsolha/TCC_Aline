@@ -16,6 +16,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Toolkit.Uwp.UI.Animations;
+using TCC_Aline.UserControls;
+using System.Collections.ObjectModel;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -27,6 +29,8 @@ namespace TCC_Aline.Pages
     public sealed partial class Receita : Page, INotifyPropertyChanged
     {
         Model.Receita recpt;
+
+        ObservableCollection<Info> messages = new ObservableCollection<Info>();
 
         public GridLength ToGridLenght(double d)
         {
@@ -69,12 +73,24 @@ namespace TCC_Aline.Pages
         public Receita()
         {
             this.InitializeComponent();
+            lateralMenu.RegisterPropertyChangedCallback(VisibilityProperty, new DependencyPropertyChangedCallback(ChangeVisibility));
+        }
+
+        private void ChangeVisibility(DependencyObject obj, DependencyProperty pr)
+        {
+            var lm = obj as LateralMenu;
+            if (lm.Visibility == Visibility.Collapsed && !messages.Any(x => x.Index == 0))
+                messages.Add(new Info() { Index = 0, Message = "Clique com o botão direito para visualizar o menu lateral!" });
+            else if (lm.Visibility == Visibility.Visible && messages.Any(x => x.Index == 0))
+                messages.RemoveAt(0);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             recpt = (Model.Receita)e.Parameter;
+            if (lateralMenu.Visibility == Visibility.Collapsed && !messages.Any(x => x.Index == 0))
+                messages.Add(new Info() { Index = 0, Message = "Clique com o botão direito para visualizar o menu lateral!" });
         }
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -82,23 +98,12 @@ namespace TCC_Aline.Pages
             OpenWidth = this.ActualWidth;
             LateralMenuFrameWidth = OpenWidth - lateralMenu.PaneClosedWidth;
             ComentWidth = coments.ActualWidth - 20;
-            Debug.WriteLine(this.ActualWidth);
         }
 
         private void Image_Tapped(object sender, TappedRoutedEventArgs e)
         {
             lateralMenu.IsOpen = !lateralMenu.IsOpen;
             lateralMenuFrame.Navigate(typeof(MainPage));
-        }
-
-        private void TextBlock_Holding(object sender, HoldingRoutedEventArgs e)
-        {
-            FrameworkElement senderElement = sender as FrameworkElement;
-            // If you need the clicked element:
-            var whichOne = (sender as TextBlock).Text;
-            Debug.WriteLine(whichOne);
-            FlyoutBase flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
-            flyoutBase.ShowAt(senderElement);
         }
 
         private void TextBlock_Tapped(object sender, TappedRoutedEventArgs e)
@@ -125,5 +130,22 @@ namespace TCC_Aline.Pages
                 ob.Substitutos[ob.Substitutos.IndexOf(ob.Texto)] = ob.Aux;
             }
         }
+
+        private void paginaReceita_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            lateralMenu.Visibility = lateralMenu.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Info d = (sender as Button).DataContext as Info;
+            messages.Remove(d);
+        }
+    }
+
+    public class Info
+    {
+        public string Message { get; set; }
+        public int Index { get; set; }
     }
 }
