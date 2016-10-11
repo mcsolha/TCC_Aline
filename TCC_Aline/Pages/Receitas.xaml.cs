@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using TCC_Aline.Helpers;
+using TCC_Aline.Model;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -26,7 +27,7 @@ namespace TCC_Aline.Pages
     public sealed partial class Receitas : Page, INotifyPropertyChanged
     {
         private ObservableCollection<Model.ReceitaData> ReceitasDados = new ObservableCollection<Model.ReceitaData>();
-        private Configuration.PageName pageType;
+        private Configuration.PageName? pageType = null;
 
         private string pageName;
 
@@ -51,31 +52,37 @@ namespace TCC_Aline.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if(e.Parameter is Configuration.PageName)
-                pageType = (Configuration.PageName)e.Parameter;
-            PageName = EnumHelper.GetEnumDescription((Configuration.PageName)e.Parameter);
-            if (pageType == Configuration.PageName.Favoritos)
+            App application = (Application.Current as App);
+            if (e.Parameter is Configuration.PageName)
             {
-                App application = (Application.Current as App);
-                foreach (var item in GetFavorites(application.Receitas))
+                pageType = (Configuration.PageName)e.Parameter;
+                PageName = EnumHelper.GetEnumDescription((Configuration.PageName)e.Parameter);
+                if (pageType == Configuration.PageName.Favoritos)
+                {
+                    foreach (var item in application.Receitas.GetFavorites())
+                    {
+                        ReceitasDados.Add(item);
+                    }
+                }
+            }else if(e.Parameter is Model.Doces)
+            {
+                Model.Doces doce = (Model.Doces)e.Parameter;
+                PageName = EnumHelper.GetEnumDescription((Model.Doces)e.Parameter);
+                foreach (var item in application.Receitas.GetReceipt(doce))
                 {
                     ReceitasDados.Add(item);
                 }
-            }
-        }
-
-        private IEnumerable<Model.ReceitaData> GetFavorites(ObservableCollection<Model.ReceitaData> recpts)
-        {
-            foreach (var item in recpts)
+            }else if(e.Parameter is Model.Salgados)
             {
-                if (item.Favorita)
-                    yield return item;
+                Model.Salgados salgado = (Model.Salgados)e.Parameter;
+                PageName = EnumHelper.GetEnumDescription((Model.Salgados)e.Parameter);
+                itens.ItemsSource = application.Receitas.GetReceipt(salgado).ToObservableCollection();
             }
         }
 
         private void FavoriteButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            if(pageType == Configuration.PageName.Favoritos)
+            if(pageType != null && pageType == Configuration.PageName.Favoritos)
             {
                 var ele = (sender as FrameworkElement).DataContext as Model.ReceitaData;
                 if(!ele.Favorita)

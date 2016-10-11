@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using TCC_Aline.Helpers;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 
@@ -7,6 +9,29 @@ namespace TCC_Aline.Model
 {
     public class ReceitaData : ReceitaModel
     {
+        private Enum enumTipo = null;
+
+        public Enum EnumTipo
+        {
+            get
+            {
+                if(enumTipo == null)
+                {
+                    foreach (var item in EnumHelper.GetEnumDescriptions(typeof(Doces)))
+                    {
+                        if (item == Tipo)
+                            enumTipo = EnumHelper.GetEnumFromDescription<Doces>(item);
+                    }
+                    foreach (var item in EnumHelper.GetEnumDescriptions(typeof(Salgados)))
+                    {
+                        if (item == Tipo)
+                            enumTipo = EnumHelper.GetEnumFromDescription<Salgados>(item);
+                    }
+                }
+                return enumTipo;
+            }
+        }   
+
         public TimeSpan Preparo
         {
             get
@@ -68,6 +93,33 @@ namespace TCC_Aline.Model
 
     public static class ReceitaCast
     {
+        public static IEnumerable<ReceitaData> GetReceipt(this ObservableCollection<ReceitaData> recpts, Enum value)
+        {
+            dynamic valor = null;
+            if (value is Doces)
+            {
+                valor = (Doces)value;
+            }
+            else if (value is Salgados)
+            {
+                valor = (Salgados)value;
+            }
+            foreach (var item in recpts)
+            {
+                if (item.EnumTipo.Equals(valor))
+                    yield return item;
+            }
+        }
+
+        public static IEnumerable<ReceitaData> GetFavorites(this ObservableCollection<ReceitaData> recpts)
+        {
+            foreach (var item in recpts)
+            {
+                if (item.Favorita)
+                    yield return item;
+            }
+        }
+
         public static ReceitaData ToReceitaData(this ReceitaModel model)
         {
             return new ReceitaData()
@@ -82,13 +134,31 @@ namespace TCC_Aline.Model
                 Pessoas = model.Pessoas,
                 Porcoes = model.Porcoes,
                 PreparoString = model.PreparoString,
-                Video = model.Video
+                Video = model.Video,
+                Tipo = model.Tipo,
+                Categoria = model.Categoria
             };
         }
     }
 
     public class ReceitaModel
     {
+        private string categoria;
+
+        public string Categoria
+        {
+            get { return categoria; }
+            set { categoria = value; }
+        }
+
+        private string tipo;
+
+        public string Tipo
+        {
+            get { return tipo; }
+            set { tipo = value; }
+        }
+
         private string nome;
 
         public string Nome

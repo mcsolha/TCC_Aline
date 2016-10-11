@@ -55,6 +55,7 @@ namespace TCC_Aline.Model
     }
     public class Tipo
     {
+        public Enum nome; 
         public string Nome { get; set; }
         private Categorias categoria;
         public Categorias Categoria
@@ -69,9 +70,17 @@ namespace TCC_Aline.Model
             }
         }
 
-        public Tipo(string nome, Categorias categoria)
+        public Tipo(Salgados nome, Categorias categoria)
         {
-            Nome = nome;
+            this.nome = nome;
+            Nome = EnumHelper.GetEnumDescription(nome);
+            Categoria = categoria;
+        }
+
+        public Tipo(Doces nome, Categorias categoria)
+        {
+            this.nome = nome;
+            Nome = EnumHelper.GetEnumDescription(nome);
             Categoria = categoria;
         }
 
@@ -83,13 +92,13 @@ namespace TCC_Aline.Model
                 case Categorias.Salgados:
                     foreach (Salgados item in Enum.GetValues(typeof(Salgados)))
                     {
-                        ret.Add(new Tipo(EnumHelper.GetEnumDescription(item), Categorias.Salgados));
+                        ret.Add(new Tipo(item, Categorias.Salgados));
                     }
                     break;
                 case Categorias.Doces:
                     foreach (Doces item in Enum.GetValues(typeof(Doces)))
                     {
-                        ret.Add(new Tipo(EnumHelper.GetEnumDescription(item), Categorias.Doces));
+                        ret.Add(new Tipo(item, Categorias.Doces));
                     }
                     break;
             }

@@ -1,6 +1,8 @@
 [{
   "Nome": "Bolo de fubá",
   "Video": null,
+  "Categoria": "Doces",
+  "Tipo": "Bolos",
   "ImageSource": "Bolo-de-Fuba-super-fofo.jpg",
   "Ingredientes": [{
     "Texto": "300g de farinha de trigo",
