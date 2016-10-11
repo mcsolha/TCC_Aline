@@ -1,0 +1,51 @@
+[{
+  "Nome": "Bolo de fubá",
+  "Video": null,
+  "ImageSource": "Bolo-de-Fuba-super-fofo.jpg",
+  "Ingredientes": [{
+    "Texto": "300g de farinha de trigo",
+    "Index": 0,
+    "Substitutos": null
+    },
+    {
+      "Texto": "5 colheres de manteiga",
+      "Index": 1,
+      "Substitutos": null
+    },
+    {
+      "Texto": "3 ovos",
+      "Index": 2,
+      "Substitutos": null
+    },
+    {
+      "Texto": "2 colheres de açúcar",
+      "Index": 2,
+      "Substitutos": null
+    },
+    {
+      "Texto": "1 colher de café de essencia de baunilha",
+      "Index": 2,
+      "Substitutos": null
+    },
+    {
+      "Texto": "200g de açúcar mascavo",
+      "Index": 2,
+      "Substitutos": null
+    },
+    {
+      "Texto": "3 ovos",
+      "Index": 2,
+      "Substitutos": null
+    }],
+  "Modopreparo": "Primeiro coloque a todos os ingredientes.\n Bata bastante para que fique bem batido.\nBata durante mais 1298312837128971389 minutos.\nColoque no forno para que asse.\nPegue na cabeça e de uma rodadinha.",
+  "Porcoes": 1,
+  "CozimentoString": "00:45:00",
+  "PreparoString": "01:00:00",
+  "Pessoas": 2,
+  "Favorita": true,
+  "Comentarios": [
+    "Fique ligado!\nOs ingredientes em roxo indicam que podem ser substituidos por outro, não se desespere!!",
+    "Mamãe já dizia, prepare a receita com muito carinho e calma que o bolo sai fofinho!",
+    "NÃO SE ESQUEÇA DE PRE-AQUECER O FORNO!!"
+  ]
+}]

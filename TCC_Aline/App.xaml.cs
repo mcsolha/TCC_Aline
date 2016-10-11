@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -14,6 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using TCC_Aline.Configuration;
 
 namespace TCC_Aline
 {
@@ -22,6 +24,7 @@ namespace TCC_Aline
     /// </summary>
     sealed partial class App : Application
     {
+        public ObservableCollection<Model.ReceitaData> Receitas = new ObservableCollection<Model.ReceitaData>();
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -39,6 +42,7 @@ namespace TCC_Aline
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            Receitas.RetrieveDataFrom("ms-appx:///Data/Receitas.json");
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {

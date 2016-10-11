@@ -15,7 +15,7 @@
             </ResourceDictionary.MergedDictionaries>
             <converters:FavoriteConverter x:Key="FavoriteConverter"/>
             <converters:TimeToStringConverter x:Key="TimeToStringConverter"/>
-            <DataTemplate x:Name="ItensTemplate" x:DataType="data:Receita">
+            <DataTemplate x:Name="ItensTemplate" x:DataType="data:ReceitaData">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2*"/>
@@ -28,7 +28,7 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Orientation="Horizontal">
-                            <ToggleButton x:Name="FavoriteButton" Style="{StaticResource SymbolButton}" IsChecked="{x:Bind Path=Favorita}" Padding="3">
+                            <ToggleButton x:Name="FavoriteButton" Style="{StaticResource SymbolButton}" IsChecked="{x:Bind Path=Favorita ,Mode=TwoWay}" Tapped="FavoriteButton_Tapped" Padding="3">
                                 <ToggleButton.Content>
                                     <SymbolIcon Symbol="{Binding ElementName=FavoriteButton, Path=IsChecked, Converter={StaticResource FavoriteConverter}}"/>
                                 </ToggleButton.Content>
@@ -68,7 +68,7 @@
             <GridViewHeaderItem Grid.Row="0">
                 <TextBlock Text="{x:Bind Path=PageName,Mode=TwoWay}" Style="{StaticResource HeaderTextBlockStyle}"/>
             </GridViewHeaderItem>
-            <GridView x:Name="itens" Grid.Row="1" ItemTemplate="{StaticResource ItensTemplate}" SelectionMode="None">
+            <GridView x:Name="itens" ItemsSource="{x:Bind Path=ReceitasDados}" Grid.Row="1" ItemTemplate="{StaticResource ItensTemplate}" SelectionMode="None">
                 <GridView.ItemContainerStyle>
                     <Style TargetType="GridViewItem">
                         <Setter Property="Width" Value="250"/>

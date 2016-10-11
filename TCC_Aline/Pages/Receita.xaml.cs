@@ -28,7 +28,7 @@ namespace TCC_Aline.Pages
     /// </summary>
     public sealed partial class Receita : Page, INotifyPropertyChanged
     {
-        Model.Receita recpt;
+        Model.ReceitaData recpt;
 
         ObservableCollection<Info> messages = new ObservableCollection<Info>();
 
@@ -88,7 +88,7 @@ namespace TCC_Aline.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            recpt = (Model.Receita)e.Parameter;
+            recpt = (Model.ReceitaData)e.Parameter;
             if (lateralMenu.Visibility == Visibility.Collapsed && !messages.Any(x => x.Index == 0))
                 messages.Add(new Info() { Index = 0, Message = "Clique com o botão direito para visualizar o menu lateral!" });
         }
@@ -108,8 +108,8 @@ namespace TCC_Aline.Pages
 
         private void TextBlock_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            var ingr = ((sender as TextBlock).DataContext as Model.Ingrediente);
-            if (ingr.Substitutos != null && ingr.Substitutos.Any())
+            var ingr = ((sender as TextBlock).DataContext as Model.IngredienteData);
+            if (ingr.SubstitutosCollection != null && ingr.SubstitutosCollection.Any())
             {
                 FrameworkElement senderElement = sender as FrameworkElement;
                 // If you need the clicked element:
@@ -124,10 +124,10 @@ namespace TCC_Aline.Pages
         {
             if (e.AddedItems.Any())
             {
-                Model.Ingrediente ob = (sender as ListView).DataContext as Model.Ingrediente;
+                Model.IngredienteData ob = (sender as ListView).DataContext as Model.IngredienteData;
                 ob.Aux = ob.Texto;
                 ob.Texto = e.AddedItems.Single() as string;
-                ob.Substitutos[ob.Substitutos.IndexOf(ob.Texto)] = ob.Aux;
+                ob.SubstitutosCollection[ob.SubstitutosCollection.IndexOf(ob.Texto)] = ob.Aux;
             }
         }
 

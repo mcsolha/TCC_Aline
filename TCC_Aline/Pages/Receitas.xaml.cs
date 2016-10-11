@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TCC_Aline.Helpers;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -24,6 +25,9 @@ namespace TCC_Aline.Pages
     /// </summary>
     public sealed partial class Receitas : Page, INotifyPropertyChanged
     {
+        private ObservableCollection<Model.ReceitaData> ReceitasDados = new ObservableCollection<Model.ReceitaData>();
+        private Configuration.PageName pageType;
+
         private string pageName;
 
         public string PageName
@@ -42,19 +46,41 @@ namespace TCC_Aline.Pages
         public Receitas()
         {
             this.InitializeComponent();
-            itens.ItemsSource = new ObservableCollection<Model.Receita>()
-            {
-                new Model.Receita() {Nome = "Bolo de Fubá", Preparo = new TimeSpan(0,40,5), Cozimento = new TimeSpan(0,2,5), Favorita = true, Pessoas = 5 },
-                new Model.Receita() {Nome = "Bolo de Banana", Preparo = new TimeSpan(1,5,5), Cozimento = new TimeSpan(0,4,5), Favorita = false, Pessoas = 2 },
-                new Model.Receita() {Nome = "Mousse de Chocolate", Preparo = new TimeSpan(0,20,5), Cozimento = new TimeSpan(1,15,5), Favorita = true, Pessoas = 3 },
-                new Model.Receita() {Nome = "Teta de Nega", Preparo = new TimeSpan(0,15,5), Cozimento = new TimeSpan(0,35,5), Favorita = false, Pessoas = 7 }
-            };
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            PageName = e.Parameter is string ? e.Parameter as string : null;
+            if(e.Parameter is Configuration.PageName)
+                pageType = (Configuration.PageName)e.Parameter;
+            PageName = EnumHelper.GetEnumDescription((Configuration.PageName)e.Parameter);
+            if (pageType == Configuration.PageName.Favoritos)
+            {
+                App application = (Application.Current as App);
+                foreach (var item in GetFavorites(application.Receitas))
+                {
+                    ReceitasDados.Add(item);
+                }
+            }
+        }
+
+        private IEnumerable<Model.ReceitaData> GetFavorites(ObservableCollection<Model.ReceitaData> recpts)
+        {
+            foreach (var item in recpts)
+            {
+                if (item.Favorita)
+                    yield return item;
+            }
+        }
+
+        private void FavoriteButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if(pageType == Configuration.PageName.Favoritos)
+            {
+                var ele = (sender as FrameworkElement).DataContext as Model.ReceitaData;
+                if(!ele.Favorita)
+                    ReceitasDados.Remove(ele);
+            }
         }
     }
 }

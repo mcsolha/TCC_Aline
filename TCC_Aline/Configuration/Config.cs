@@ -1,14 +1,18 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TCC_Aline.Configuration;
 using TCC_Aline.Helpers;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using TCC_Aline.Model;
 
 namespace TCC_Aline.Configuration
 {
@@ -104,6 +108,20 @@ namespace TCC_Aline.Configuration
         }
     }
 
+    public static class Starter
+    {
+        public static async void RetrieveDataFrom(this ObservableCollection<Model.ReceitaData> list, string path)
+        {
+            using(StreamReader sr = new StreamReader((await (await StorageFile.GetFileFromApplicationUriAsync(new Uri(path))).OpenReadAsync()).AsStreamForRead()))
+            {
+                List<Model.ReceitaModel> recptModel = JsonConvert.DeserializeObject<List<Model.ReceitaModel>>(sr.ReadToEnd());
+                foreach (var item in recptModel)
+                {
+                    list.Add(item.ToReceitaData());
+                }
+            }
+        }
+    }
 }
 
 namespace TCC_Aline

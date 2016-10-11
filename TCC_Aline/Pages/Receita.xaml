@@ -95,7 +95,7 @@
                     <ListViewHeaderItem x:Name="comentHead" RelativePanel.Below="quantPessoas" RelativePanel.AlignLeftWith="viewBoxVideo" RelativePanel.AlignRightWith="viewBoxVideo" Padding="0,8,0,0">
                         <TextBlock Text="Dicas úteis!" Foreground="Black" Style="{StaticResource SubtitleTextBlockStyle}"/>
                     </ListViewHeaderItem>
-                    <ListView x:Name="coments" SelectionMode="None" ItemsSource="{x:Bind recpt.Comentarios}" RelativePanel.Below="comentHead" RelativePanel.AlignLeftWith="viewBoxVideo" RelativePanel.AlignRightWith="viewBoxVideo" RelativePanel.AlignBottomWithPanel="True">
+                    <ListView x:Name="coments" SelectionMode="None" ItemsSource="{x:Bind recpt.ComentariosCollection}" RelativePanel.Below="comentHead" RelativePanel.AlignLeftWith="viewBoxVideo" RelativePanel.AlignRightWith="viewBoxVideo" RelativePanel.AlignBottomWithPanel="True">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -128,15 +128,15 @@
                     <ListViewHeaderItem Grid.Row="0">
                         <TextBlock Text="Ingredientes" Style="{StaticResource SubheaderTextBlockStyle}"/>
                     </ListViewHeaderItem>
-                    <ListView Grid.Row="1" SelectionMode="None" ItemsSource="{x:Bind recpt.Ingredientes}">
+                    <ListView Grid.Row="1" SelectionMode="None" ItemsSource="{x:Bind recpt.IngredientesCollection}">
                         <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="data:Ingrediente">
+                            <DataTemplate x:DataType="data:IngredienteData">
                                 <StackPanel Orientation="Horizontal">
                                     <SymbolIcon Symbol="More" Margin="0,0,10,0"/>
-                                    <TextBlock Text="{Binding Texto, Mode=TwoWay}" Foreground="{x:Bind Path=Substitutos,Converter={StaticResource ColorConverter}}" Tapped="TextBlock_Tapped">
+                                    <TextBlock Text="{Binding Texto, Mode=TwoWay}" Foreground="{x:Bind Path=SubstitutosCollection,Converter={StaticResource ColorConverter}}" Tapped="TextBlock_Tapped">
                                         <FlyoutBase.AttachedFlyout>
                                             <Flyout>
-                                                <ListView ItemsSource="{x:Bind Substitutos}" SelectionChanged="ListView_SelectionChanged">
+                                                <ListView ItemsSource="{x:Bind SubstitutosCollection}" SelectionChanged="ListView_SelectionChanged">
                                                     <ListView.ItemTemplate>
                                                         <DataTemplate>
                                                             <TextBlock Text="{Binding}"/>
