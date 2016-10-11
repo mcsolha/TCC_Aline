@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -24,10 +26,20 @@ namespace TCC_Aline.Pages
     {
         private Model.ReceitaData salgada;
         private Model.ReceitaData doce;
+        private DateTime today = DateTime.Now;
+        private string DiaSemana { get; set; }
 
         public Home()
         {
             this.InitializeComponent();
+            DiaSemana = "Dicas para " + ((new CultureInfo("pt-BR")).DateTimeFormat).GetDayName(today.DayOfWeek) + "!";
+            doce = salgada = (Application.Current as App).Receitas[0];
+        }
+
+        private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Debug.WriteLine(b.ActualWidth);
+            Debug.WriteLine(g.ActualWidth);
         }
     }
 }

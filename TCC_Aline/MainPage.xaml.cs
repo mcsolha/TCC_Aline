@@ -60,7 +60,7 @@ namespace TCC_Aline
             switch (p)
             {
                 case PageName.Home:
-                    FramePrincipal.Navigate(typeof(Receita));
+                    FramePrincipal.Navigate(typeof(Home));
                     break;
                 case PageName.Receitas:
                     break;

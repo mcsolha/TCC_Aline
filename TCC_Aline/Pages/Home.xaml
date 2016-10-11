@@ -6,14 +6,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="200,100">
-        <Grid>
+    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" SizeChanged="Grid_SizeChanged">
+        <Grid x:Name="g" MinWidth="760" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <ListViewHeaderItem Grid.Row="0">
-                <TextBlock Text="Dicas para quinta!" Style="{StaticResource HeaderTextBlockStyle}"/>
+                <TextBlock Text="{x:Bind Path=DiaSemana}" Style="{StaticResource HeaderTextBlockStyle}"/>
             </ListViewHeaderItem>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
@@ -21,27 +21,23 @@
                     <ColumnDefinition Width="0.1*"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <GridViewItem Grid.Column="0" >
-                    <Viewbox>
-                        <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                            <RelativePanel>
-                                <Image  Grid.Row="1" Width="200" Source="ms-appx:///Assets/Square150x150Logo.scale-200.png" RelativePanel.Below="Texto1"/>
-                                <TextBlock x:Name="Texto1"  Grid.Row="0" Text="Pudim de leite" FontSize="25" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True"/>
-                            </RelativePanel>
-                        </Button>
-                    </Viewbox>
-                </GridViewItem>
-                <GridViewItem Grid.Column="2">
-                    <Viewbox>
-                        <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                            <RelativePanel>
-                                <Image  Grid.Row="1" Width="200" Source="ms-appx:///Assets/Square150x150Logo.scale-200.png" RelativePanel.Below="Texto2"/>
-                                <TextBlock x:Name="Texto2"  Grid.Row="0" Text="Pudim de leite" FontSize="25" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True"/>
-                            </RelativePanel>
-                        </Button>
-                    </Viewbox>
-                </GridViewItem>
+                <Grid Grid.Column="0">
+                    <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="40,10" MaxWidth="280">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="{x:Bind Path=doce.Nome}" Style="{StaticResource SubtitleTextBlockStyle}" Margin="0,0,0,20"/>
+                            <Image  Grid.Row="1" Width="Auto" Source="{x:Bind Path=doce.Imagem}" />
+                        </StackPanel>
+                    </Button>
+                </Grid>
+                <Grid Grid.Column="2" >
+                    <Button x:Name="b" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="40,10" MaxWidth="280">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock  Grid.Row="0" HorizontalAlignment="Center" Text="{x:Bind Path=salgada.Nome}" Style="{StaticResource SubtitleTextBlockStyle}" Margin="0,0,0,20"/>
+                            <Image  Grid.Row="1" Width="Auto" Source="{x:Bind Path=salgada.Imagem}" />
+                        </StackPanel>
+                    </Button>
+                </Grid>
             </Grid>
         </Grid>
-    </Grid>
+    </RelativePanel>
 </Page>
