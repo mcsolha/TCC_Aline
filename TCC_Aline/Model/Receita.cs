@@ -52,7 +52,7 @@ namespace TCC_Aline.Model
         {
             get
             {
-                return new BitmapImage(new Uri("ms-appx:///Assets/"+ base.ImageSource));
+                return new BitmapImage(new Uri("ms-appx:///Assets/Images/"+ base.ImageSource));
             }
         }
 

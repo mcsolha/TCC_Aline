@@ -91,7 +91,8 @@
                             <TextBlock Text="{x:Bind Path=recpt.Pessoas}" TextWrapping="WrapWholeWords" RelativePanel.AlignHorizontalCenterWith="image3" RelativePanel.AlignVerticalCenterWith="image3" />
                         </RelativePanel>
                     </Grid>
-                    <TextBox x:Name="quantPessoas" RelativePanel.AlignLeftWith="viewBoxVideo" RelativePanel.Below="infoReceita" RelativePanel.AlignRightWith="viewBoxVideo"/>
+                    <controls:NumericUpDown x:Name="quantPessoas" Porcoes="{x:Bind recpt.Porcoes, Mode=TwoWay}" Height="32" RelativePanel.Below="infoReceita" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"/>
+                    <!--<TextBox x:Name="quantPessoas" RelativePanel.AlignLeftWith="viewBoxVideo" RelativePanel.Below="infoReceita" RelativePanel.AlignRightWith="viewBoxVideo"/>-->
                     <ListViewHeaderItem x:Name="comentHead" RelativePanel.Below="quantPessoas" RelativePanel.AlignLeftWith="viewBoxVideo" RelativePanel.AlignRightWith="viewBoxVideo" Padding="0,8,0,0">
                         <TextBlock Text="Dicas úteis!" Foreground="Black" Style="{StaticResource SubtitleTextBlockStyle}"/>
                     </ListViewHeaderItem>
