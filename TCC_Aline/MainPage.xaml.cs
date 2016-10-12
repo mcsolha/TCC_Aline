@@ -65,10 +65,10 @@ namespace TCC_Aline
                 case PageName.Receitas:
                     break;
                 case PageName.Doces:
-                    FramePrincipal.Navigate(typeof(Doces));
+                    FramePrincipal.Navigate(typeof(CategoriaPage), Model.Categorias.Doces);
                     break;
                 case PageName.Salgados:
-                    FramePrincipal.Navigate(typeof(Salgados));
+                    FramePrincipal.Navigate(typeof(CategoriaPage), Model.Categorias.Salgados);
                     break;
                 case PageName.Favoritos:
                     FramePrincipal.Navigate(typeof(Receitas),PageName.Favoritos);

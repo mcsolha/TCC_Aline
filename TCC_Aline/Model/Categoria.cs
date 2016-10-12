@@ -53,12 +53,23 @@ namespace TCC_Aline.Model
         [Display(Description = "Gelatinas")]
         Gelatinas
     }
+
+    public enum Carnes
+    {
+        [Display(Description = "Frangos")]
+        Frangos,
+        [Display(Description = "Bovinos")]
+        Bovinos,
+        [Display(Description = "Suínos")]
+        Suinos
+    }
+
     public class Tipo
     {
         public Enum nome; 
         public string Nome { get; set; }
-        private Categorias categoria;
-        public Categorias Categoria
+        private Categorias? categoria;
+        public Categorias? Categoria
         {
             get
             {
@@ -82,6 +93,24 @@ namespace TCC_Aline.Model
             this.nome = nome;
             Nome = EnumHelper.GetEnumDescription(nome);
             Categoria = categoria;
+        }
+
+        public Tipo(Enum item)
+        {
+            this.nome = item;
+            Nome = EnumHelper.GetEnumDescription(nome);
+            Categoria = null;
+        }
+
+        public static ObservableCollection<Tipo> GetBySubcategory(Type e)
+        {
+            var ret = new ObservableCollection<Tipo>();
+            foreach (var item in Enum.GetValues(e))
+            {
+                if(item is Enum)
+                    ret.Add(new Tipo(item as Enum));
+            }
+            return ret;
         }
 
         public static ObservableCollection<Tipo> GetByCategory(Categorias cat)

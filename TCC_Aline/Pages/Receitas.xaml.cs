@@ -64,19 +64,31 @@ namespace TCC_Aline.Pages
                         ReceitasDados.Add(item);
                     }
                 }
-            }else if(e.Parameter is Model.Doces)
+            }else if(e.Parameter is Doces)
             {
-                Model.Doces doce = (Model.Doces)e.Parameter;
-                PageName = EnumHelper.GetEnumDescription((Model.Doces)e.Parameter);
+                Doces doce = (Doces)e.Parameter;
+                PageName = EnumHelper.GetEnumDescription((Doces)e.Parameter);
                 foreach (var item in application.Receitas.GetReceipt(doce))
                 {
                     ReceitasDados.Add(item);
                 }
-            }else if(e.Parameter is Model.Salgados)
+            }else if(e.Parameter is Salgados)
             {
-                Model.Salgados salgado = (Model.Salgados)e.Parameter;
-                PageName = EnumHelper.GetEnumDescription((Model.Salgados)e.Parameter);
-                itens.ItemsSource = application.Receitas.GetReceipt(salgado).ToObservableCollection();
+                Salgados salgado = (Salgados)e.Parameter;
+                PageName = EnumHelper.GetEnumDescription((Salgados)e.Parameter);
+                foreach (var item in application.Receitas.GetReceipt(salgado))
+                {
+                    ReceitasDados.Add(item);
+                }
+            }
+            else if(e.Parameter is Carnes)
+            {
+                Carnes c = (Carnes)e.Parameter;
+                PageName = EnumHelper.GetEnumDescription((Carnes)e.Parameter);
+                foreach (var item in application.Receitas.GetReceipt(c))
+                {
+                    ReceitasDados.Add(item);
+                }
             }
         }
 

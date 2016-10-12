@@ -91,7 +91,7 @@
                             <TextBlock Text="{x:Bind Path=recpt.Pessoas}" TextWrapping="WrapWholeWords" RelativePanel.AlignHorizontalCenterWith="image3" RelativePanel.AlignVerticalCenterWith="image3" />
                         </RelativePanel>
                     </Grid>
-                    <controls:NumericUpDown x:Name="quantPessoas" Porcoes="{x:Bind recpt.Porcoes, Mode=TwoWay}" Height="32" RelativePanel.Below="infoReceita" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"/>
+                    <controls:NumericUpDown x:Name="quantPessoas" Porcoes="{x:Bind recpt.PorcoesCalculadas, Mode=TwoWay}" Height="32" RelativePanel.Below="infoReceita" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"/>
                     <!--<TextBox x:Name="quantPessoas" RelativePanel.AlignLeftWith="viewBoxVideo" RelativePanel.Below="infoReceita" RelativePanel.AlignRightWith="viewBoxVideo"/>-->
                     <ListViewHeaderItem x:Name="comentHead" RelativePanel.Below="quantPessoas" RelativePanel.AlignLeftWith="viewBoxVideo" RelativePanel.AlignRightWith="viewBoxVideo" Padding="0,8,0,0">
                         <TextBlock Text="Dicas úteis!" Foreground="Black" Style="{StaticResource SubtitleTextBlockStyle}"/>
@@ -134,7 +134,8 @@
                             <DataTemplate x:DataType="data:IngredienteData">
                                 <StackPanel Orientation="Horizontal">
                                     <SymbolIcon Symbol="More" Margin="0,0,10,0"/>
-                                    <TextBlock Text="{Binding Texto, Mode=TwoWay}" Foreground="{x:Bind Path=SubstitutosCollection,Converter={StaticResource ColorConverter}}" Tapped="TextBlock_Tapped">
+                                    <TextBlock Text="{x:Bind Path=QuantidadeCalculada, Mode=OneWay}"/>
+                                    <TextBlock Text="{x:Bind Path=Texto, Mode=TwoWay}" Foreground="{x:Bind Path=SubstitutosCollection,Converter={StaticResource ColorConverter}}" Tapped="TextBlock_Tapped">
                                         <FlyoutBase.AttachedFlyout>
                                             <Flyout>
                                                 <ListView ItemsSource="{x:Bind SubstitutosCollection}" SelectionChanged="ListView_SelectionChanged">
@@ -162,7 +163,7 @@
                     </ListViewHeaderItem>
                     <ListView Grid.Row="1" SelectionMode="None">
                         <ListViewItem>
-                            <TextBlock TextWrapping="Wrap" MaxWidth="600" Style="{StaticResource BodyTextBlockStyle}" Text="{x:Bind recpt.Modopreparo}">
+                            <TextBlock TextWrapping="Wrap" TextAlignment="Justify" MaxWidth="600" Style="{StaticResource BodyTextBlockStyle}" Text="{x:Bind recpt.Modopreparo}">
                             </TextBlock>
                         </ListViewItem>
                     </ListView>

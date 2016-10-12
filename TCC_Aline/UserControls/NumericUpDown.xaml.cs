@@ -59,5 +59,15 @@ namespace TCC_Aline.UserControls
                 sender.SelectionStart = pos;
             }
         }
+
+        private void add_Holding(object sender, HoldingRoutedEventArgs e)
+        {
+            Porcoes++;
+        }
+
+        private void remove_Holding(object sender, HoldingRoutedEventArgs e)
+        {
+            Porcoes--;
+        }
     }
 }

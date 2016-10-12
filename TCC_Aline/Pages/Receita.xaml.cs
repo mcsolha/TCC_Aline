@@ -1,23 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using TCC_Aline.Helpers;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Microsoft.Toolkit.Uwp.UI.Animations;
 using TCC_Aline.UserControls;
 using System.Collections.ObjectModel;
+using Windows.UI.Input;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -28,6 +19,7 @@ namespace TCC_Aline.Pages
     /// </summary>
     public sealed partial class Receita : Page, INotifyPropertyChanged
     {
+        GestureRecognizer gestureRecognizer = new GestureRecognizer();
         Model.ReceitaData recpt;
 
         ObservableCollection<Info> messages = new ObservableCollection<Info>();
@@ -74,6 +66,16 @@ namespace TCC_Aline.Pages
         {
             this.InitializeComponent();
             lateralMenu.RegisterPropertyChangedCallback(VisibilityProperty, new DependencyPropertyChangedCallback(ChangeVisibility));
+            quantPessoas.RegisterPropertyChangedCallback(NumericUpDown.PorcoesProperty, new DependencyPropertyChangedCallback(ChangePorcoes));
+        }
+
+        private void ChangePorcoes(DependencyObject obj, DependencyProperty pr)
+        {
+            foreach (var item in recpt.IngredientesCollection)
+            {
+                item.QuantidadeCalculada = (item.Quantidade * recpt.PorcoesCalculadas)/recpt.Porcoes;
+                Debug.WriteLine(item.Texto + ": " + item.QuantidadeCalculada);
+            }
         }
 
         private void ChangeVisibility(DependencyObject obj, DependencyProperty pr)

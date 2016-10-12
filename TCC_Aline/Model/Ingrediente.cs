@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
@@ -6,6 +7,9 @@ namespace TCC_Aline.Model
 {
     public class IngredienteData : IngredienteModel, INotifyPropertyChanged
     {
+        private double quantidadeCalculada;
+        public double QuantidadeCalculada { get { return Math.Round(quantidadeCalculada, 2); } set { quantidadeCalculada = value; OnPropertyChanged("QuantidadeCalculada"); } }
+
         public new string Texto
         {
             get { return base.Texto; }
@@ -45,8 +49,9 @@ namespace TCC_Aline.Model
             return new IngredienteData()
             {
                 Texto = model.Texto,
-                Index = index,
                 Substitutos = model.Substitutos,
+                Quantidade = model.Quantidade,
+                QuantidadeCalculada = model.Quantidade,
                 Aux = null,
             };
         }
@@ -54,10 +59,12 @@ namespace TCC_Aline.Model
 
     public class IngredienteModel
     {
+        protected double quantidade;
+        public double Quantidade { get { return quantidade; } set { quantidade = value; } }
+
         protected string texto;
         public string Texto { get { return texto; } set { texto = value; } }
 
-        public int Index { get; set; }
         public string[] Substitutos { get; set; }
     }
 }

@@ -1,14 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using TCC_Aline.Helpers;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace TCC_Aline.Model
 {
-    public class ReceitaData : ReceitaModel
+    public class ReceitaData : ReceitaModel, INotifyPropertyChanged
     {
+        public new bool Favorita { get { return base.favorita; } set { base.favorita = value; OnPropertyChanged("Favorita"); } }
+
+        private int porcoesCalculadas;
+        public int PorcoesCalculadas { get { return porcoesCalculadas; } set { porcoesCalculadas = value; } }
+
         private Enum enumTipo = null;
 
         public Enum EnumTipo
@@ -26,6 +32,11 @@ namespace TCC_Aline.Model
                     {
                         if (item == Tipo)
                             enumTipo = EnumHelper.GetEnumFromDescription<Salgados>(item);
+                    }
+                    foreach (var item in EnumHelper.GetEnumDescriptions(typeof(Carnes)))
+                    {
+                        if (item == Tipo)
+                            enumTipo = EnumHelper.GetEnumFromDescription<Carnes>(item);
                     }
                 }
                 return enumTipo;
@@ -74,6 +85,7 @@ namespace TCC_Aline.Model
         }
 
         private ObservableCollection<string> comentariosCollection;
+
         public ObservableCollection<string> ComentariosCollection
         {
             get
@@ -89,6 +101,13 @@ namespace TCC_Aline.Model
                 return comentariosCollection;
             }
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged(string prop)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
     }
 
     public static class ReceitaCast
@@ -103,6 +122,9 @@ namespace TCC_Aline.Model
             else if (value is Salgados)
             {
                 valor = (Salgados)value;
+            }else if(value is Carnes)
+            {
+                valor = (Carnes)value;
             }
             foreach (var item in recpts)
             {
@@ -133,6 +155,7 @@ namespace TCC_Aline.Model
                 Nome = model.Nome,
                 Pessoas = model.Pessoas,
                 Porcoes = model.Porcoes,
+                PorcoesCalculadas = model.Porcoes,
                 PreparoString = model.PreparoString,
                 Video = model.Video,
                 Tipo = model.Tipo,
@@ -231,7 +254,7 @@ namespace TCC_Aline.Model
             set { pessoas = value; }
         }
 
-        private bool favorita;
+        protected bool favorita;
 
         public bool Favorita
         {
