@@ -38,8 +38,16 @@ namespace TCC_Aline.Pages
 
         private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            Debug.WriteLine(b.ActualWidth);
-            Debug.WriteLine(g.ActualWidth);
+        }
+
+        private void doce_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Receita), doce);
+        }
+
+        private void salgado_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Receita), salgada);
         }
     }
 }

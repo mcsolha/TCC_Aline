@@ -22,7 +22,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="40,10" MaxWidth="280" Background="Transparent">
+                    <Button x:Name="doceButton" HorizontalAlignment="Stretch" Click="doce_Click" VerticalAlignment="Stretch" Margin="40,10" MaxWidth="280" Background="Transparent">
                         <StackPanel Orientation="Vertical">
                             <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="{x:Bind Path=doce.Nome}" Style="{StaticResource SubtitleTextBlockStyle}" Margin="0,0,0,20"/>
                             <Image  Grid.Row="1" Width="Auto" Source="{x:Bind Path=doce.Imagem}" />
@@ -30,7 +30,7 @@
                     </Button>
                 </Grid>
                 <Grid Grid.Column="2" >
-                    <Button x:Name="b" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="40,10" MaxWidth="280" Background="Transparent">
+                    <Button x:Name="salgadoButton" Click="salgado_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="40,10" MaxWidth="280" Background="Transparent">
                         <StackPanel Orientation="Vertical">
                             <TextBlock  Grid.Row="0" HorizontalAlignment="Center" Text="{x:Bind Path=salgada.Nome}" Style="{StaticResource SubtitleTextBlockStyle}" Margin="0,0,0,20"/>
                             <Image  Grid.Row="1" Width="Auto" Source="{x:Bind Path=salgada.Imagem}" />

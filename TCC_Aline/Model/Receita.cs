@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using TCC_Aline.Helpers;
+using TCC_Aline.Pages;
+using TCC_Aline.Configuration;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 
@@ -10,7 +13,13 @@ namespace TCC_Aline.Model
 {
     public class ReceitaData : ReceitaModel, INotifyPropertyChanged
     {
-        public new bool Favorita { get { return base.favorita; } set { base.favorita = value; OnPropertyChanged("Favorita"); } }
+        public new bool Favorita { get { return base.favorita; }
+            set
+            {
+                base.favorita = value;
+                OnPropertyChanged("Favorita");
+            }
+        }
 
         private int porcoesCalculadas;
         public int PorcoesCalculadas { get { return porcoesCalculadas; } set { porcoesCalculadas = value; } }
