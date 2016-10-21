@@ -9,6 +9,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using TCC_Aline.Model;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
@@ -33,7 +34,9 @@ namespace TCC_Aline.Pages
         {
             this.InitializeComponent();
             DiaSemana = "Dicas para " + ((new CultureInfo("pt-BR")).DateTimeFormat).GetDayName(today.DayOfWeek) + "!";
-            doce = salgada = (Application.Current as App).Receitas[0];
+            var app = Application.Current as App;
+            doce = app.Receitas.ToList().Where(x => x.Categoria == "Doces").ToList().GetRandom();
+            salgada = app.Receitas.ToList().Where(x => x.Categoria == "Salgados").ToList().GetRandom();
         }
 
         private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)

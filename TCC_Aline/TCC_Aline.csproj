@@ -94,6 +94,10 @@
     <Content Include="Assets\Images\annie_06.jpg" />
     <Content Include="Assets\Images\annie_07.jpg" />
     <Content Include="Assets\Images\Bolo-de-Fuba-super-fofo.jpg" />
+    <Content Include="Assets\Images\genji1.jpg" />
+    <Content Include="Assets\Images\tracer1.png" />
+    <Content Include="Assets\Images\tracer2.jpg" />
+    <Content Include="Assets\Images\tracer3.png" />
     <Content Include="Data\Receitas.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -70,7 +70,7 @@
             </StackPanel>-->
                 <RelativePanel x:Name="itens" Grid.Row="1" Padding="12,0,0,0">
                     <Viewbox x:Name="viewBoxVideo" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" MaxHeight="300">
-                        <WebView x:Name="Video" MinWidth="560" MinHeight="340" Source="ms-appx-web:///Web/video_page.html" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignBottomWithPanel="True"/>
+                        <WebView x:Name="Video" MinWidth="560" MinHeight="340" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignBottomWithPanel="True"/>
                     </Viewbox>
                     <Grid x:Name="infoReceita" RelativePanel.Below="viewBoxVideo" RelativePanel.AlignRightWith="viewBoxVideo" RelativePanel.AlignLeftWith="viewBoxVideo">
                         <Grid.ColumnDefinitions>

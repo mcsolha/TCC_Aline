@@ -1,7 +1,9 @@
 [
   {
     "Nome": "Bolo de fubá",
-    "Video": null,
+    "Video": {
+      "Link":  "https://www.youtube.com/watch?v=34Na4j8AVgA"
+    },
     "Categoria": "Doces",
     "Tipo": "Bolos",
     "ImageSource": "Bolo-de-Fuba-super-fofo.jpg",
@@ -56,7 +58,9 @@
   },
   {
     "Nome": "Cocadinha de forno",
-    "Video": null,
+    "Video": {
+      "Link": "https://www.youtube.com/watch?v=dsWDUvuF0Xc"
+    },
     "Categoria": "Doces",
     "Tipo": "Brigadeiros",
     "ImageSource": "annie_04.jpg",
@@ -101,10 +105,273 @@
   },
   {
     "Nome": "Quibe assado",
-    "Video": null,
+    "Video": {
+      "Link": "https://www.youtube.com/watch?v=cSzBG8awAW0"
+    },
     "Categoria": "Salgados",
     "Tipo": "Bovinos",
     "ImageSource": "annie_05.jpg",
+    "Ingredientes": [
+      {
+        "Texto": "g de trigo para quibe",
+        "Quantidade": 250,
+        "Substitutos": null
+      },
+      {
+        "Texto": " xícara(s) de cebola picada",
+        "Quantidade": 0.75,
+        "Substitutos": null
+      },
+      {
+        "Texto": " colher(es) (sopa) de sal",
+        "Quantidade": 1,
+        "Substitutos": null
+      },
+      {
+        "Texto": " colher(es) (sopa) de pimenta Síria",
+        "Quantidade": 0.5,
+        "Substitutos": null
+      },
+      {
+        "Texto": " colher(es) (sopa) de hortelã picada",
+        "Quantidade": 1,
+        "Substitutos": null
+      },
+      {
+        "Texto": "g de carne magra moída",
+        "Quantidade": 200,
+        "Substitutos": null
+      },
+      {
+        "Texto": " colher(es) (sopa) de óleo",
+        "Quantidade": 4,
+        "Substitutos": null
+      },
+      {
+        "Texto": " de xícara(s) de snubar (opcional)",
+        "Quantidade": 0.33333,
+        "Substitutos": null
+      },
+      {
+        "Texto": " de xícara(s) de cebola picada",
+        "Quantidade": 0.75,
+        "Substitutos": null
+      },
+      {
+        "Texto": "g de carne moída",
+        "Quantidade": 250,
+        "Substitutos": null
+      },
+      {
+        "Texto": "sál a gosto",
+        "Quantidade": 0,
+        "Substitutos": null
+      },
+      {
+        "Texto": " colher(es) (chá) de pimenta Síria",
+        "Quantidade": 1,
+        "Substitutos": null
+      },
+      {
+        "Texto": " de xícara(s) de azeite (para regar)",
+        "Quantidade": 0.33333,
+        "Substitutos": null
+      }
+    ],
+    "Modopreparo": "\tNuma tigela, coloque a cebola, o trigo, o sal, a pimenta e a hortelã. Misture bem e passe pelo processador ou máquina de moer carne, juntando a carne moída, até ficar numa massa homogênea. Reserve.\n\tPrepare o recheio: em uma frigideira, coloque o óleo e doure o snubar. Retire o snubar e reserve. Acrescente a cebola picada e deixe dourar bem a carne moída, mexa bem, até dourar. Tempere com o sal e a pimenta. Retire do fogo.\n\tPegue um refratário de 19x31cm e espalhe nele a metade da massa do quibe. Coloque o recheio, o snubar e cubra com a outra metade da massa, apertando com as mãos, para que não fique grudada no recheio. Alise a superfície com as mãos e com uma faca, marque quadrados na massa sem cortar. Regue com o azeite e leve para assar em forno quente (200ºC) pré aquecido, até ficar dourado.",
+    "Porcoes": 15,
+    "CozimentoString": "00:45:00",
+    "PreparoString": "01:00:00",
+    "Pessoas": 6,
+    "Favorita": false,
+    "Comentarios": [
+      "Fique ligado!\nOs ingredientes em roxo indicam que podem ser substituidos por outro, não se desespere!!",
+      "Mamãe já dizia, prepare a receita com muito carinho e calma que o bolo sai fofinho!",
+      "NÃO SE ESQUEÇA DE PRE-AQUECER O FORNO!!"
+    ]
+  },
+  {
+    "Nome": "Batata assada",
+    "Video": {
+      "Link": "https://www.youtube.com/watch?v=eYU-oXjIlus"
+    },
+    "Categoria": "Salgados",
+    "Tipo": "Entradas",
+    "ImageSource": "tracer1.png",
+    "Ingredientes": [
+      {
+        "Texto": "g de trigo para quibe",
+        "Quantidade": 250,
+        "Substitutos": null
+      },
+      {
+        "Texto": " xícara(s) de cebola picada",
+        "Quantidade": 0.75,
+        "Substitutos": null
+      },
+      {
+        "Texto": " colher(es) (sopa) de sal",
+        "Quantidade": 1,
+        "Substitutos": null
+      },
+      {
+        "Texto": " colher(es) (sopa) de pimenta Síria",
+        "Quantidade": 0.5,
+        "Substitutos": null
+      },
+      {
+        "Texto": " colher(es) (sopa) de hortelã picada",
+        "Quantidade": 1,
+        "Substitutos": null
+      },
+      {
+        "Texto": "g de carne magra moída",
+        "Quantidade": 200,
+        "Substitutos": null
+      },
+      {
+        "Texto": " colher(es) (sopa) de óleo",
+        "Quantidade": 4,
+        "Substitutos": null
+      },
+      {
+        "Texto": " de xícara(s) de snubar (opcional)",
+        "Quantidade": 0.33333,
+        "Substitutos": null
+      },
+      {
+        "Texto": " de xícara(s) de cebola picada",
+        "Quantidade": 0.75,
+        "Substitutos": null
+      },
+      {
+        "Texto": "g de carne moída",
+        "Quantidade": 250,
+        "Substitutos": null
+      },
+      {
+        "Texto": "sál a gosto",
+        "Quantidade": 0,
+        "Substitutos": null
+      },
+      {
+        "Texto": " colher(es) (chá) de pimenta Síria",
+        "Quantidade": 1,
+        "Substitutos": null
+      },
+      {
+        "Texto": " de xícara(s) de azeite (para regar)",
+        "Quantidade": 0.33333,
+        "Substitutos": null
+      }
+    ],
+    "Modopreparo": "\tNuma tigela, coloque a cebola, o trigo, o sal, a pimenta e a hortelã. Misture bem e passe pelo processador ou máquina de moer carne, juntando a carne moída, até ficar numa massa homogênea. Reserve.\n\tPrepare o recheio: em uma frigideira, coloque o óleo e doure o snubar. Retire o snubar e reserve. Acrescente a cebola picada e deixe dourar bem a carne moída, mexa bem, até dourar. Tempere com o sal e a pimenta. Retire do fogo.\n\tPegue um refratário de 19x31cm e espalhe nele a metade da massa do quibe. Coloque o recheio, o snubar e cubra com a outra metade da massa, apertando com as mãos, para que não fique grudada no recheio. Alise a superfície com as mãos e com uma faca, marque quadrados na massa sem cortar. Regue com o azeite e leve para assar em forno quente (200ºC) pré aquecido, até ficar dourado.",
+    "Porcoes": 15,
+    "CozimentoString": "00:45:00",
+    "PreparoString": "01:00:00",
+    "Pessoas": 6,
+    "Favorita": false,
+    "Comentarios": [
+      "Fique ligado!\nOs ingredientes em roxo indicam que podem ser substituidos por outro, não se desespere!!",
+      "Mamãe já dizia, prepare a receita com muito carinho e calma que o bolo sai fofinho!",
+      "NÃO SE ESQUEÇA DE PRE-AQUECER O FORNO!!"
+    ]
+  },
+  {
+    "Nome": "Mousse de chocolate",
+    "Video": {
+      "Link": "https://www.youtube.com/watch?v=AHZ5_nZ74Y8"
+    },
+    "Categoria": "Doces",
+    "Tipo": "Mousses",
+    "ImageSource": "tracer2.jpg",
+    "Ingredientes": [
+      {
+        "Texto": "g de trigo para quibe",
+        "Quantidade": 250,
+        "Substitutos": null
+      },
+      {
+        "Texto": " xícara(s) de cebola picada",
+        "Quantidade": 0.75,
+        "Substitutos": null
+      },
+      {
+        "Texto": " colher(es) (sopa) de sal",
+        "Quantidade": 1,
+        "Substitutos": null
+      },
+      {
+        "Texto": " colher(es) (sopa) de pimenta Síria",
+        "Quantidade": 0.5,
+        "Substitutos": null
+      },
+      {
+        "Texto": " colher(es) (sopa) de hortelã picada",
+        "Quantidade": 1,
+        "Substitutos": null
+      },
+      {
+        "Texto": "g de carne magra moída",
+        "Quantidade": 200,
+        "Substitutos": null
+      },
+      {
+        "Texto": " colher(es) (sopa) de óleo",
+        "Quantidade": 4,
+        "Substitutos": null
+      },
+      {
+        "Texto": " de xícara(s) de snubar (opcional)",
+        "Quantidade": 0.33333,
+        "Substitutos": null
+      },
+      {
+        "Texto": " de xícara(s) de cebola picada",
+        "Quantidade": 0.75,
+        "Substitutos": null
+      },
+      {
+        "Texto": "g de carne moída",
+        "Quantidade": 250,
+        "Substitutos": null
+      },
+      {
+        "Texto": "sál a gosto",
+        "Quantidade": 0,
+        "Substitutos": null
+      },
+      {
+        "Texto": " colher(es) (chá) de pimenta Síria",
+        "Quantidade": 1,
+        "Substitutos": null
+      },
+      {
+        "Texto": " de xícara(s) de azeite (para regar)",
+        "Quantidade": 0.33333,
+        "Substitutos": null
+      }
+    ],
+    "Modopreparo": "\tNuma tigela, coloque a cebola, o trigo, o sal, a pimenta e a hortelã. Misture bem e passe pelo processador ou máquina de moer carne, juntando a carne moída, até ficar numa massa homogênea. Reserve.\n\tPrepare o recheio: em uma frigideira, coloque o óleo e doure o snubar. Retire o snubar e reserve. Acrescente a cebola picada e deixe dourar bem a carne moída, mexa bem, até dourar. Tempere com o sal e a pimenta. Retire do fogo.\n\tPegue um refratário de 19x31cm e espalhe nele a metade da massa do quibe. Coloque o recheio, o snubar e cubra com a outra metade da massa, apertando com as mãos, para que não fique grudada no recheio. Alise a superfície com as mãos e com uma faca, marque quadrados na massa sem cortar. Regue com o azeite e leve para assar em forno quente (200ºC) pré aquecido, até ficar dourado.",
+    "Porcoes": 15,
+    "CozimentoString": "00:45:00",
+    "PreparoString": "01:00:00",
+    "Pessoas": 6,
+    "Favorita": false,
+    "Comentarios": [
+      "Fique ligado!\nOs ingredientes em roxo indicam que podem ser substituidos por outro, não se desespere!!",
+      "Mamãe já dizia, prepare a receita com muito carinho e calma que o bolo sai fofinho!",
+      "NÃO SE ESQUEÇA DE PRE-AQUECER O FORNO!!"
+    ]
+  },
+  {
+    "Nome": "Salada ceaser",
+    "Video": {
+      "Link": "https://www.youtube.com/watch?v=ANS9sSJA9Yc"
+    },
+    "Categoria": "Salgados",
+    "Tipo": "Saladas",
+    "ImageSource": "genji1.jpg",
     "Ingredientes": [
       {
         "Texto": "g de trigo para quibe",

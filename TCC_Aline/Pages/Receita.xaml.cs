@@ -9,6 +9,13 @@ using Windows.UI.Xaml.Navigation;
 using TCC_Aline.UserControls;
 using System.Collections.ObjectModel;
 using Windows.UI.Input;
+using Windows.Storage;
+using System.IO;
+using System;
+using System.Threading.Tasks;
+using Windows.Foundation;
+using Windows.Web;
+using Windows.Storage.Streams;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -19,6 +26,45 @@ namespace TCC_Aline.Pages
     /// </summary>
     public sealed partial class Receita : Page, INotifyPropertyChanged
     {
+        public string htmlfile = @"<!DOCTYPE html>
+<html>
+
+  <head>
+      <meta charset='utf-8'>
+      <title>Youtube Page</title>
+      <style>
+          body {
+        margin: 0;
+            text - align: center;
+        }
+          
+          .videoWrapper {
+              position: relative;
+              padding-bottom: 56.25%;
+              /* 16:9 */
+              padding-top: 25px;
+              height: 0;
+          }
+          
+          .videoWrapper iframe
+    {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+      </style>
+  </head>
+
+  <body>
+    <div class='videoWrapper'>
+        <!-- Copy & Pasted from YouTube -->
+        <!--<video id ='video' src='http://localhost:3000/files/Kat_Double.mp4\' controls poster = 'annie_02.jpg'/> -->
+        <iframe width ='560' height='349' src='http://www.youtube.com/embed/idvideo' frameborder='0' allowfullscreen></iframe>
+    </div>
+  </body>
+</html>";
         GestureRecognizer gestureRecognizer = new GestureRecognizer();
         Model.ReceitaData recpt;
 
@@ -69,12 +115,17 @@ namespace TCC_Aline.Pages
             quantPessoas.RegisterPropertyChangedCallback(NumericUpDown.PorcoesProperty, new DependencyPropertyChangedCallback(ChangePorcoes));
         }
 
+        private void NavigateToVideo(string id)
+        {
+            htmlfile = htmlfile.Replace("idvideo", id);
+            Video.NavigateToString(htmlfile);
+        } 
+
         private void ChangePorcoes(DependencyObject obj, DependencyProperty pr)
         {
             foreach (var item in recpt.IngredientesCollection)
             {
                 item.QuantidadeCalculada = (item.Quantidade * recpt.PorcoesCalculadas)/recpt.Porcoes;
-                Debug.WriteLine(item.Texto + ": " + item.QuantidadeCalculada);
             }
         }
 
@@ -91,6 +142,8 @@ namespace TCC_Aline.Pages
         {
             base.OnNavigatedTo(e);
             recpt = (Model.ReceitaData)e.Parameter;
+            NavigateToVideo(recpt.Video.Id);
+            //Video.Navigate(new Uri("ms-appx///Web/video_page.html"));
             if (lateralMenu.Visibility == Visibility.Collapsed && !messages.Any(x => x.Index == 0))
                 messages.Add(new Info() { Index = 0, Message = "Clique com o botão direito para visualizar o menu lateral!" });
         }
@@ -105,7 +158,6 @@ namespace TCC_Aline.Pages
         private void Image_Tapped(object sender, TappedRoutedEventArgs e)
         {
             lateralMenu.IsOpen = !lateralMenu.IsOpen;
-            lateralMenuFrame.Navigate(typeof(MainPage));
         }
 
         private void TextBlock_Tapped(object sender, TappedRoutedEventArgs e)
@@ -116,7 +168,6 @@ namespace TCC_Aline.Pages
                 FrameworkElement senderElement = sender as FrameworkElement;
                 // If you need the clicked element:
                 var whichOne = (sender as TextBlock).Text;
-                Debug.WriteLine(whichOne);
                 FlyoutBase flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
                 flyoutBase.ShowAt(senderElement);
             }
@@ -142,6 +193,36 @@ namespace TCC_Aline.Pages
         {
             Info d = (sender as Button).DataContext as Info;
             messages.Remove(d);
+        }
+    }
+
+    public sealed class StreamUriWinRTResolver : IUriToStreamResolver
+    {
+        public IAsyncOperation<IInputStream> UriToStreamAsync(Uri uri)
+        {
+            if (uri == null)
+            {
+                throw new Exception();
+            }
+            string path = uri.AbsolutePath;
+
+            // Because of the signature of the this method, it can't use await, so we 
+            // call into a seperate helper method that can use the C# await pattern.
+            return GetContent(path).AsAsyncOperation();
+        }
+
+        private async Task<IInputStream> GetContent(string path)
+        {
+            // We use a package folder as the source, but the same principle should apply
+            // when supplying content from other locations
+            try
+            {
+                Uri localUri = new Uri("ms-appx:///html" + path);
+                StorageFile f = await StorageFile.GetFileFromApplicationUriAsync(localUri);
+                IRandomAccessStream stream = await f.OpenAsync(FileAccessMode.Read);
+                return stream;
+            }
+            catch (Exception) { throw new Exception("Invalid path"); }
         }
     }
 

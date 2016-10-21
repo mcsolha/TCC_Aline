@@ -121,6 +121,28 @@ namespace TCC_Aline.Model
 
     public static class ReceitaCast
     {
+        public static ReceitaData GetRandom(this List<ReceitaData> recpts)
+        {
+            return recpts[(new Random(DateTime.Now.Millisecond)).Next(recpts.Count)];
+        }
+
+        public static IEnumerable<ReceitaData> GetRandom(this List<ReceitaData> recpts, int number)
+        {
+            byte i = 0;
+            Random a = new Random();
+            List<ReceitaData> elements = new List<ReceitaData>();
+            while (i < number)
+            {
+                var ele = recpts[(new Random(a.Next())).Next(recpts.Count)];
+                if (!elements.Contains(ele))
+                {
+                    elements.Add(ele);
+                    i++;
+                    yield return ele;
+                }
+            }
+        }
+
         public static IEnumerable<ReceitaData> GetReceipt(this ObservableCollection<ReceitaData> recpts, Enum value)
         {
             dynamic valor = null;

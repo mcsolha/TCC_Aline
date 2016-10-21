@@ -13,6 +13,7 @@ using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using TCC_Aline.Model;
+using System.Diagnostics;
 
 namespace TCC_Aline.Configuration
 {
@@ -119,6 +120,19 @@ namespace TCC_Aline.Configuration
                 {
                     list.Add(item.ToReceitaData());
                 }
+            }
+        }
+
+        public static async void WriteObjectsToLocalFolderAsync(this ObservableCollection<ReceitaData> list, StorageFolder folder)
+        {
+            Debug.WriteLine(folder.Path);
+            foreach (var item in list)
+            {
+                StorageFile f = await folder.CreateFileAsync(item.Nome + ".json", CreationCollisionOption.ReplaceExisting);
+                using (StreamWriter s = new StreamWriter(await f.OpenStreamForWriteAsync()))
+                {
+                    s.WriteAsync(JsonConvert.SerializeObject(item));
+                } 
             }
         }
     }
