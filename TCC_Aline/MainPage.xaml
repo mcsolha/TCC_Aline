@@ -205,7 +205,7 @@
         <!--Parte superior-->
         <RelativePanel Grid.Row="0" Background="#99b5cb" Padding="5" Height="106">
             <!--Botão para abrir menu-->
-            <Button x:Name="HamburgerButton" Click="HamburgerButton_Click" Background="Transparent" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" Margin="112,0,0,0">
+            <Button x:Name="HamburgerButton" Click="HamburgerButton_Click" Background="Transparent" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" Margin="10,0,0,0">
                 <Button.Content>
                     <FontIcon x:Name="hamburger" FontFamily="Segoe MDL2 Assets" Glyph="&#xE712;" FontSize="56px" Foreground="#f4f4f4"/>
                 </Button.Content>
@@ -233,23 +233,23 @@
                         <Image Source="ms-appx:///Assets/Images/IconesMenu/menu-superior-comtexto-01.png" VerticalAlignment="Center" Margin="28 0 0 0"/>
                         <TextBlock FontSize="30" VerticalAlignment="Center" Text=" Receitas Doces" FontWeight="SemiBold" Foreground="#f4f4f4" Margin="0 0 28 0"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0 5">
+                    <StackPanel x:Name="receitasSalgadoBotao" Orientation="Horizontal" PointerPressed="receitasSalgadoBotao_PointerPressed" PointerReleased="receitasSalgadoBotao_PointerReleased" Tapped="receitasSalgadoBotao_Tapped" Margin="0 5">
                         <Image Source="ms-appx:///Assets/Images/IconesMenu/menu-superior-comtexto-02.png" VerticalAlignment="Center" Margin="28 0 0 0"/>
                         <TextBlock FontSize="30" VerticalAlignment="Center" Text=" Receitas Salgadas" FontWeight="SemiBold" Foreground="#f4f4f4" Margin="0 0 28 0"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0 5">
+                    <StackPanel x:Name="favoritosBotao" Orientation="Horizontal" PointerPressed="favoritosBotao_PointerPressed" PointerReleased="favoritosBotao_PointerReleased" Tapped="favoritosBotao_Tapped" Margin="0 5">
                         <Image Source="ms-appx:///Assets/Images/IconesMenu/menu-superior-comtexto-03.png" VerticalAlignment="Center" Margin="28 0 0 0"/>
                         <TextBlock FontSize="30" VerticalAlignment="Center" Text=" Favoritos" FontWeight="SemiBold" Foreground="#f4f4f4" Margin="0 0 28 0"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0 5">
+                    <StackPanel x:Name ="dicasMediaPanel" Orientation="Horizontal" Tapped="dicasMediaPanel_Tapped" PointerPressed="dicasMediaPanel_PointerPressed" PointerReleased="dicasMediaPanel_PointerReleased" Margin="0 5">
                         <Image Source="ms-appx:///Assets/Images/IconesMenu/menu-superior-comtexto-04.png" VerticalAlignment="Center" Margin="28 0 0 0"/>
                         <TextBlock FontSize="30" VerticalAlignment="Center" Text=" Dicas de medidas" FontWeight="SemiBold" Foreground="#f4f4f4" Margin="0 0 28 0"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0 5">
+                    <StackPanel x:Name="glossarioBotao" Orientation="Horizontal" PointerPressed="glossarioBotao_PointerPressed" PointerReleased="glossarioBotao_PointerReleased" Tapped="glossarioBotao_Tapped" Margin="0 5">
                         <Image Source="ms-appx:///Assets/Images/IconesMenu/menu-superior-comtexto-05.png" VerticalAlignment="Center" Margin="28 0 0 0"/>
                         <TextBlock FontSize="30" VerticalAlignment="Center" Text=" Glossário" FontWeight="SemiBold" Foreground="#f4f4f4" Margin="0 0 28 0"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0 5">
+                    <StackPanel x:Name="tecnicasBotao" Orientation="Horizontal" PointerPressed="tecnicasBotao_PointerPressed" PointerReleased="tecnicasBotao_PointerReleased" Tapped="tecnicasBotao_Tapped" Margin="0 5">
                         <Image Source="ms-appx:///Assets/Images/IconesMenu/menu-superior-comtexto-06.png" VerticalAlignment="Center" Margin="28 0 0 0"/>
                         <TextBlock FontSize="30" VerticalAlignment="Center" Text=" Técnicas" FontWeight="SemiBold" Foreground="#f4f4f4" Margin="0 0 28 0"/>
                     </StackPanel>
