@@ -12,8 +12,8 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <ListViewHeaderItem Grid.Row="0">
-                <TextBlock Text="{x:Bind Path=DiaSemana}" Style="{StaticResource HeaderTextBlockStyle}"/>
+            <ListViewHeaderItem Grid.Row="0" HorizontalAlignment="Center">
+                <TextBlock Text="{x:Bind Path=DiaSemana}"  Style="{StaticResource HeaderTextBlockStyle}" FontWeight="SemiBold" Foreground="#808080"/>
             </ListViewHeaderItem>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>

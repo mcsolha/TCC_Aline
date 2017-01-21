@@ -10,6 +10,7 @@ using TCC_Aline.Helpers;
 using TCC_Aline.Pages;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -32,7 +33,7 @@ namespace TCC_Aline
             this.InitializeComponent();
         }
 
-        private void SuggestBoxIconClickable_Click(object sender, RoutedEventArgs e)
+       /* private void SuggestBoxIconClickable_Click(object sender, RoutedEventArgs e)
         {
             if ((bool)SuggestBoxIconClickable.IsChecked)
             {
@@ -42,16 +43,16 @@ namespace TCC_Aline
             {
                 AppName.Visibility = Logo.Visibility = Visibility.Visible;
             }
-        }
+        }*/
 
-        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+      /* private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             if (Window.Current.Bounds.Width > 640)
             {
                 SuggestBoxIconClickable.IsChecked = false;
                 Logo.Visibility = AppName.Visibility = Visibility.Visible;
             }
-        }
+        }*/
 
         private void BotaoMenu_Click(object sender, RoutedEventArgs e)
         {
@@ -91,13 +92,45 @@ namespace TCC_Aline
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             PopulateSplit();
-            Menu.ItemsSource = Paginas;
+            //Menu.ItemsSource = Paginas;
             FramePrincipal.Navigate(typeof(Home));
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
         {
             menuPrincipal.IsPaneOpen = !menuPrincipal.IsPaneOpen;
+        }
+
+        private void FramePrincipal_Navigated(object sender, NavigationEventArgs e)
+        {
+
+        }
+
+        private void receitasDocesBotao_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            
+        }
+
+        private void receitasDocesBotao_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            receitasDocesBotao.Background = (SolidColorBrush)Resources["AzulDestaque"];
+            Debug.WriteLine("pressed");
+        }
+
+        private void receitasDocesBotao_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            receitasDocesBotao.Background = (SolidColorBrush)Resources["AzulClaro"];
+            Debug.WriteLine("released");
+        }
+
+        private void HamburgerButton_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            VisualStateManager.GoToState(this, "VisualStateNormal", false);
+        }
+
+        private void HamburgerButton_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            VisualStateManager.GoToState(this, "VisualStateNormal", false);
         }
     }
 }
