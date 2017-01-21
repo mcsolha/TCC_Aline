@@ -8,8 +8,10 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <RelativePanel>
-            <Image x:Name="dicasMedida" Source="ms-appx:///Assets/Images/Bolo-de-Fuba-super-fofo.jpg"/>
-        </RelativePanel>
+        <ScrollViewer >
+            <RelativePanel Padding="10">
+                <Image x:Name="dicasMedida" Source="ms-appx:///Assets/Images/dica_de_medidas.jpg" Stretch="UniformToFill"/>
+            </RelativePanel>
+        </ScrollViewer>
     </Grid>
 </Page>

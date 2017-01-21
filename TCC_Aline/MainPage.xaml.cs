@@ -132,5 +132,11 @@ namespace TCC_Aline
         {
             VisualStateManager.GoToState(this, "VisualStateNormal", false);
         }
+
+        private void dicasMediaPanel_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            menuPrincipal.IsPaneOpen = false;
+            FramePrincipal.Navigate(typeof(DicasMedida));
+        }
     }
 }
