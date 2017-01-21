@@ -109,6 +109,7 @@
     </Compile>
     <Compile Include="Configuration\Config.cs" />
     <Compile Include="Converters\Converters.cs" />
+    <Compile Include="Data\Instances.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\ObservableExtensions.cs" />
     <Compile Include="Helpers\SizeHelper.cs" />
