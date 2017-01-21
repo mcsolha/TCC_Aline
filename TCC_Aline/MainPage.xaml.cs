@@ -108,7 +108,8 @@ namespace TCC_Aline
 
         private void receitasDocesBotao_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            
+            menuPrincipal.IsPaneOpen = false;
+            FramePrincipal.Navigate(typeof(CategoriaPage), Model.Categorias.Doces);
         }
 
         private void receitasDocesBotao_PointerPressed(object sender, PointerRoutedEventArgs e)
@@ -137,6 +138,78 @@ namespace TCC_Aline
         {
             menuPrincipal.IsPaneOpen = false;
             FramePrincipal.Navigate(typeof(DicasMedida));
+        }
+
+        private void receitasSalgadoBotao_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            receitasSalgadoBotao.Background = (SolidColorBrush)Resources["AzulDestaque"];
+        }
+
+        private void receitasSalgadoBotao_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            receitasSalgadoBotao.Background = (SolidColorBrush)Resources["AzulClaro"];
+        }
+
+        private void favoritosBotao_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            favoritosBotao.Background = (SolidColorBrush)Resources["AzulDestaque"];
+        }
+
+        private void favoritosBotao_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            favoritosBotao.Background = (SolidColorBrush)Resources["AzulClaro"];
+        }
+
+        private void dicasMediaPanel_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            dicasMediaPanel.Background = (SolidColorBrush)Resources["AzulDestaque"];
+        }
+
+        private void dicasMediaPanel_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            dicasMediaPanel.Background = (SolidColorBrush)Resources["AzulClaro"];
+        }
+
+        private void glossarioBotao_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            glossarioBotao.Background = (SolidColorBrush)Resources["AzulDestaque"];
+        }
+
+        private void glossarioBotao_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            glossarioBotao.Background = (SolidColorBrush)Resources["AzulClaro"];
+        }
+
+        private void tecnicasBotao_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            tecnicasBotao.Background = (SolidColorBrush)Resources["AzulDestaque"];
+        }
+
+        private void tecnicasBotao_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            tecnicasBotao.Background = (SolidColorBrush)Resources["AzulClaro"];
+        }
+
+        private void receitasSalgadoBotao_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            menuPrincipal.IsPaneOpen = false;
+            FramePrincipal.Navigate(typeof(CategoriaPage), Model.Categorias.Salgados);
+        }
+
+        private void favoritosBotao_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            menuPrincipal.IsPaneOpen = false;
+            FramePrincipal.Navigate(typeof(Receitas), PageName.Favoritos);
+        }
+
+        private void glossarioBotao_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            menuPrincipal.IsPaneOpen = false;
+        }
+
+        private void tecnicasBotao_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            menuPrincipal.IsPaneOpen = false;
         }
     }
 }
