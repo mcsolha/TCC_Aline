@@ -59,10 +59,13 @@ namespace TCC_Aline.Pages
                 PageName = EnumHelper.GetEnumDescription((Configuration.PageName)e.Parameter);
                 if (pageType == Configuration.PageName.Favoritos)
                 {
-                    //foreach (var item in application.Receitas.GetFavorites())
-                    //{
-                    //    ReceitasDados.Add(item);
-                    //}
+                    Configuration.PageName p = (Configuration.PageName)e.Parameter;
+                    PageName = EnumHelper.GetEnumDescription(p);
+                    foreach (var item in Instances.Receitas.Where(x => x.Favorita).ToList().ToObservableCollection())
+                    {
+                        ReceitasDados.Add(item);
+                    }
+                    
                 }
             }else if(e.Parameter is Doces)
             {

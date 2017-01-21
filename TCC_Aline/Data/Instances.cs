@@ -174,6 +174,7 @@ também em feiras e armazéns já ralado",
             Tipo = "Doces Variados",
             Nome = "Quindim",
             ImageSource = "TodasReceitas/receitas_quindim.png",
+            Favorita = true
         };
         static ReceitaModel sonhoModel = new ReceitaModel()
         {
@@ -181,6 +182,7 @@ também em feiras e armazéns já ralado",
             Tipo = "Doces Variados",
             Nome = "Sonho de padaria",
             ImageSource = "TodasReceitas/receitas_sonho_de_padaria.png",
+            Favorita = true
         };
 
         static ReceitaModel suspiroModel = new ReceitaModel()
@@ -189,6 +191,7 @@ também em feiras e armazéns já ralado",
             Tipo = "Doces Variados",
             Nome = "Suspiro",
             ImageSource = "TodasReceitas/receitas_suspiro.png",
+            Favorita = true
         };
         #endregion
 

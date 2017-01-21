@@ -157,6 +157,7 @@
     <Content Include="Assets\Images\TodasReceitas\receitas_quindim.png" />
     <Content Include="Assets\Images\TodasReceitas\receitas_sonho_de_padaria.png" />
     <Content Include="Assets\Images\TodasReceitas\receitas_suspiro.png" />
+    <Content Include="Assets\Videos\splash_video.mp4" />
     <Content Include="Data\Receitas.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -194,6 +195,9 @@
     </Compile>
     <Compile Include="Pages\CategoriaPage.xaml.cs">
       <DependentUpon>CategoriaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VideoSplashScreen.xaml.cs">
+      <DependentUpon>VideoSplashScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserControls\LateralMenu.xaml.cs">
@@ -247,6 +251,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\CategoriaPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\VideoSplashScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
