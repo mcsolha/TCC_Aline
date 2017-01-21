@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TCC_Aline.Data;
 using TCC_Aline.Helpers;
 using TCC_Aline.Model;
 using Windows.Foundation;
@@ -52,40 +53,22 @@ namespace TCC_Aline.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            App application = (Application.Current as App);
             if (e.Parameter is Configuration.PageName)
             {
                 pageType = (Configuration.PageName)e.Parameter;
                 PageName = EnumHelper.GetEnumDescription((Configuration.PageName)e.Parameter);
                 if (pageType == Configuration.PageName.Favoritos)
                 {
-                    foreach (var item in application.Receitas.GetFavorites())
-                    {
-                        ReceitasDados.Add(item);
-                    }
+                    //foreach (var item in application.Receitas.GetFavorites())
+                    //{
+                    //    ReceitasDados.Add(item);
+                    //}
                 }
             }else if(e.Parameter is Doces)
             {
                 Doces doce = (Doces)e.Parameter;
                 PageName = EnumHelper.GetEnumDescription((Doces)e.Parameter);
-                foreach (var item in application.Receitas.GetReceipt(doce))
-                {
-                    ReceitasDados.Add(item);
-                }
-            }else if(e.Parameter is Salgados)
-            {
-                Salgados salgado = (Salgados)e.Parameter;
-                PageName = EnumHelper.GetEnumDescription((Salgados)e.Parameter);
-                foreach (var item in application.Receitas.GetReceipt(salgado))
-                {
-                    ReceitasDados.Add(item);
-                }
-            }
-            else if(e.Parameter is Carnes)
-            {
-                Carnes c = (Carnes)e.Parameter;
-                PageName = EnumHelper.GetEnumDescription((Carnes)e.Parameter);
-                foreach (var item in application.Receitas.GetReceipt(c))
+                foreach (var item in Instances.Receitas.Where(x=> x.Tipo == "Doces Variados").ToList())
                 {
                     ReceitasDados.Add(item);
                 }

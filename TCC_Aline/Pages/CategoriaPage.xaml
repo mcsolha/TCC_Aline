@@ -15,7 +15,7 @@
         </DataTemplate>
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="50 10">
-        <GridView x:Name="Itens" ItemTemplate="{StaticResource ItemGridViewTemplate}">
+        <GridView x:Name="Itens" ItemTemplate="{StaticResource ItemGridViewTemplate}" SelectionMode="None">
             <GridView.ItemContainerStyle>
                 <Style TargetType="GridViewItem">
                     <Setter Property="Margin" Value="20"/>
