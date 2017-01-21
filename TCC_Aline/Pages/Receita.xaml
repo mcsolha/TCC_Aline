@@ -72,7 +72,7 @@
                     <Viewbox x:Name="viewBoxVideo" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" MaxHeight="300">
                         <WebView x:Name="Video" MinWidth="560" MinHeight="340" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignBottomWithPanel="True"/>
                     </Viewbox>
-                    <Grid x:Name="infoReceita" RelativePanel.Below="viewBoxVideo" RelativePanel.AlignRightWith="viewBoxVideo" RelativePanel.AlignLeftWith="viewBoxVideo">
+                    <!--<Grid x:Name="infoReceita" RelativePanel.Below="viewBoxVideo" RelativePanel.AlignRightWith="viewBoxVideo" RelativePanel.AlignLeftWith="viewBoxVideo">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
@@ -90,8 +90,8 @@
                             <Image x:Name="image3" Source="ms-appx:///Assets/Square150x150Logo.scale-200.png" Height="60" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
                             <TextBlock Text="{x:Bind Path=recpt.Pessoas}" TextWrapping="WrapWholeWords" RelativePanel.AlignHorizontalCenterWith="image3" RelativePanel.AlignVerticalCenterWith="image3" />
                         </RelativePanel>
-                    </Grid>
-                    <controls:NumericUpDown x:Name="quantPessoas" Porcoes="{x:Bind recpt.PorcoesCalculadas, Mode=TwoWay}" Height="32" RelativePanel.Below="infoReceita" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"/>
+                    </Grid>-->
+                    <controls:NumericUpDown x:Name="quantPessoas" Porcoes="{x:Bind recpt.PorcoesCalculadas, Mode=TwoWay}" Height="32" RelativePanel.Below="viewBoxVideo" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"/>
                     <!--<TextBox x:Name="quantPessoas" RelativePanel.AlignLeftWith="viewBoxVideo" RelativePanel.Below="infoReceita" RelativePanel.AlignRightWith="viewBoxVideo"/>-->
                     <ListViewHeaderItem x:Name="comentHead" RelativePanel.Below="quantPessoas" RelativePanel.AlignLeftWith="viewBoxVideo" RelativePanel.AlignRightWith="viewBoxVideo" Padding="0,8,0,0">
                         <TextBlock Text="Dicas úteis!" Foreground="Black" Style="{StaticResource SubtitleTextBlockStyle}"/>

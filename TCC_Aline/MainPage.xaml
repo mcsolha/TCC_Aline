@@ -8,7 +8,7 @@
     xmlns:config="using:TCC_Aline.Configuration"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" SizeChanged="Page_SizeChanged" Loaded="Page_Loaded"
+    mc:Ignorable="d" Loaded="Page_Loaded"
     >
     <!--Recursos de página-->
     <Page.Resources>
@@ -17,31 +17,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ResourceDictionaries/Styles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <!--estilo com subitens-->
-            <DataTemplate x:Key="ForReceitas">
-                <RelativePanel>
-                    <ToggleButton x:Name="BotaoMenu" Content="{Binding Converter={StaticResource PageNameConverter}}" Style="{StaticResource ExpanderHeaderToggleButtonStyle}"/>
-                    <ItemsControl x:Name="MenuSubItens" ItemsSource="{Binding Converter={StaticResource SubItemConverter}}" Visibility="{Binding ElementName=BotaoMenu, Path=IsChecked, Converter={StaticResource VisibilityConverter}}" RelativePanel.Below="BotaoMenu" RelativePanel.RightOf="BotaoMenu">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Orientation="Vertical" Margin="-70,0,0,0">
-                                </StackPanel>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Button x:Name="ReceitasChild" Content="{Binding}" Style="{StaticResource HomeButtonStyle}" Click="BotaoMenu_Click"/>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </RelativePanel>
-            </DataTemplate>
-            <!--estilo sem subitens-->
-            <DataTemplate x:Key="Others">
-                <RelativePanel>
-                    <Button x:Name="BotaoMenu" Click="BotaoMenu_Click" Content="{Binding Converter={StaticResource PageNameConverter}}" Style="{StaticResource HomeButtonStyle}"/>
-                </RelativePanel>
-            </DataTemplate>
+            <SolidColorBrush x:Key="AzulClaro" Color="#99B5CB" />
+            <SolidColorBrush x:Key="AzulDestaque" Color="#748DA2" />
             <!--Expandir subitens-->
             <Style x:Key="ExpanderHeaderToggleButtonStyle" TargetType="ToggleButton">
                 <Setter Property="Template">
@@ -216,61 +193,65 @@
             <converters:VisibilityConverter x:Key="VisibilityConverter"/>
             <converters:SubItemConverter x:Key="SubItemConverter"/>
             <converters:IconConverter x:Key="IconConverter"/>
-            <!--Seletor de estilo de dado-->
-            <config:CustomDataTemplateSelector x:Key="CustomDataTemplateSelector" ReceitasTemplate="{StaticResource ForReceitas}" OthersTemplate="{StaticResource Others}"/>
         </ResourceDictionary>
     </Page.Resources>
     <!--Grid Principal-->
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <!--States para a barra de busca-->
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState>
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="640"/>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="SuggestBox.Width" Value="300" />
-                        <Setter Target="SuggestBox.PlaceholderText" Value="Digite o que procura"/>
-                        <Setter Target="SuggestBox.Visibility" Value="Visible"/>
-                        <Setter Target="SuggestBoxIconClickable.Visibility" Value="Collapsed"/>
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
         <!--Definição de linhas do grid-->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <!--Parte superior-->
-        <RelativePanel Grid.Row="0" Background="#547980" Padding="5">
+        <RelativePanel Grid.Row="0" Background="#99b5cb" Padding="5" Height="106">
             <!--Botão para abrir menu-->
-            <Button x:Name="HamburgerButton" Click="HamburgerButton_Click" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" Padding="10">
+            <Button x:Name="HamburgerButton" Click="HamburgerButton_Click" Background="Transparent" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" Margin="112,0,0,0">
                 <Button.Content>
-                    <FontIcon x:Name="hamburger" FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;"/>
+                    <FontIcon x:Name="hamburger" FontFamily="Segoe MDL2 Assets" Glyph="&#xE712;" FontSize="56px" Foreground="#f4f4f4"/>
                 </Button.Content>
             </Button>
-            <!--Logo do app-->
-            <Image x:Name="Logo" Source="ms-appx:///Assets/Square150x150Logo.scale-200.png" Width="50" Height="40" Margin="0" RelativePanel.RightOf="HamburgerButton" RelativePanel.AlignVerticalCenterWithPanel="True"/>
-            <!--Nome do app-->
-            <TextBlock x:Name="AppName" Text="TCC Aline" Style="{StaticResource TitleTextBlockStyle}" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.RightOf="Logo"/>
+            <!--Logo-->
+            <Image x:Name="Logo" Source="ms-appx:///Assets/Images/logo_colher_de_cha.png" Width ="170" Height="58" RelativePanel.AlignVerticalCenterWithPanel="True"  RelativePanel.AlignHorizontalCenterWithPanel="True"/>
+
             <!--Caixa de busca-->
             <AutoSuggestBox x:Name="SuggestBox" Visibility="Collapsed" 
                             QueryIcon="Find" RelativePanel.AlignRightWithPanel="True"
-                            RelativePanel.AlignVerticalCenterWithPanel="True" MaxWidth="500"
+                            RelativePanel.AlignVerticalCenterWithPanel="True" Width="500"
                             />
+            
             <!--Botão para busca (Tela menor que 640)-->
-            <ToggleButton x:Name="SuggestBoxIconClickable" Style="{StaticResource SymbolButton}" Click="SuggestBoxIconClickable_Click" RelativePanel.AlignRightWith="AppName" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Visibility="Visible" Margin="0,0,0,0">
+            <!--<ToggleButton x:Name="SuggestBoxIconClickable" Style="{StaticResource SymbolButton}" Click="SuggestBoxIconClickable_Click" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Visibility="Visible" Margin="0,0,0,0">
                 <SymbolIcon x:Name="ActivateFinder" Symbol="{Binding ElementName=SuggestBoxIconClickable, Path=IsChecked, Converter={StaticResource IconConverter}}"/>
-            </ToggleButton>
+            </ToggleButton>-->
             <!--Caixa de busca (Tela menor que 640)-->
-            <AutoSuggestBox x:Name="BigSuggestBox" PlaceholderText="Digite aqui" Visibility="{Binding ElementName=SuggestBoxIconClickable, Path=IsChecked, Converter={StaticResource VisibilityConverter}}" RelativePanel.RightOf="HamburgerButton" RelativePanel.LeftOf="SuggestBoxIconClickable" RelativePanel.AlignVerticalCenterWithPanel="True"/>
         </RelativePanel>
-        <SplitView x:Name="menuPrincipal" Grid.Row="1" Background="#9DE0AD" IsPaneOpen="False" PaneBackground="#547980" OpenPaneLength="200" DisplayMode="Overlay">
+        <SplitView x:Name="menuPrincipal" Grid.Row="1" Background="#f4f4f4" IsPaneOpen="True" PaneBackground="#99b5cb" OpenPaneLength="408" DisplayMode="Overlay">
             <SplitView.Pane>
-                <StackPanel Orientation="Vertical" Padding="5">
-                    <ItemsControl x:Name="Menu" ItemTemplateSelector="{StaticResource CustomDataTemplateSelector}"/>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel x:Name="receitasDocesBotao" Orientation="Horizontal" Tapped="receitasDocesBotao_Tapped" PointerPressed="receitasDocesBotao_PointerPressed" PointerReleased="receitasDocesBotao_PointerReleased">
+                        <Image Source="ms-appx:///Assets/Images/IconesMenu/menu-superior-comtexto-04.png" VerticalAlignment="Center" Margin="28 0 0 0"/>
+                        <TextBlock FontSize="30" VerticalAlignment="Center" Text=" Receitas Doces" FontWeight="SemiBold" Foreground="#f4f4f4" Margin="0 0 28 0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="ms-appx:///Assets/Images/IconesMenu/menu-superior-comtexto-04.png" VerticalAlignment="Center" Margin="28 0 0 0"/>
+                        <TextBlock FontSize="30" VerticalAlignment="Center" Text=" Receitas Salgadas" FontWeight="SemiBold" Foreground="#f4f4f4" Margin="0 0 28 0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="ms-appx:///Assets/Images/IconesMenu/menu-superior-comtexto-04.png" VerticalAlignment="Center" Margin="28 0 0 0"/>
+                        <TextBlock FontSize="30" VerticalAlignment="Center" Text=" Favoritos" FontWeight="SemiBold" Foreground="#f4f4f4" Margin="0 0 28 0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="ms-appx:///Assets/Images/IconesMenu/menu-superior-comtexto-04.png" VerticalAlignment="Center" Margin="28 0 0 0"/>
+                        <TextBlock FontSize="30" VerticalAlignment="Center" Text=" Dicas de medidas" FontWeight="SemiBold" Foreground="#f4f4f4" Margin="0 0 28 0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="ms-appx:///Assets/Images/IconesMenu/menu-superior-comtexto-04.png" VerticalAlignment="Center" Margin="28 0 0 0"/>
+                        <TextBlock FontSize="30" VerticalAlignment="Center" Text=" Glossário" FontWeight="SemiBold" Foreground="#f4f4f4" Margin="0 0 28 0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="ms-appx:///Assets/Images/IconesMenu/menu-superior-comtexto-04.png" VerticalAlignment="Center" Margin="28 0 0 0"/>
+                        <TextBlock FontSize="30" VerticalAlignment="Center" Text=" Técnicas" FontWeight="SemiBold" Foreground="#f4f4f4" Margin="0 0 28 0"/>
+                    </StackPanel>
                 </StackPanel>
             </SplitView.Pane>
             <Frame x:Name="FramePrincipal">
