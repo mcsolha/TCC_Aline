@@ -49,32 +49,6 @@ namespace TCC_Aline.Pages
                     default:
                         break;
                 }
-            }else if(e.Parameter is Salgados)
-            {
-                Salgados s = (Salgados)e.Parameter;
-                PageName = EnumHelper.GetEnumDescription(s);
-                switch (s)
-                {
-                    case Salgados.Tortas:
-                        break;
-                    case Salgados.Massas:
-                        break;
-                    case Salgados.Saladas:
-                        break;
-                    case Salgados.Carnes:
-                        Itens.ItemsSource = Tipo.GetBySubcategory(typeof(Carnes));
-                        break;
-                    case Salgados.Molhos:
-                        break;
-                    case Salgados.Paes:
-                        break;
-                    case Salgados.Entradas:
-                        break;
-                    case Salgados.SopasCaldos:
-                        break;
-                    default:
-                        break;
-                }
             }
         }
 
@@ -86,26 +60,23 @@ namespace TCC_Aline.Pages
                 switch ((Doces)t.nome)
                 {
                     case Doces.Bolos:
-                        Frame.Navigate(typeof(Receitas), Doces.Bolos);
+                        DialogHelper.ShowNotImplemented();
                         break;
-                    case Doces.Tortas:
-                        Frame.Navigate(typeof(Receitas), Doces.Tortas);
+                    case Doces.Biscoitos:
+                        DialogHelper.ShowNotImplemented(); break;
+                    case Doces.Doces_com_frutas:
+                        DialogHelper.ShowNotImplemented(); break;
+                    case Doces.Doces_variados:
+                        Frame.Navigate(typeof(Receitas), Doces.Doces_variados);
                         break;
-                    case Doces.Mousses:
-                        Frame.Navigate(typeof(Receitas), Doces.Mousses);
-                        break;
-                    case Doces.Sorvetes:
-                        Frame.Navigate(typeof(Receitas), Doces.Sorvetes);
-                        break;
-                    case Doces.Brigadeiros:
-                        Frame.Navigate(typeof(Receitas), Doces.Brigadeiros);
-                        break;
-                    case Doces.Geleias:
-                        Frame.Navigate(typeof(Receitas), Doces.Geleias);
-                        break;
-                    case Doces.Gelatinas:
-                        Frame.Navigate(typeof(Receitas), Doces.Gelatinas);
-                        break;
+                    case Doces.Gelados:
+                        DialogHelper.ShowNotImplemented(); break;
+                    case Doces.Pudins:
+                        DialogHelper.ShowNotImplemented(); break;
+                    case Doces.Rocamboles:
+                        DialogHelper.ShowNotImplemented(); break;
+                    case Doces.Roscas:
+                        DialogHelper.ShowNotImplemented(); break;
                     default:
                         break;
                 }
@@ -115,46 +86,21 @@ namespace TCC_Aline.Pages
                 switch ((Salgados)t.nome)
                 {
                     case Salgados.Tortas:
-                        Frame.Navigate(typeof(Receitas), Salgados.Tortas);
-                        break;
+                        DialogHelper.ShowNotImplemented(); break;
                     case Salgados.Massas:
-                        Frame.Navigate(typeof(Receitas), Salgados.Massas);
-                        break;
+                        DialogHelper.ShowNotImplemented(); break;
                     case Salgados.Saladas:
-                        Frame.Navigate(typeof(Receitas), Salgados.Saladas);
-                        break;
+                        DialogHelper.ShowNotImplemented(); break;
                     case Salgados.Carnes:
-                        Frame.Navigate(typeof(CategoriaPage), Salgados.Carnes);
-                        break;
+                        DialogHelper.ShowNotImplemented(); break;
                     case Salgados.Molhos:
-                        Frame.Navigate(typeof(Receitas), Salgados.Molhos);
-                        break;
+                        DialogHelper.ShowNotImplemented(); break;
                     case Salgados.Paes:
-                        Frame.Navigate(typeof(Receitas), Salgados.Paes);
-                        break;
-                    case Salgados.Entradas:
-                        Frame.Navigate(typeof(Receitas), Salgados.Entradas);
-                        break;
-                    case Salgados.SopasCaldos:
-                        Frame.Navigate(typeof(Receitas), Salgados.SopasCaldos);
-                        break;
-                    default:
-                        break;
-                }
-            }else if(t.nome is Carnes)
-            {
-                Carnes c = (Carnes)t.nome;
-                switch (c)
-                {
-                    case Carnes.Frangos:
-                        Frame.Navigate(typeof(Receitas), Carnes.Frangos);
-                        break;
-                    case Carnes.Bovinos:
-                        Frame.Navigate(typeof(Receitas), Carnes.Bovinos);
-                        break;
-                    case Carnes.Suinos:
-                        Frame.Navigate(typeof(Receitas), Carnes.Suinos);
-                        break;
+                        DialogHelper.ShowNotImplemented(); break;
+                    case Salgados.Aperitivos:
+                        DialogHelper.ShowNotImplemented(); break;
+                    case Salgados.Sopas:
+                        DialogHelper.ShowNotImplemented(); break;
                     default:
                         break;
                 }

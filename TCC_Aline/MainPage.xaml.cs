@@ -211,5 +211,10 @@ namespace TCC_Aline
         {
             menuPrincipal.IsPaneOpen = false;
         }
+
+        private void Logo_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            FramePrincipal.Navigate(typeof(Home));
+        }
     }
 }

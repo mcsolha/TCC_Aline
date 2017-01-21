@@ -9,7 +9,7 @@ namespace TCC_Aline.Data
 {
     static class Instances
     {
-        static ReceitaModel CocadaBrancaInst = new ReceitaModel()
+        static ReceitaModel cocadaBrancaModel = new ReceitaModel()
         {
             Categoria = "Doces",
             Tipo = "Doces Variados",
@@ -18,7 +18,7 @@ namespace TCC_Aline.Data
             {
                 Link = "https://www.youtube.com/watch?v=LBtTaU8ckp4"
             },
-            ImageSource = "alterar",
+            ImageSource = "DicasDoDia/foto-dica-cocada.png",
             Ingredientes = new IngredienteModel[4]
             {
                 new IngredienteModel()
@@ -83,6 +83,41 @@ O coco pode ser comprado em mercado e ralado em processador ou raladores manuais
 também em feiras e armazéns já ralado",
             }
         };
+
+        private static ReceitaData cocadaBrancaData;
+
+        public static ReceitaData CocadaBranca
+        {
+            get
+            {
+                if(cocadaBrancaData == null)
+                {
+                    cocadaBrancaData = cocadaBrancaModel.ToReceitaData();
+                }
+                return cocadaBrancaData;
+            }
+        }
+
+        static ReceitaModel lasanhaModel = new ReceitaModel()
+        {
+            Categoria = "Salgado",
+            Tipo = "Massa",
+            Nome = "Lasanha",
+            ImageSource = "DicasDoDia/foto-dica-lasanha.png",
+        };
+
+        private static ReceitaData lasanhaData;
+
+        public static ReceitaData Lasanha
+        {
+            get
+            {
+                if (lasanhaData == null)
+                    lasanhaData = lasanhaModel.ToReceitaData();
+                return lasanhaData;
+            }
+        }
+
 
 
     }

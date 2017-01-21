@@ -86,27 +86,9 @@
                                                 </ObjectAnimationUsingKeyFrames>
                                             </Storyboard>
                                         </VisualState>
-                                        <VisualStateGroup.Transitions>
-                                            <VisualTransition To="Pressed">
-                                                <Storyboard>
-                                                    <DoubleAnimation Storyboard.TargetName="IconTransform" Storyboard.TargetProperty="Angle" From="0" To="90" Duration="0" />
-                                                </Storyboard>
-                                            </VisualTransition>
-                                            <VisualTransition From="CheckedPressed">
-                                                <Storyboard>
-                                                    <DoubleAnimation Storyboard.TargetName="IconTransform" Storyboard.TargetProperty="Angle" From="90" To="0" Duration="0" />
-                                                </Storyboard>
-                                            </VisualTransition>
-                                            <VisualTransition To="Normal">
-                                                <Storyboard>
-                                                    <DoubleAnimation Storyboard.TargetName="IconTransform" Storyboard.TargetProperty="Angle" From="90" To="0" Duration="0" />
-                                                </Storyboard>
-                                            </VisualTransition>
-                                        </VisualStateGroup.Transitions>
                                     </VisualStateGroup>
                                 </VisualStateManager.VisualStateGroups>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
 
@@ -120,12 +102,6 @@
                                           HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                           AutomationProperties.AccessibilityView="Raw"/>
-
-                                <FontIcon Glyph="&#xE974;" FontSize="13" Grid.Column="1" RenderTransformOrigin="0.5,0.5">
-                                    <FontIcon.RenderTransform>
-                                        <RotateTransform x:Name="IconTransform" />
-                                    </FontIcon.RenderTransform>
-                                </FontIcon>
                             </Grid>
                         </ControlTemplate>
                     </Setter.Value>
@@ -205,28 +181,30 @@
         <!--Parte superior-->
         <RelativePanel Grid.Row="0" Background="#99b5cb" Padding="5" Height="106">
             <!--Botão para abrir menu-->
-            <Button x:Name="HamburgerButton" Click="HamburgerButton_Click" Background="Transparent" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" Margin="10,0,0,0">
+            <Button x:Name="HamburgerButton" Style="{StaticResource HomeButtonStyle}" Click="HamburgerButton_Click" Background="Transparent" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" Margin="10,0,0,0">
                 <Button.Content>
                     <FontIcon x:Name="hamburger" FontFamily="Segoe MDL2 Assets" Glyph="&#xE712;" FontSize="56px" Foreground="#f4f4f4"/>
                 </Button.Content>
             </Button>
             <!--Logo-->
-            <Image x:Name="Logo" Source="ms-appx:///Assets/Images/logo_colher_de_cha.png" Width ="170" Height="58" RelativePanel.AlignVerticalCenterWithPanel="True"  RelativePanel.AlignHorizontalCenterWithPanel="True"/>
+            <Image x:Name="Logo" Tapped="Logo_Tapped" Source="ms-appx:///Assets/Images/logo_colher_de_cha.png" Width ="170" Height="58" RelativePanel.AlignVerticalCenterWithPanel="True"  RelativePanel.AlignHorizontalCenterWithPanel="True"/>
 
             <!--Caixa de busca-->
-            <AutoSuggestBox  RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Width="400" Height="40">
-                <AutoSuggestBox.QueryIcon>
-                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE11A;" FontSize="25" Foreground="#f4f4f4"></FontIcon>
-                </AutoSuggestBox.QueryIcon>
+            <AutoSuggestBox x:Name="suggestBox" Visibility="{Binding ElementName=searchIcon,Path=IsChecked}" RelativePanel.LeftOf="searchIcon"  RelativePanel.AlignVerticalCenterWithPanel="True" Width="400" Height="40">
             </AutoSuggestBox>
-            
+
+            <ToggleButton x:Name="searchIcon" Style="{StaticResource ExpanderHeaderToggleButtonStyle}" IsChecked="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
+                <ToggleButton.Content>
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE11A;" FontSize="33px" Foreground="#f4f4f4"/>
+                </ToggleButton.Content>
+            </ToggleButton>
             <!--Botão para busca (Tela menor que 640)-->
             <!--<ToggleButton x:Name="SuggestBoxIconClickable" Style="{StaticResource SymbolButton}" Click="SuggestBoxIconClickable_Click" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Visibility="Visible" Margin="0,0,0,0">
                 <SymbolIcon x:Name="ActivateFinder" Symbol="{Binding ElementName=SuggestBoxIconClickable, Path=IsChecked, Converter={StaticResource IconConverter}}"/>
             </ToggleButton>-->
             <!--Caixa de busca (Tela menor que 640)-->
         </RelativePanel>
-        <SplitView x:Name="menuPrincipal" Grid.Row="1" Background="#f4f4f4" IsPaneOpen="True" PaneBackground="#99b5cb" OpenPaneLength="408" DisplayMode="Overlay">
+        <SplitView x:Name="menuPrincipal" Grid.Row="1" Background="#f4f4f4" IsPaneOpen="False" PaneBackground="#99b5cb" OpenPaneLength="408" DisplayMode="Overlay">
             <SplitView.Pane>
                 <StackPanel Orientation="Vertical">
                     <StackPanel x:Name="receitasDocesBotao" Orientation="Horizontal" Tapped="receitasDocesBotao_Tapped" PointerPressed="receitasDocesBotao_PointerPressed" PointerReleased="receitasDocesBotao_PointerReleased" Margin="0 10 0 5">

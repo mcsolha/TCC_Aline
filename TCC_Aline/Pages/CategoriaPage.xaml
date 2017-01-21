@@ -10,28 +10,18 @@
     <Page.Resources>
         <DataTemplate x:Name="ItemGridViewTemplate" x:DataType="data:Tipo">
             <RelativePanel>
-                <Image x:Name="image" Tapped="image_Tapped" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Source="ms-appx:///Assets/Square44x44Logo.scale-200.png"/>
-                <TextBlock Text="{x:Bind Nome}" Tapped="image_Tapped" Style="{StaticResource SubtitleTextBlockStyle}" RelativePanel.AlignHorizontalCenterWith="image" RelativePanel.AlignVerticalCenterWith="image"/>
+                <Image x:Name="image" Tapped="image_Tapped" Source="{x:Bind Imagem}"/>
             </RelativePanel>
         </DataTemplate>
     </Page.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="50">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <GridViewHeaderItem Grid.Row="0">
-                <TextBlock Text="{x:Bind PageName}" Style="{StaticResource HeaderTextBlockStyle}"/>
-            </GridViewHeaderItem>
-            <GridView x:Name="Itens" Grid.Row="1" ItemTemplate="{StaticResource ItemGridViewTemplate}">
-                <GridView.ItemContainerStyle>
-                    <Style TargetType="GridViewItem">
-                        <Setter Property="Margin" Value="20"/>
-                        <Setter Property="Width" Value="200"/>
-                    </Style>
-                </GridView.ItemContainerStyle>
-            </GridView>
-        </Grid>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="50 10">
+        <GridView x:Name="Itens" ItemTemplate="{StaticResource ItemGridViewTemplate}">
+            <GridView.ItemContainerStyle>
+                <Style TargetType="GridViewItem">
+                    <Setter Property="Margin" Value="20"/>
+                    <Setter Property="Width" Value="200"/>
+                </Style>
+            </GridView.ItemContainerStyle>
+        </GridView>
     </Grid>
 </Page>

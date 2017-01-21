@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using TCC_Aline.Data;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,8 +26,8 @@ namespace TCC_Aline.Pages
     /// </summary>
     public sealed partial class Home : Page
     {
-        private Model.ReceitaData salgada;
-        private Model.ReceitaData doce;
+        private Model.ReceitaData salgada = Instances.Lasanha;
+        private Model.ReceitaData doce = Instances.CocadaBranca;
         private DateTime today = DateTime.Now;
         private string DiaSemana { get; set; }
 
@@ -35,8 +36,8 @@ namespace TCC_Aline.Pages
             this.InitializeComponent();
             DiaSemana = "Dicas para " + ((new CultureInfo("pt-BR")).DateTimeFormat).GetDayName(today.DayOfWeek) + "!";
             var app = Application.Current as App;
-            doce = app.Receitas.ToList().Where(x => x.Categoria == "Doces").ToList().GetRandom();
-            salgada = app.Receitas.ToList().Where(x => x.Categoria == "Salgados").ToList().GetRandom();
+            //doce = app.Receitas.ToList().Where(x => x.Categoria == "Doces").ToList().GetRandom();
+            //salgada = app.Receitas.ToList().Where(x => x.Categoria == "Salgados").ToList().GetRandom();
         }
 
         private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
