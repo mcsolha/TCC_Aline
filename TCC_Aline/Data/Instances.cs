@@ -17,9 +17,10 @@ namespace TCC_Aline.Data
             Nome = "Cocada Branca",
             Video = new VideoModel()
             {
-                Link = "https://www.youtube.com/watch?v=LBtTaU8ckp4"
+                Link = "https://www.youtube.com/watch?v=TvLYnVMygGs"
             },
-            ImageSource = "DicasDoDia/foto-dica-cocada.png",
+            ImageSourceHome = "DicasDoDia/foto-dica-cocada.png",
+            ImageSource = "TodasReceitas/receitas_cocada_branca.png",
             Ingredientes = new IngredienteModel[4]
             {
                 new IngredienteModel()
@@ -106,7 +107,7 @@ também em feiras e armazéns já ralado",
             Categoria = "Salgado",
             Tipo = "Massa",
             Nome = "Lasanha",
-            ImageSource = "DicasDoDia/foto-dica-lasanha.png",
+            ImageSourceHome = "DicasDoDia/foto-dica-lasanha.png",
         };
 
         static ReceitaModel queijadinhaModel = new ReceitaModel()
@@ -329,7 +330,8 @@ também em feiras e armazéns já ralado",
         }
         #endregion
 
-        public static List<ReceitaData> Receitas = new List<ReceitaData>() { Queijadinha,
+        public static List<ReceitaData> Receitas = new List<ReceitaData>() { CocadaBranca,
+         Queijadinha,
          ArrozDoce,
          BalaCoco,
          Beijinho,
@@ -339,8 +341,7 @@ também em feiras e armazéns já ralado",
          PaveCreme,
          Quindim,
          Sonho,
-         Suspiro,
-         CocadaBranca
+         Suspiro
         };
     }
 }

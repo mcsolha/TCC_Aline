@@ -24,14 +24,14 @@
                 <Grid Grid.Column="0">
                     <Button x:Name="doceButton" HorizontalAlignment="Stretch" Click="doce_Click" VerticalAlignment="Stretch" Margin="40,10" MaxWidth="248" MaxHeight="334" Background="Transparent">
                         <StackPanel Orientation="Vertical">
-                            <Image  Grid.Row="1" Width="Auto" Source="{x:Bind Path=doce.Imagem}" />
+                            <Image  Grid.Row="1" Width="Auto" Source="{x:Bind Path=doce.ImagemHome}" />
                         </StackPanel>
                     </Button>
                 </Grid>
                 <Grid Grid.Column="2" >
                     <Button x:Name="salgadoButton" Click="salgado_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="40,10" MaxWidth="248" MaxHeight="334" Background="Transparent">
                         <StackPanel Orientation="Vertical">
-                            <Image  Grid.Row="1" Width="Auto" Source="{x:Bind Path=salgada.Imagem}" />
+                            <Image  Grid.Row="1" Width="Auto" Source="{x:Bind Path=salgada.ImagemHome}" />
                         </StackPanel>
                     </Button>
                 </Grid>

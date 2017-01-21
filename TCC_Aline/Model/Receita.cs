@@ -76,6 +76,14 @@ namespace TCC_Aline.Model
             }
         }
 
+        public BitmapImage ImagemHome
+        {
+            get
+            {
+                return new BitmapImage(new Uri("ms-appx:///Assets/Images/" + base.ImageSourceHome));
+            }
+        }
+
         private ObservableCollection<IngredienteData> ingredientesCollection;
         public ObservableCollection<IngredienteData> IngredientesCollection
         {
@@ -180,6 +188,7 @@ namespace TCC_Aline.Model
                 Comentarios = model.Comentarios,
                 CozimentoString = model.CozimentoString,
                 Favorita = model.Favorita,
+                ImageSourceHome = model.ImageSourceHome,
                 ImageSource = model.ImageSource,
                 Ingredientes = model.Ingredientes,
                 Modopreparo = model.Modopreparo,
@@ -197,6 +206,8 @@ namespace TCC_Aline.Model
 
     public class ReceitaModel
     {
+        private string imageSourceHome;
+
         private string categoria;
 
         public string Categoria
@@ -299,6 +310,19 @@ namespace TCC_Aline.Model
         {
             get { return comentarios; }
             set { comentarios = value; }
+        }
+
+        public string ImageSourceHome
+        {
+            get
+            {
+                return imageSourceHome;
+            }
+
+            set
+            {
+                imageSourceHome = value;
+            }
         }
     }
 }

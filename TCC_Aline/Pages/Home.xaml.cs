@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using TCC_Aline.Data;
+using TCC_Aline.Helpers;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -51,7 +52,8 @@ namespace TCC_Aline.Pages
 
         private void salgado_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(Receita), salgada);
+            DialogHelper.ShowNotImplemented();
+            //Frame.Navigate(typeof(Receita), salgada);
         }
     }
 }

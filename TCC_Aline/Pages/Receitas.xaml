@@ -16,7 +16,7 @@
             <converters:FavoriteConverter x:Key="FavoriteConverter"/>
             <converters:TimeToStringConverter x:Key="TimeToStringConverter"/>
             <DataTemplate x:Name="ItensTemplate" x:DataType="data:ReceitaData">
-                <Image Source="{x:Bind Imagem}" Height="130" Width="416" Margin="0 10"/>
+                <Image Source="{x:Bind Imagem}" Tapped="Image_Tapped" Height="130" Width="416" Margin="0 10"/>
             </DataTemplate>
         </ResourceDictionary>
     </Page.Resources>

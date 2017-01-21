@@ -88,7 +88,10 @@ namespace TCC_Aline.Pages
         private void Image_Tapped(object sender, TappedRoutedEventArgs e)
         {
             ReceitaData rc = (sender as FrameworkElement).DataContext as ReceitaData;
-            Frame.Navigate(typeof(Receita), rc);
+            if (rc.Equals(Instances.CocadaBranca))
+                Frame.Navigate(typeof(Receita), rc);
+            else
+                DialogHelper.ShowNotImplemented();
         }
     }
 }
