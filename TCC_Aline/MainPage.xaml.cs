@@ -248,6 +248,7 @@ namespace TCC_Aline
         private void sobreBotao_Tapped(object sender, TappedRoutedEventArgs e)
         {
             menuPrincipal.IsPaneOpen = false;
+            FramePrincipal.Navigate(typeof(Informacoes));
         }
     }
 }
