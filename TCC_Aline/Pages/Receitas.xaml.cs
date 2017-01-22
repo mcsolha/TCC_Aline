@@ -92,7 +92,10 @@ namespace TCC_Aline.Pages
         {
             ReceitaData rc = (sender as FrameworkElement).DataContext as ReceitaData;
             if (rc.Equals(Instances.CocadaBranca))
+            {
+                MainPage.Current.NomePag = "Receitas Doces";
                 Frame.Navigate(typeof(Receita), rc);
+            }
             else
                 DialogHelper.ShowNotImplemented();
         }

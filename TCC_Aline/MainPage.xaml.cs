@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -28,71 +29,54 @@ namespace TCC_Aline
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage : Page, INotifyPropertyChanged
     {
-        private static string VISUALSTATES_ENABLED = "Expanded";
-        private static string VISUALSTATES_DISABLED = "Collapsed";
+        private string nomePag;
+        public string NomePag {
+            get
+            {
+                return nomePag;
+            }
+            set
+            {
+                nomePag = value;
+                OnPropertyChanged("NomePag");
+            }
+        }
 
         public MainPage()
         {
             this.InitializeComponent();
+            Current = this;
         }
 
-       /* private void SuggestBoxIconClickable_Click(object sender, RoutedEventArgs e)
-        {
-            if ((bool)SuggestBoxIconClickable.IsChecked)
-            {
-                AppName.Visibility = Logo.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                AppName.Visibility = Logo.Visibility = Visibility.Visible;
-            }
-        }*/
+        public event PropertyChangedEventHandler PropertyChanged;
 
-      /* private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+        public void OnPropertyChanged(string t)
         {
-            if (Window.Current.Bounds.Width > 640)
-            {
-                SuggestBoxIconClickable.IsChecked = false;
-                Logo.Visibility = AppName.Visibility = Visibility.Visible;
-            }
-        }*/
-
-        private void BotaoMenu_Click(object sender, RoutedEventArgs e)
-        {
-            string content = (sender is Button) ? (sender as Button).Content as string : "";
-            var p = EnumHelper.GetEnumFromDescription<PageName>(content);
-            switch (p)
-            {
-                case PageName.Home:
-                    FramePrincipal.Navigate(typeof(Home));
-                    break;
-                case PageName.Receitas:
-                    break;
-                case PageName.Doces:
-                    FramePrincipal.Navigate(typeof(CategoriaPage), Model.Categorias.Doces);
-                    break;
-                case PageName.Salgados:
-                    FramePrincipal.Navigate(typeof(CategoriaPage), Model.Categorias.Salgados);
-                    break;
-                case PageName.Favoritos:
-                    FramePrincipal.Navigate(typeof(Receitas), PageName.Favoritos);
-                    break;
-                case PageName.Glossario:
-                    break;
-                case PageName.DicasMedida:
-                    break;
-                case PageName.Tecnicas:
-                    break;
-                case PageName.Videos:
-                    break;
-                case PageName.Timer:
-                    break;
-                default:
-                    break;
-            }
+            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(t));
         }
+
+        /* private void SuggestBoxIconClickable_Click(object sender, RoutedEventArgs e)
+         {
+             if ((bool)SuggestBoxIconClickable.IsChecked)
+             {
+                 AppName.Visibility = Logo.Visibility = Visibility.Collapsed;
+             }
+             else
+             {
+                 AppName.Visibility = Logo.Visibility = Visibility.Visible;
+             }
+         }*/
+
+        /* private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+          {
+              if (Window.Current.Bounds.Width > 640)
+              {
+                  SuggestBoxIconClickable.IsChecked = false;
+                  Logo.Visibility = AppName.Visibility = Visibility.Visible;
+              }
+          }*/
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -114,6 +98,8 @@ namespace TCC_Aline
         private void receitasDocesBotao_Tapped(object sender, TappedRoutedEventArgs e)
         {
             menuPrincipal.IsPaneOpen = false;
+            NomePag = "Receitas Doces";
+            Logo.Visibility = Visibility.Collapsed;
             FramePrincipal.Navigate(typeof(CategoriaPage), Model.Categorias.Doces);
         }
 
@@ -198,24 +184,33 @@ namespace TCC_Aline
         private void receitasSalgadoBotao_Tapped(object sender, TappedRoutedEventArgs e)
         {
             menuPrincipal.IsPaneOpen = false;
+
+            NomePag = "Receitas Salgadas";
+            Logo.Visibility = Visibility.Collapsed;
             FramePrincipal.Navigate(typeof(CategoriaPage), Model.Categorias.Salgados);
         }
 
         private void favoritosBotao_Tapped(object sender, TappedRoutedEventArgs e)
         {
             menuPrincipal.IsPaneOpen = false;
+            NomePag = "Favoritos";
+            Logo.Visibility = Visibility.Collapsed;
             FramePrincipal.Navigate(typeof(Receitas), PageName.Favoritos);
         }
 
         private void glossarioBotao_Tapped(object sender, TappedRoutedEventArgs e)
         {
             menuPrincipal.IsPaneOpen = false;
+            NomePag = "Glossário";
+            Logo.Visibility = Visibility.Collapsed;
             FramePrincipal.Navigate(typeof(Gloss));
         }
 
         private void tecnicasBotao_Tapped(object sender, TappedRoutedEventArgs e)
         {
             menuPrincipal.IsPaneOpen = false;
+            NomePag = "Técnicas";
+            Logo.Visibility = Visibility.Collapsed;
             FramePrincipal.Navigate(typeof(VideoTecnica));
         }
 
