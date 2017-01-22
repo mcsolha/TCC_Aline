@@ -22,8 +22,42 @@
             <Flyout x:Key="info">
                 <TextBlock Text="Clique com o botão direito para visualizar o menu lateral!"/>
             </Flyout>
-        </ResourceDictionary>   
+            <SolidColorBrush x:Key="AzulClaro" Color="#99B5CB" />
+            <SolidColorBrush x:Key="AzulDestaque" Color="#748DA2" />
+
+            <!-- Default style for Windows.UI.Xaml.Controls.ListViewHeaderItem -->
+            <Style x:Key="noLine" TargetType="ListViewHeaderItem">
+                <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+                <Setter Property="FontSize" Value="{ThemeResource ListViewHeaderItemThemeFontSize}" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Margin" Value="0,0,0,4"/>
+                <Setter Property="Padding" Value="12,8,12,0"/>
+                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                <Setter Property="VerticalContentAlignment" Value="Top" />
+                <Setter Property="MinHeight" Value="{ThemeResource ListViewHeaderItemMinHeight}"/>
+                <Setter Property="UseSystemFocusVisuals" Value="True" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ListViewHeaderItem">
+                            <StackPanel Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                                <ContentPresenter x:Name="ContentPresenter"
+                                      Margin="{TemplateBinding Padding}"
+                                      Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      ContentTransitions="{TemplateBinding ContentTransitions}"
+                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+        </ResourceDictionary>         
     </Page.Resources>
+    
     <RelativePanel Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Padding="10,2,2,2">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
@@ -41,23 +75,23 @@
             <!--definição das colunas principais-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2.02*"/>
-                <ColumnDefinition Width="2.2*"/>
+                <ColumnDefinition Width="2.2*" />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
+            <Grid Grid.Column="0" Padding="20,0,0,0">
                 <Grid.RowDefinitions>
                     <!--cabeçalho receita-->
                     <RowDefinition  x:Name="headHeight" Height="Auto"/>
                     <!--video-->
                     <RowDefinition x:Name="itensHeight"/>
                 </Grid.RowDefinitions>
-                <ListViewHeaderItem >
-                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <ListViewHeaderItem Style="{StaticResource noLine}" Padding="5,28,0,0">
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" >
                         <ToggleButton x:Name="FavoriteButton" Style="{StaticResource SymbolButton}" IsChecked="{x:Bind Path=recpt.Favorita,Mode=TwoWay}">
                             <ToggleButton.Content>
                                 <SymbolIcon Symbol="{Binding ElementName=FavoriteButton, Path=IsChecked, Converter={StaticResource FavoriteConverter}}"/>
                             </ToggleButton.Content>
                         </ToggleButton>
-                        <TextBlock Text="{x:Bind recpt.Nome}" Style="{ThemeResource SubheaderTextBlockStyle}" Padding="5,0,0,0"/>
+                        <TextBlock Text="{x:Bind recpt.Nome}" Style="{ThemeResource SubheaderTextBlockStyle}" Foreground="#646464" FontWeight="SemiBold" Padding="5,0,0,0"/>
                     </StackPanel>
                 </ListViewHeaderItem>
                 <!--<StackPanel Grid.Row="0" Orientation="Horizontal" Padding="20,5">
@@ -69,9 +103,10 @@
                 <TextBlock Text="Bolo de fubá" Style="{ThemeResource SubheaderTextBlockStyle}" Padding="5,0,0,0"/>
             </StackPanel>-->
                 <RelativePanel x:Name="itens" Grid.Row="1" Padding="12,0,0,0">
-                    <Viewbox x:Name="viewBoxVideo" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" MaxHeight="300">
+                    <Viewbox x:Name="viewBoxVideo" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" MaxHeight="300" Width="430"  Height="320">
                         <WebView x:Name="Video" MinWidth="560" MinHeight="340" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignBottomWithPanel="True"/>
                     </Viewbox>
+                  
                     <!--<Grid x:Name="infoReceita" RelativePanel.Below="viewBoxVideo" RelativePanel.AlignRightWith="viewBoxVideo" RelativePanel.AlignLeftWith="viewBoxVideo">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -91,10 +126,10 @@
                             <TextBlock Text="{x:Bind Path=recpt.Pessoas}" TextWrapping="WrapWholeWords" RelativePanel.AlignHorizontalCenterWith="image3" RelativePanel.AlignVerticalCenterWith="image3" />
                         </RelativePanel>
                     </Grid>-->
-                    <controls:NumericUpDown x:Name="quantPessoas" Porcoes="{x:Bind recpt.PorcoesCalculadas, Mode=TwoWay}" Height="32" RelativePanel.Below="viewBoxVideo" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"/>
+                    <controls:NumericUpDown x:Name="quantPessoas" Porcoes="{x:Bind recpt.PorcoesCalculadas, Mode=TwoWay}" Height="40" Width="430" RelativePanel.Below="viewBoxVideo" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" />
                     <!--<TextBox x:Name="quantPessoas" RelativePanel.AlignLeftWith="viewBoxVideo" RelativePanel.Below="infoReceita" RelativePanel.AlignRightWith="viewBoxVideo"/>-->
-                    <ListViewHeaderItem x:Name="comentHead" RelativePanel.Below="quantPessoas" RelativePanel.AlignLeftWith="viewBoxVideo" RelativePanel.AlignRightWith="viewBoxVideo" Padding="0,8,0,0">
-                        <TextBlock Text="Dicas úteis!" Foreground="Black" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                    <!--<ListViewHeaderItem x:Name="comentHead" RelativePanel.Below="quantPessoas" RelativePanel.AlignLeftWith="viewBoxVideo" RelativePanel.AlignRightWith="viewBoxVideo" Padding="0,8,0,0">
+                        <TextBlock Text="Dicas úteis!" Foreground="#646464" FontWeight="SemiBold" FontSize="20" Style="{StaticResource SubtitleTextBlockStyle}"/>
                     </ListViewHeaderItem>
                     <ListView x:Name="coments" SelectionMode="None" ItemsSource="{x:Bind recpt.ComentariosCollection}" RelativePanel.Below="comentHead" RelativePanel.AlignLeftWith="viewBoxVideo" RelativePanel.AlignRightWith="viewBoxVideo" RelativePanel.AlignBottomWithPanel="True">
                         <ListView.ItemContainerStyle>
@@ -107,41 +142,41 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical" Padding="0,10,0,0">
                                     <StackPanel Orientation="Horizontal">
-                                        <SymbolIcon Foreground="HotPink" Symbol="Comment" HorizontalAlignment="Left" Margin="0,0,10,0"/>
-                                        <TextBlock Text="{Binding}" MaxWidth="350" TextWrapping="Wrap"/>
+                                        --><!--<SymbolIcon Foreground="HotPink" Symbol="Comment" HorizontalAlignment="Left" Margin="0,0,10,0"/>--><!--
+                                        <TextBlock Foreground="#646464" FontSize="17" Text="{Binding}" MaxWidth="350" TextWrapping="Wrap"/>
                                     </StackPanel>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
-                    </ListView>
+                    </ListView>-->
+                    <TextBox x:Name="comentario" Width="430" Height="110" RelativePanel.Below="quantPessoas" Margin="0,5,0,0"/>
                 </RelativePanel>
             </Grid>
-            <Grid Grid.Column="1" Padding="10,0,0,0">
+            <Grid Grid.Column="1"  Margin="50,0,0,0" Padding="0,56,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition x:Name="ingredientesRow" Height="1*"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="1.68*"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <ListViewHeaderItem Grid.Row="0">
-                        <TextBlock Text="Ingredientes" Style="{StaticResource SubheaderTextBlockStyle}"/>
+                    <ListViewHeaderItem Grid.Row="0" Style="{StaticResource noLine}" >
+                        <TextBlock Text="Ingredientes" Style="{StaticResource SubheaderTextBlockStyle}" FontSize="20" FontWeight="SemiBold" Foreground="#646464"/>
                     </ListViewHeaderItem>
                     <ListView Grid.Row="1" SelectionMode="None" ItemsSource="{x:Bind recpt.IngredientesCollection}">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="data:IngredienteData">
                                 <StackPanel Orientation="Horizontal">
-                                    <SymbolIcon Symbol="More" Margin="0,0,10,0"/>
-                                    <TextBlock Text="{x:Bind Path=QuantidadeCalculada, Mode=OneWay}"/>
-                                    <TextBlock Text="{x:Bind Path=Texto, Mode=TwoWay}" Foreground="{x:Bind Path=SubstitutosCollection,Converter={StaticResource ColorConverter}}" Tapped="TextBlock_Tapped">
+                                    <TextBlock Text="{x:Bind Path=QuantidadeCalculada, Mode=OneWay}" Foreground="#646464" FontSize="17"/>
+                                    <TextBlock Text="{x:Bind Path=Texto, Mode=TwoWay}" Foreground="{x:Bind Path=SubstitutosCollection,Converter={StaticResource ColorConverter}}" FontSize="17" Tapped="TextBlock_Tapped">
                                         <FlyoutBase.AttachedFlyout>
                                             <Flyout>
                                                 <ListView ItemsSource="{x:Bind SubstitutosCollection}" SelectionChanged="ListView_SelectionChanged">
                                                     <ListView.ItemTemplate>
                                                         <DataTemplate>
-                                                            <TextBlock Text="{Binding}"/>
+                                                            <TextBlock  FontSize="17" Text="{Binding}"/>
                                                         </DataTemplate>
                                                     </ListView.ItemTemplate>
                                                 </ListView>
@@ -158,19 +193,19 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <ListViewHeaderItem Grid.Row="0">
-                        <TextBlock Text="Modo de Preparo" Style="{StaticResource SubheaderTextBlockStyle}"/>
+                    <ListViewHeaderItem Grid.Row="0" Style="{StaticResource noLine}">
+                        <TextBlock Text="Modo de Preparo" Style="{StaticResource SubheaderTextBlockStyle}" FontSize="20" Foreground="#646464" FontWeight="SemiBold"/>
                     </ListViewHeaderItem>
                     <ListView Grid.Row="1" SelectionMode="None">
                         <ListViewItem>
-                            <TextBlock TextWrapping="Wrap" TextAlignment="Justify" MaxWidth="600" Style="{StaticResource BodyTextBlockStyle}" Text="{x:Bind recpt.Modopreparo}">
+                            <TextBlock TextWrapping="Wrap" TextAlignment="Justify" MaxWidth="620"  Style="{StaticResource BodyTextBlockStyle}" Text="{x:Bind recpt.Modopreparo}" FontSize="17" Foreground="#646464" Padding="2">
                             </TextBlock>
                         </ListViewItem>
                     </ListView>
                 </Grid>
             </Grid>
         </Grid>
-        <controls:LateralMenu x:Name="lateralMenu" Visibility="Visible" Margin="0,66,0,0" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" PaneClosedWidth="100" PaneOpenWidth="{x:Bind Path=OpenWidth,Mode=TwoWay}" IsOpen="false" Background="DeepPink" FlyoutBase.AttachedFlyout="{StaticResource info}">
+        <controls:LateralMenu x:Name="lateralMenu" Height="460" Visibility="Visible" Margin="0,56,0,0" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" PaneClosedWidth="100" PaneOpenWidth="{x:Bind Path=OpenWidth,Mode=TwoWay}" IsOpen="false" Background="#99b5cb" FlyoutBase.AttachedFlyout="{StaticResource info}">
             <controls:LateralMenu.PaneContent>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -178,18 +213,27 @@
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
+                        <Grid.RowDefinitions >
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <Image Grid.Row="0" Source="ms-appx:///Assets/Square44x44Logo.scale-200.png" Tapped="Image_Tapped"/>
-                        <Image Grid.Row="1" Source="ms-appx:///Assets/Square44x44Logo.scale-200.png"/>
-                        <Image Grid.Row="2" Source="ms-appx:///Assets/Square44x44Logo.scale-200.png"/>
-                        <Image Grid.Row="3" Source="ms-appx:///Assets/Square44x44Logo.scale-200.png"/>
+
+                        <StackPanel Grid.Row="0" x:Name="dicasMedida" Tapped="dicasMedida_Tapped" PointerPressed="dicasMedida_PointerPressed" PointerReleased="dicasMedida_PointerReleased">
+                            <Image  Source="ms-appx:///Assets/Images/MenuDireito/menu_lateral_dicas_de_medidas.png" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" x:Name="glossario" Tapped="glossario_Tapped" PointerPressed="glossario_PointerPressed" PointerReleased="glossario_PointerReleased" >
+                            <Image  Source="ms-appx:///Assets/Images/MenuDireito/menu_lateral_glossario.png" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" x:Name="tecnicas" Tapped="tecnicas_Tapped" PointerPressed="tecnicas_PointerPressed" PointerReleased="tecnicas_PointerReleased">
+                            <Image  Source="ms-appx:///Assets/Images/MenuDireito/menu_lateral_tecnicas.png" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="3" x:Name="timer" Tapped="timer_Tapped" PointerPressed="timer_PointerPressed" PointerReleased="timer_PointerReleased">
+                            <Image  Source="ms-appx:///Assets/Images/MenuDireito/menu_lateral_timer.png" VerticalAlignment="Center"/>
+                        </StackPanel>                     
                     </Grid>
-                    <Frame x:Name="lateralMenuFrame" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <Frame x:Name="lateralMenuFrame" Grid.Column="1" ScrollViewer.VerticalScrollMode="Enabled" ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                 </Grid>
             </controls:LateralMenu.PaneContent>
         </controls:LateralMenu>

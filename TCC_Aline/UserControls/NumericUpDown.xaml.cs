@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -40,14 +41,17 @@ namespace TCC_Aline.UserControls
             Porcoes = 0;
         }
 
+     
         private void add_Click(object sender, RoutedEventArgs e)
         {
-            Porcoes++;
+            Porcoes*=2;
         }
 
         private void remove_Click(object sender, RoutedEventArgs e)
         {
-            Porcoes--;
+            //Fixado para Cocada --- Melhor nao manter assim
+            if (Porcoes/2 >= 14)
+                Porcoes /= 2;
         }
 
         private void TextBox_TextChanging(TextBox sender, TextBoxTextChangingEventArgs args)

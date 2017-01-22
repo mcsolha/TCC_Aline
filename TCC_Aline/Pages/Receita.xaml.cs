@@ -16,6 +16,8 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Web;
 using Windows.Storage.Streams;
+using TCC_Aline.Helpers;
+using Windows.UI.Xaml.Media;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -26,6 +28,7 @@ namespace TCC_Aline.Pages
     /// </summary>
     public sealed partial class Receita : Page, INotifyPropertyChanged
     {
+        #region htmlfile
         public string htmlfile = @"<!DOCTYPE html>
 <html>
 
@@ -65,6 +68,8 @@ namespace TCC_Aline.Pages
     </div>
   </body>
 </html>";
+        #endregion
+
         GestureRecognizer gestureRecognizer = new GestureRecognizer();
         Model.ReceitaData recpt;
 
@@ -107,6 +112,7 @@ namespace TCC_Aline.Pages
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
+
 
         public Receita()
         {
@@ -152,13 +158,9 @@ namespace TCC_Aline.Pages
         {
             OpenWidth = this.ActualWidth;
             LateralMenuFrameWidth = OpenWidth - lateralMenu.PaneClosedWidth;
-            ComentWidth = coments.ActualWidth - 20;
+          //  ComentWidth = coments.ActualWidth - 20;
         }
 
-        private void Image_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            lateralMenu.IsOpen = !lateralMenu.IsOpen;
-        }
 
         private void TextBlock_Tapped(object sender, TappedRoutedEventArgs e)
         {
@@ -193,6 +195,86 @@ namespace TCC_Aline.Pages
         {
             Info d = (sender as Button).DataContext as Info;
             messages.Remove(d);
+        }
+
+        private string lateralPage = null;
+
+        private bool closeLateral(string page)
+        {
+            if (lateralPage == null)
+            {
+                lateralPage = page;
+                return true;
+            }
+            else if (lateralPage == page)
+            {
+                lateralPage = null;
+                return false;
+            }
+            lateralPage = page;
+            return true;        
+        }
+
+        private void dicasMedida_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            lateralMenu.IsOpen = closeLateral("DicaMedida");
+            lateralMenuFrame.Navigate(typeof(DicasMedida));
+        }
+
+        private void timer_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            DialogHelper.ShowNotImplemented();
+        }
+
+        private void glossario_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            lateralMenu.IsOpen = closeLateral("Glossario");
+            lateralMenuFrame.Navigate(typeof(Home));
+        }
+
+        private void tecnicas_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            lateralMenu.IsOpen = closeLateral("Tecnicas");
+        }
+
+        private void dicasMedida_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            dicasMedida.Background = (SolidColorBrush)Resources["AzulDestaque"];
+        }
+
+        private void dicasMedida_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            dicasMedida.Background = (SolidColorBrush)Resources["AzulClaro"];
+        }
+
+        private void glossario_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            glossario.Background = (SolidColorBrush)Resources["AzulDestaque"];
+        }
+
+        private void glossario_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            glossario.Background = (SolidColorBrush)Resources["AzulClaro"];
+        }
+
+        private void tecnicas_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            tecnicas.Background = (SolidColorBrush)Resources["AzulDestaque"];
+        }
+
+        private void tecnicas_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            tecnicas.Background = (SolidColorBrush)Resources["AzulClaro"];
+        }
+
+        private void timer_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            timer.Background = (SolidColorBrush)Resources["AzulDestaque"];
+        }
+
+        private void timer_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            timer.Background = (SolidColorBrush)Resources["AzulClaro"];
         }
     }
 
