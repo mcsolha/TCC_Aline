@@ -16,6 +16,8 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Web;
 using Windows.Storage.Streams;
+using TCC_Aline.Helpers;
+using Windows.UI.Xaml.Media;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -152,13 +154,9 @@ namespace TCC_Aline.Pages
         {
             OpenWidth = this.ActualWidth;
             LateralMenuFrameWidth = OpenWidth - lateralMenu.PaneClosedWidth;
-            ComentWidth = coments.ActualWidth - 20;
+          //  ComentWidth = coments.ActualWidth - 20;
         }
 
-        private void Image_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            lateralMenu.IsOpen = !lateralMenu.IsOpen;
-        }
 
         private void TextBlock_Tapped(object sender, TappedRoutedEventArgs e)
         {
@@ -193,6 +191,68 @@ namespace TCC_Aline.Pages
         {
             Info d = (sender as Button).DataContext as Info;
             messages.Remove(d);
+        }
+
+
+        private void dicasMedida_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            lateralMenu.IsOpen = !lateralMenu.IsOpen;
+            lateralMenuFrame.Navigate(typeof(DicasMedida));
+        }
+
+        private void timer_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            DialogHelper.ShowNotImplemented();
+        }
+
+        private void glossario_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            lateralMenu.IsOpen = !lateralMenu.IsOpen;
+        }
+
+        private void tecnicas_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            lateralMenu.IsOpen = !lateralMenu.IsOpen;
+        }
+
+        private void dicasMedida_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            dicasMedida.Background = (SolidColorBrush)Resources["AzulDestaque"];
+        }
+
+        private void dicasMedida_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            dicasMedida.Background = (SolidColorBrush)Resources["AzulClaro"];
+        }
+
+        private void glossario_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            glossario.Background = (SolidColorBrush)Resources["AzulDestaque"];
+        }
+
+        private void glossario_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            glossario.Background = (SolidColorBrush)Resources["AzulClaro"];
+        }
+
+        private void tecnicas_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            tecnicas.Background = (SolidColorBrush)Resources["AzulDestaque"];
+        }
+
+        private void tecnicas_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            tecnicas.Background = (SolidColorBrush)Resources["AzulClaro"];
+        }
+
+        private void timer_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            timer.Background = (SolidColorBrush)Resources["AzulDestaque"];
+        }
+
+        private void timer_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            timer.Background = (SolidColorBrush)Resources["AzulClaro"];
         }
     }
 

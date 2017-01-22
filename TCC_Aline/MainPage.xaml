@@ -175,11 +175,11 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <!--Definição de linhas do grid-->
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="106"/>
+            <RowDefinition />
         </Grid.RowDefinitions>
         <!--Parte superior-->
-        <RelativePanel Grid.Row="0" Background="#99b5cb" Padding="5" Height="106">
+        <RelativePanel Grid.Row="0" Background="#99b5cb" Padding="5" >
             <!--Botão para abrir menu-->
             <Button x:Name="HamburgerButton" Style="{StaticResource HomeButtonStyle}" Click="HamburgerButton_Click" Background="Transparent" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" Margin="10,0,0,0">
                 <Button.Content>
@@ -234,7 +234,7 @@
                 </StackPanel>
             </SplitView.Pane>
             <Frame x:Name="FramePrincipal">
-                <RelativePanel>
+                <RelativePanel >
                     <TextBlock Text="TESTE DE FRAME"/>
                 </RelativePanel>
             </Frame>

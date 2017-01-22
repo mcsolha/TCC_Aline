@@ -26,26 +26,26 @@ namespace TCC_Aline.Data
                 new IngredienteModel()
                 {
                         Quantidade = 250,
-                        Texto = "g de coco fresco ralado",
+                        Texto = "  g de coco fresco ralado",
                         Substitutos = null
                 },
                 new IngredienteModel()
                 {
                     Quantidade = 190,
-                    Texto = "ml de água",
+                    Texto = "  ml de água",
                     Substitutos = null
                 },
                 new IngredienteModel()
                 {
                     Quantidade = 1.5,
-                    Texto = "copo(s) de açúcar",
+                    Texto = "  copo(s) de açúcar",
                     Substitutos = null
                 },
                 new IngredienteModel()
                 {
                     Quantidade = 0.5,
-                    Texto = "lata de leite condençado",
-                    Substitutos = new string[1] { "lata de leite condençado de soja" }
+                    Texto = "  lata de leite condençado",
+                    Substitutos = new string[1] { "  lata de leite condençado de soja" }
                 }
             },
             Modopreparo = @"Em fogo baixo uma panela grande despeje a água e o açúcar para fazer uma
