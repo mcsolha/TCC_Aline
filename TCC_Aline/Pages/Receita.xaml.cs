@@ -28,6 +28,7 @@ namespace TCC_Aline.Pages
     /// </summary>
     public sealed partial class Receita : Page, INotifyPropertyChanged
     {
+        #region htmlfile
         public string htmlfile = @"<!DOCTYPE html>
 <html>
 
@@ -67,6 +68,8 @@ namespace TCC_Aline.Pages
     </div>
   </body>
 </html>";
+        #endregion
+
         GestureRecognizer gestureRecognizer = new GestureRecognizer();
         Model.ReceitaData recpt;
 
@@ -109,6 +112,7 @@ namespace TCC_Aline.Pages
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
+
 
         public Receita()
         {
@@ -193,10 +197,27 @@ namespace TCC_Aline.Pages
             messages.Remove(d);
         }
 
+        private string lateralPage = null;
+
+        private bool closeLateral(string page)
+        {
+            if (lateralPage == null)
+            {
+                lateralPage = page;
+                return true;
+            }
+            else if (lateralPage == page)
+            {
+                lateralPage = null;
+                return false;
+            }
+            lateralPage = page;
+            return true;        
+        }
 
         private void dicasMedida_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            lateralMenu.IsOpen = !lateralMenu.IsOpen;
+            lateralMenu.IsOpen = closeLateral("DicaMedida");
             lateralMenuFrame.Navigate(typeof(DicasMedida));
         }
 
@@ -207,12 +228,13 @@ namespace TCC_Aline.Pages
 
         private void glossario_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            lateralMenu.IsOpen = !lateralMenu.IsOpen;
+            lateralMenu.IsOpen = closeLateral("Glossario");
+            lateralMenuFrame.Navigate(typeof(Home));
         }
 
         private void tecnicas_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            lateralMenu.IsOpen = !lateralMenu.IsOpen;
+            lateralMenu.IsOpen = closeLateral("Tecnicas");
         }
 
         private void dicasMedida_PointerPressed(object sender, PointerRoutedEventArgs e)
