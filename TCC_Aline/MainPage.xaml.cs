@@ -212,7 +212,7 @@ namespace TCC_Aline
             menuPrincipal.IsPaneOpen = false;
             NomePag = "Técnicas";
             Logo.Visibility = Visibility.Collapsed;
-            FramePrincipal.Navigate(typeof(VideoTecnica));
+            FramePrincipal.Navigate(typeof(MenuTecnicas));
         }
 
         private void Logo_Tapped(object sender, TappedRoutedEventArgs e)

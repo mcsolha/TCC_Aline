@@ -1,0 +1,32 @@
+﻿<Page
+    x:Class="TCC_Aline.Pages.MenuTecnicas"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TCC_Aline.Pages"
+    xmlns:data="using:TCC_Aline.Model"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../ResourceDictionaries/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+           
+            <DataTemplate x:Name="ItensTemplate" x:DataType="data:TecnicasData">
+                <Image Source="{x:Bind Imagem}" Tapped="Image_Tapped" Height="222" Width="347" Margin="0 10"/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Page.Resources>
+
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <GridView x:Name="itens" VerticalAlignment="Center" HorizontalAlignment="Center" ItemsSource="{x:Bind Path=TecnicasDados}" Grid.Row="1" ItemTemplate="{StaticResource ItensTemplate}" SelectionMode="None" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollMode="Auto">
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid Orientation="Vertical"></ItemsWrapGrid>
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+        </GridView>
+    </Grid>
+</Page>
