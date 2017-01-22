@@ -171,6 +171,7 @@
     </Compile>
     <Compile Include="Configuration\Config.cs" />
     <Compile Include="Converters\Converters.cs" />
+    <Compile Include="Data\BuscaInformation.cs" />
     <Compile Include="Data\Instances.cs" />
     <Compile Include="Helpers\DialogHelper.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
@@ -179,6 +180,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Busca.cs" />
     <Compile Include="Model\Categoria.cs" />
     <Compile Include="Model\Glossario.cs" />
     <Compile Include="Model\Ingrediente.cs" />

@@ -169,6 +169,21 @@
             <converters:VisibilityConverter x:Key="VisibilityConverter"/>
             <converters:SubItemConverter x:Key="SubItemConverter"/>
             <converters:IconConverter x:Key="IconConverter"/>
+
+            <Storyboard x:Key="visible">
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="suggestBox" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible"/>
+                </ObjectAnimationUsingKeyFrames>
+                <DoubleAnimation Storyboard.TargetName="suggestBox" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.5">
+                </DoubleAnimation>
+            </Storyboard>
+            <Storyboard x:Key="collapsed">
+                <DoubleAnimation Storyboard.TargetName="suggestBox" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.5">
+                </DoubleAnimation>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="suggestBox" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Collapsed"/>
+                </ObjectAnimationUsingKeyFrames>                
+            </Storyboard>
         </ResourceDictionary>
     </Page.Resources>
     <!--Grid Principal-->
@@ -190,10 +205,10 @@
             <Image x:Name="Logo" Tapped="Logo_Tapped" Source="ms-appx:///Assets/Images/logo_colher_de_cha.png" Width ="170" Height="58" RelativePanel.AlignVerticalCenterWithPanel="True"  RelativePanel.AlignHorizontalCenterWithPanel="True"/>
 
             <!--Caixa de busca-->
-            <AutoSuggestBox x:Name="suggestBox" Visibility="{Binding ElementName=searchIcon,Path=IsChecked}" RelativePanel.LeftOf="searchIcon"  RelativePanel.AlignVerticalCenterWithPanel="True" Width="400" Height="40">
+            <AutoSuggestBox x:Name="suggestBox" DisplayMemberPath="Nome" Visibility="Collapsed" TextChanged="suggestBox_TextChanged" RelativePanel.LeftOf="searchIcon"  RelativePanel.AlignVerticalCenterWithPanel="True" Width="400" Height="40">
             </AutoSuggestBox>
 
-            <ToggleButton x:Name="searchIcon" Style="{StaticResource ExpanderHeaderToggleButtonStyle}" IsChecked="False" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
+            <ToggleButton x:Name="searchIcon" Click="searchIcon_Click" Style="{StaticResource ExpanderHeaderToggleButtonStyle}" IsChecked="False" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
                 <ToggleButton.Content>
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE11A;" FontSize="33px" Foreground="#f4f4f4"/>
                 </ToggleButton.Content>

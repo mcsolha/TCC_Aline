@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using TCC_Aline.Configuration;
+using TCC_Aline.Data;
 using TCC_Aline.Helpers;
 using TCC_Aline.Pages;
 using Windows.Foundation;
@@ -17,6 +18,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -28,6 +30,9 @@ namespace TCC_Aline
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private static string VISUALSTATES_ENABLED = "Expanded";
+        private static string VISUALSTATES_DISABLED = "Collapsed";
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -249,6 +254,25 @@ namespace TCC_Aline
         {
             menuPrincipal.IsPaneOpen = false;
             FramePrincipal.Navigate(typeof(Informacoes));
+        }
+
+        private void searchIcon_Click(object sender, RoutedEventArgs e)
+        {
+            if (searchIcon.IsChecked == true)
+                ((Storyboard)Resources["visible"]).Begin();
+            else
+                ((Storyboard)Resources["collapsed"]).Begin();
+        }
+
+        private void suggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            // Only get results when it was a user typing, 
+            // otherwise assume the value got filled in by TextMemberPath 
+            // or the handler for SuggestionChosen.
+            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            {
+                sender.ItemsSource = Instances.Informacoes.Where(x => x.Nome.IndexOf(sender.Text, StringComparison.CurrentCultureIgnoreCase) >= 0).OrderBy(x => x.Nome).ToList().ToObservableCollection();
+            }
         }
     }
 }

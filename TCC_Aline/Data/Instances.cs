@@ -7,7 +7,7 @@ using TCC_Aline.Model;
 
 namespace TCC_Aline.Data
 {
-    static class Instances
+    static partial class Instances
     {
         #region Navegavel
         static ReceitaModel cocadaBrancaModel = new ReceitaModel()
