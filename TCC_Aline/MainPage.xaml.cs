@@ -216,5 +216,36 @@ namespace TCC_Aline
         {
             FramePrincipal.Navigate(typeof(Home));
         }
+
+        private void timerBotao_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            timerBotao.Background = (SolidColorBrush)Resources["AzulDestaque"];
+        }
+
+        private void timerBotao_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            timerBotao.Background = (SolidColorBrush)Resources["AzulClaro"];
+        }
+
+        private void timerBotao_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            menuPrincipal.IsPaneOpen = false;
+            DialogHelper.ShowNotImplemented();
+        }
+
+        private void sobreBotao_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            sobreBotao.Background = (SolidColorBrush)Resources["AzulDestaque"];
+        }
+
+        private void sobreBotao_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            sobreBotao.Background = (SolidColorBrush)Resources["AzulClaro"];
+        }
+
+        private void sobreBotao_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            menuPrincipal.IsPaneOpen = false;
+        }
     }
 }

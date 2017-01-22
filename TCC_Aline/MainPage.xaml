@@ -208,28 +208,36 @@
             <SplitView.Pane>
                 <StackPanel Orientation="Vertical">
                     <StackPanel x:Name="receitasDocesBotao" Orientation="Horizontal" Tapped="receitasDocesBotao_Tapped" PointerPressed="receitasDocesBotao_PointerPressed" PointerReleased="receitasDocesBotao_PointerReleased" Margin="0 10 0 5">
-                        <Image Source="ms-appx:///Assets/Images/IconesMenu/menu-superior-comtexto-01.png" VerticalAlignment="Center" Margin="28 0 0 0"/>
-                        <TextBlock FontSize="30" VerticalAlignment="Center" Text=" Receitas Doces" FontWeight="SemiBold" Foreground="#f4f4f4" Margin="0 0 28 0"/>
+                        <Image Source="ms-appx:///Assets/Images/IconesMenu/doces.png" VerticalAlignment="Center" Margin="28 0 0 0"/>
+                        <TextBlock FontSize="32" VerticalAlignment="Center" Text=" Receitas Doces" FontWeight="SemiBold" Foreground="#f4f4f4" FontFamily="myriad pro"  Margin="0 0 28 0"/>
                     </StackPanel>
                     <StackPanel x:Name="receitasSalgadoBotao" Orientation="Horizontal" PointerPressed="receitasSalgadoBotao_PointerPressed" PointerReleased="receitasSalgadoBotao_PointerReleased" Tapped="receitasSalgadoBotao_Tapped" Margin="0 5">
-                        <Image Source="ms-appx:///Assets/Images/IconesMenu/menu-superior-comtexto-02.png" VerticalAlignment="Center" Margin="28 0 0 0"/>
-                        <TextBlock FontSize="30" VerticalAlignment="Center" Text=" Receitas Salgadas" FontWeight="SemiBold" Foreground="#f4f4f4" Margin="0 0 28 0"/>
+                        <Image Source="ms-appx:///Assets/Images/IconesMenu/salgados.png" VerticalAlignment="Center" Margin="28 0 0 0"/>
+                        <TextBlock FontSize="32" VerticalAlignment="Center" Text=" Receitas Salgadas" FontWeight="SemiBold" Foreground="#f4f4f4" FontFamily="myriad pro"  Margin="0 0 28 0"/>
                     </StackPanel>
                     <StackPanel x:Name="favoritosBotao" Orientation="Horizontal" PointerPressed="favoritosBotao_PointerPressed" PointerReleased="favoritosBotao_PointerReleased" Tapped="favoritosBotao_Tapped" Margin="0 5">
-                        <Image Source="ms-appx:///Assets/Images/IconesMenu/menu-superior-comtexto-03.png" VerticalAlignment="Center" Margin="28 0 0 0"/>
-                        <TextBlock FontSize="30" VerticalAlignment="Center" Text=" Favoritos" FontWeight="SemiBold" Foreground="#f4f4f4" Margin="0 0 28 0"/>
+                        <Image Source="ms-appx:///Assets/Images/IconesMenu/favoritos.png" VerticalAlignment="Center" Margin="28 0 0 0"/>
+                        <TextBlock FontSize="32" VerticalAlignment="Center" Text=" Favoritos" FontWeight="SemiBold" Foreground="#f4f4f4" FontFamily="myriad pro"  Margin="0 0 28 0"/>
                     </StackPanel>
                     <StackPanel x:Name ="dicasMediaPanel" Orientation="Horizontal" Tapped="dicasMediaPanel_Tapped" PointerPressed="dicasMediaPanel_PointerPressed" PointerReleased="dicasMediaPanel_PointerReleased" Margin="0 5">
-                        <Image Source="ms-appx:///Assets/Images/IconesMenu/menu-superior-comtexto-04.png" VerticalAlignment="Center" Margin="28 0 0 0"/>
-                        <TextBlock FontSize="30" VerticalAlignment="Center" Text=" Dicas de medidas" FontWeight="SemiBold" Foreground="#f4f4f4" Margin="0 0 28 0"/>
+                        <Image Source="ms-appx:///Assets/Images/IconesMenu/dicas_de_medidas.png" VerticalAlignment="Center" Margin="28 0 0 0"/>
+                        <TextBlock FontSize="32" VerticalAlignment="Center" Text=" Dicas de medidas" FontWeight="SemiBold" Foreground="#f4f4f4" FontFamily="myriad pro"  Margin="0 0 28 0"/>
                     </StackPanel>
                     <StackPanel x:Name="glossarioBotao" Orientation="Horizontal" PointerPressed="glossarioBotao_PointerPressed" PointerReleased="glossarioBotao_PointerReleased" Tapped="glossarioBotao_Tapped" Margin="0 5">
-                        <Image Source="ms-appx:///Assets/Images/IconesMenu/menu-superior-comtexto-05.png" VerticalAlignment="Center" Margin="28 0 0 0"/>
-                        <TextBlock FontSize="30" VerticalAlignment="Center" Text=" Glossário" FontWeight="SemiBold" Foreground="#f4f4f4" Margin="0 0 28 0"/>
+                        <Image Source="ms-appx:///Assets/Images/IconesMenu/glossario.png" VerticalAlignment="Center" Margin="28 0 0 0"/>
+                        <TextBlock FontSize="32" VerticalAlignment="Center" Text=" Glossário" FontWeight="SemiBold" Foreground="#f4f4f4" FontFamily="myriad pro"  Margin="0 0 28 0"/>
                     </StackPanel>
                     <StackPanel x:Name="tecnicasBotao" Orientation="Horizontal" PointerPressed="tecnicasBotao_PointerPressed" PointerReleased="tecnicasBotao_PointerReleased" Tapped="tecnicasBotao_Tapped" Margin="0 5">
-                        <Image Source="ms-appx:///Assets/Images/IconesMenu/menu-superior-comtexto-06.png" VerticalAlignment="Center" Margin="28 0 0 0"/>
-                        <TextBlock FontSize="30" VerticalAlignment="Center" Text=" Técnicas" FontWeight="SemiBold" Foreground="#f4f4f4" Margin="0 0 28 0"/>
+                        <Image Source="ms-appx:///Assets/Images/IconesMenu/tecnicas.png" VerticalAlignment="Center" Margin="28 0 0 0"/>
+                        <TextBlock FontSize="32" VerticalAlignment="Center" Text=" Técnicas" FontWeight="SemiBold" Foreground="#f4f4f4" FontFamily="myriad pro"  Margin="0 0 28 0"/>
+                    </StackPanel>
+                    <StackPanel x:Name="timerBotao" Orientation="Horizontal" PointerPressed="timerBotao_PointerPressed" PointerReleased="timerBotao_PointerReleased" Tapped="timerBotao_Tapped" Margin="0 5">
+                        <Image Source="ms-appx:///Assets/Images/IconesMenu/timer.png" VerticalAlignment="Center" Margin="28 0 0 0"/>
+                        <TextBlock FontSize="32" VerticalAlignment="Center" Text=" Timer" FontWeight="SemiBold" Foreground="#f4f4f4" FontFamily="myriad pro"  Margin="0 0 28 0"/>
+                    </StackPanel>
+                    <StackPanel x:Name="sobreBotao" Orientation="Horizontal" PointerPressed="sobreBotao_PointerPressed" PointerReleased="sobreBotao_PointerReleased" Tapped="sobreBotao_Tapped" Margin="0 5">
+                        <FontIcon x:Name="iconInfo" FontSize="48" Foreground="#f4f4f4" FontFamily="Segoe MDL2 Assets" Glyph="&#xE946;" VerticalAlignment="Center" Margin="38 0 0 0" ></FontIcon>
+                        <TextBlock FontSize="32" VerticalAlignment="Center" Text="  Informações" FontWeight="SemiBold" Foreground="#f4f4f4" FontFamily="myriad pro"  Margin="0 0 28 0"/>
                     </StackPanel>
                 </StackPanel>
             </SplitView.Pane>
