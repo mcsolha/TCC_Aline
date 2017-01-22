@@ -17,7 +17,7 @@ namespace TCC_Aline.Model
             get
             {
                 if (imagem == null)
-                    imagem = new BitmapImage(new Uri("ms-appx:///Assets/Glossario/" + base.ImageSource));
+                    imagem = new BitmapImage(new Uri("ms-appx:///Assets/Images/Glossario/" + base.ImageSource));
                 OnPropertyChanged("Imagem");
                 return imagem;
             }

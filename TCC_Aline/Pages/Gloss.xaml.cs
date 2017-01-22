@@ -70,6 +70,8 @@ Fonte: http://www.forumdaconstrucao.com.br/conteudo.php?a=45&Cod=796",
         public Gloss()
         {
             this.InitializeComponent();
+            gloss.ItemsSource = itensGloss;
+            var item = itensGloss[0].Imagem;
         }
     }
 }

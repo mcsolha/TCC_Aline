@@ -8,8 +8,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Key="itemExpand" x:DataType="data:GlossarioData">
+            <StackPanel>
+            <controls:itemExpand Texto="{x:Bind Texto}" Imagem="{x:Bind Imagem}" Nome="{x:Bind Nome}" IsExpanded="False"/>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="0,10,0,0">
+        <ListView x:Name="gloss" ItemTemplate="{StaticResource itemExpand}" SelectionMode="None" Padding="50,0,300,0">
+        </ListView>
     </Grid>
 </Page>
