@@ -205,6 +205,7 @@ namespace TCC_Aline
         private void glossarioBotao_Tapped(object sender, TappedRoutedEventArgs e)
         {
             menuPrincipal.IsPaneOpen = false;
+            FramePrincipal.Navigate(typeof(Gloss));
         }
 
         private void tecnicasBotao_Tapped(object sender, TappedRoutedEventArgs e)
