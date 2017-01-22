@@ -48,27 +48,9 @@ namespace TCC_Aline.Data
                     Substitutos = new string[1] { "  lata de leite condençado de soja" }
                 }
             },
-            Modopreparo = @"Em fogo baixo uma panela grande despeje a água e o açúcar para fazer uma
-
-calda em ponto de fio. Mexa com uma espátula ou colher até ferver.
-
-Ao atingir o ponto de fervura a calda irá começar a engrossar.
-
-Mantenha mexendo com uma espátula até que seja possível ver o fundo da panela e a calda
-
-demore para voltar a cobrir o fundo.
-
-Despeje então o coco ralado e misture.
-
-Por último despeje o leite condensado e mexa novamente até ver o fundo da panela.
-
-Retire do fogo e passe para um recipiente.
-
-Deixe esfriar um pouco até que seja possível o toque da cocada com as mãos.
-
-Enrole as cocadas com as mãos e leve a geladeira por aproximadamente um dia, até que
-
-estejam firmes.",
+            Modopreparo = @"Em fogo baixo uma panela grande despeje a água e o açúcar para fazer uma calda em ponto de fio. Mexa com uma espátula ou colher até ferver.
+Ao atingir o ponto de fervura a calda irá começar a engrossar. Mantenha mexendo com uma espátula até que seja possível ver o fundo da panela e a calda demore para voltar a cobrir o fundo.
+Despeje então o coco ralado e misture. Por último despeje o leite condensado e mexa novamente até ver o fundo da panela. Retire do fogo e passe para um recipiente.Deixe esfriar um pouco até que seja possível o toque da cocada com as mãos. Enrole as cocadas com as mãos e leve a geladeira por aproximadamente um dia, até que estejam firmes.",
             Porcoes = 14,
            // CozimentoString = "30 minutos",
            // PreparoString = "1 dia",

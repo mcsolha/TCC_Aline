@@ -241,7 +241,7 @@
                     </StackPanel>
                 </StackPanel>
             </SplitView.Pane>
-            <Frame x:Name="FramePrincipal">
+            <Frame x:Name="FramePrincipal" >
                 <RelativePanel >
                     <TextBlock Text="TESTE DE FRAME"/>
                 </RelativePanel>
