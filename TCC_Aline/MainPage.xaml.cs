@@ -211,6 +211,7 @@ namespace TCC_Aline
         private void tecnicasBotao_Tapped(object sender, TappedRoutedEventArgs e)
         {
             menuPrincipal.IsPaneOpen = false;
+            FramePrincipal.Navigate(typeof(VideoTecnica));
         }
 
         private void Logo_Tapped(object sender, TappedRoutedEventArgs e)

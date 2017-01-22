@@ -182,6 +182,7 @@
     <Compile Include="Model\Glossario.cs" />
     <Compile Include="Model\Ingrediente.cs" />
     <Compile Include="Model\Receita.cs" />
+    <Compile Include="Model\Tecnicas.cs" />
     <Compile Include="Model\VideoModel.cs" />
     <Compile Include="Pages\DicasMedida.xaml.cs">
       <DependentUpon>DicasMedida.xaml</DependentUpon>
@@ -203,6 +204,9 @@
     </Compile>
     <Compile Include="Pages\VideoSplashScreen.xaml.cs">
       <DependentUpon>VideoSplashScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VideoTecnica.xaml.cs">
+      <DependentUpon>VideoTecnica.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserControls\ExpandableRowListViewControl.cs" />
@@ -265,6 +269,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\VideoSplashScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\VideoTecnica.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
