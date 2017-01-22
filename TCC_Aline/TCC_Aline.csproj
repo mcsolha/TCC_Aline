@@ -147,6 +147,12 @@
     <Content Include="Assets\Images\ReceitasSalgadas\Saladas.png" />
     <Content Include="Assets\Images\ReceitasSalgadas\Sopas.png" />
     <Content Include="Assets\Images\ReceitasSalgadas\Tortas.png" />
+    <Content Include="Assets\Images\Tecnicas\tecnica_bater_chatilly.png" />
+    <Content Include="Assets\Images\Tecnicas\tecnica_cortar_carne.png" />
+    <Content Include="Assets\Images\Tecnicas\tecnica_cozinhar_ovo.png" />
+    <Content Include="Assets\Images\Tecnicas\tecnica_descascar_alho.png" />
+    <Content Include="Assets\Images\Tecnicas\tecnica_tirar_pele_do_tomate.png" />
+    <Content Include="Assets\Images\Tecnicas\tecnica_untar_forma.png" />
     <Content Include="Assets\Images\TodasReceitas\receitas_arroz_doce.png" />
     <Content Include="Assets\Images\TodasReceitas\receitas_bala_de_coco.png" />
     <Content Include="Assets\Images\TodasReceitas\receitas_beijinho.png" />
@@ -196,6 +202,9 @@
     </Compile>
     <Compile Include="Pages\Informacoes.xaml.cs">
       <DependentUpon>Informacoes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MenuTecnicas.xaml.cs">
+      <DependentUpon>MenuTecnicas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Receita.xaml.cs">
       <DependentUpon>Receita.xaml</DependentUpon>
@@ -261,6 +270,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Informacoes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MenuTecnicas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
