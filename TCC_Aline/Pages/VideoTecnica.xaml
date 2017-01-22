@@ -42,8 +42,7 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <RelativePanel>
-            <Grid Padding="10,0,0,0" Background="Transparent" RelativePanel.AlignRightWithPanel="False" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True">
+        <Grid Padding="50,0,0,0" Background="Transparent" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition/>
@@ -56,23 +55,20 @@
                     </ListViewHeaderItem>                   
                 </Grid>
                 <Grid Grid.Row="1">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
 
-                        <RelativePanel Grid.Column="0" Margin="10,0,10,0">
-                            <WebView x:Name="Video" MinWidth="612" MinHeight="394" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignBottomWithPanel="True"/>
-                        </RelativePanel>
-                        <Grid Grid.Column="1" >
-                            <StackPanel  Orientation="Vertical" >
-                                <TextBlock  TextWrapping="Wrap" TextAlignment="Justify" OpticalMarginAlignment="None" Text="{x:Bind untarForma.Descricao}" Style="{ThemeResource SubheaderTextBlockStyle}" Foreground="#646464" FontSize="17"/>
-                            </StackPanel>
-                        </Grid>
-                    </Grid>                    
-                </Grid>          
+                    <RelativePanel Grid.Column="0" Margin="10,0,10,0">
+                        <WebView x:Name="Video" MinWidth="612" MinHeight="394" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignBottomWithPanel="True"/>
+                    </RelativePanel>
+                    <Grid Grid.Column="1" Padding="0,0,50,0">
+                        <StackPanel  Orientation="Vertical" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollMode="Enabled">
+                            <TextBlock  TextWrapping="Wrap" TextAlignment="Justify" OpticalMarginAlignment="None" Text="{x:Bind untarForma.Descricao}" Style="{ThemeResource SubheaderTextBlockStyle}" Foreground="#646464" FontSize="17"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>                    
             </Grid>
-        </RelativePanel>
     </Grid>
 </Page>

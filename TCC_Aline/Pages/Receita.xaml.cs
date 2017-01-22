@@ -197,7 +197,7 @@ namespace TCC_Aline.Pages
             messages.Remove(d);
         }
 
-        private string lateralPage = null;
+        public static string lateralPage = null;
 
         private bool closeLateral(string page)
         {
@@ -229,12 +229,13 @@ namespace TCC_Aline.Pages
         private void glossario_Tapped(object sender, TappedRoutedEventArgs e)
         {
             lateralMenu.IsOpen = closeLateral("Glossario");
-            lateralMenuFrame.Navigate(typeof(Home));
+            lateralMenuFrame.Navigate(typeof(Gloss));
         }
 
         private void tecnicas_Tapped(object sender, TappedRoutedEventArgs e)
         {
             lateralMenu.IsOpen = closeLateral("Tecnicas");
+            lateralMenuFrame.Navigate(typeof(MenuTecnicas));
         }
 
         private void dicasMedida_PointerPressed(object sender, PointerRoutedEventArgs e)

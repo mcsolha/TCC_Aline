@@ -45,7 +45,10 @@ namespace TCC_Aline.Pages
         {
             TecnicasData tec = (sender as FrameworkElement).DataContext as TecnicasData;
             if (tec.Equals(TecnicasInstances.UntarForma))
+            {
+                Receita.lateralPage = "VideoTecnica";
                 Frame.Navigate(typeof(VideoTecnica), tec);
+            }                
             else
                 DialogHelper.ShowNotImplemented();
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TCC_Aline.Data;
 using TCC_Aline.Model;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -67,19 +68,8 @@ namespace TCC_Aline.Pages
         #endregion
 
 
-        public TecnicasData untarForma = new TecnicasData()
-        {
-            Titulo = "Untar Forma",
-            Descricao = @"Untar forma é uma técnica que facilita na retirada dos alimentos de assadeiras após serem assados.
-Há diversos ingredientes que podem ser usados para untar forma, os mais comumente utilizados são a manteiga e a farinha de trigo. Também é possível utilizar óleo no lugar da
-manteiga e outros ingredientes secos no lugar da farinha.
-O chocolate em pó é um ótimo substituto para a farinha quando for assar alimentos que contenham chocolate na massa pois ao desenformar não haverá resquícios de farinha da forma untada. Para untar a forma basta espalhar a manteiga em toda a superfície da forma que entrará em contato com o alimento e depois polvilhar a farinha sobre a manteiga. Após retirar o excesso de farinha a forma estará pronta para uso!",
-            VideoTecnica = new VideoModel()
-            {
-                Link = "https://www.youtube.com/watch?v=1bAz5KzouLw"
-            }
-        };
-
+        public TecnicasData untarForma = new TecnicasData();
+       
         private void NavigateToVideo(string id)
         {
             htmlfile = htmlfile.Replace("idvideo", id);
@@ -95,6 +85,7 @@ O chocolate em pó é um ótimo substituto para a farinha quando for assar alime
         public VideoTecnica()
         {
             this.InitializeComponent();
+            untarForma = Instances.Tecnicas.Find(x => x.Titulo == "Untar Forma");
         }
     }
 }
