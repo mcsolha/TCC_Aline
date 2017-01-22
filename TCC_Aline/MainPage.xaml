@@ -193,7 +193,7 @@
             <AutoSuggestBox x:Name="suggestBox" Visibility="{Binding ElementName=searchIcon,Path=IsChecked}" RelativePanel.LeftOf="searchIcon"  RelativePanel.AlignVerticalCenterWithPanel="True" Width="400" Height="40">
             </AutoSuggestBox>
 
-            <ToggleButton x:Name="searchIcon" Style="{StaticResource ExpanderHeaderToggleButtonStyle}" IsChecked="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
+            <ToggleButton x:Name="searchIcon" Style="{StaticResource ExpanderHeaderToggleButtonStyle}" IsChecked="False" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
                 <ToggleButton.Content>
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE11A;" FontSize="33px" Foreground="#f4f4f4"/>
                 </ToggleButton.Content>

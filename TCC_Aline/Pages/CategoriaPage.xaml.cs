@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TCC_Aline.Data;
 using TCC_Aline.Helpers;
 using TCC_Aline.Model;
 using Windows.Foundation;
