@@ -21,6 +21,19 @@ namespace TCC_Aline.UserControls
 {
     public sealed partial class NumericUpDown : UserControl
     {
+        public int ValorMinimo
+        {
+            get { return (int)GetValue(ValorMinimoProperty); }
+            set
+            {
+                SetValue(ValorMinimoProperty, value);
+            }
+        }
+
+        // Using a DependencyProperty as the backing store for Porcoes.This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ValorMinimoProperty =
+            DependencyProperty.Register("ValorMinimo", typeof(int), typeof(NumericUpDown), new PropertyMetadata(0));
+
         public int Porcoes
         {
             get { return (int)GetValue(PorcoesProperty); }
@@ -50,7 +63,7 @@ namespace TCC_Aline.UserControls
         private void remove_Click(object sender, RoutedEventArgs e)
         {
             //Fixado para Cocada --- Melhor nao manter assim
-            if (Porcoes/2 >= 14)
+            if (Porcoes/2 >= ValorMinimo)
                 Porcoes /= 2;
         }
 

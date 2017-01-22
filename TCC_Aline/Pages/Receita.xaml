@@ -126,7 +126,7 @@
                             <TextBlock Text="{x:Bind Path=recpt.Pessoas}" TextWrapping="WrapWholeWords" RelativePanel.AlignHorizontalCenterWith="image3" RelativePanel.AlignVerticalCenterWith="image3" />
                         </RelativePanel>
                     </Grid>-->
-                    <controls:NumericUpDown x:Name="quantPessoas" Porcoes="{x:Bind recpt.PorcoesCalculadas, Mode=TwoWay}" Height="40" Width="430" RelativePanel.Below="viewBoxVideo" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" />
+                    <controls:NumericUpDown x:Name="quantPessoas" ValorMinimo="{x:Bind recpt.Porcoes,Mode=TwoWay}" Porcoes="{x:Bind recpt.PorcoesCalculadas, Mode=TwoWay}" Height="40" Width="430" RelativePanel.Below="viewBoxVideo" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" />
                     <!--<TextBox x:Name="quantPessoas" RelativePanel.AlignLeftWith="viewBoxVideo" RelativePanel.Below="infoReceita" RelativePanel.AlignRightWith="viewBoxVideo"/>-->
                     <!--<ListViewHeaderItem x:Name="comentHead" RelativePanel.Below="quantPessoas" RelativePanel.AlignLeftWith="viewBoxVideo" RelativePanel.AlignRightWith="viewBoxVideo" Padding="0,8,0,0">
                         <TextBlock Text="Dicas úteis!" Foreground="#646464" FontWeight="SemiBold" FontSize="20" Style="{StaticResource SubtitleTextBlockStyle}"/>
@@ -205,7 +205,7 @@
                 </Grid>
             </Grid>
         </Grid>
-        <controls:LateralMenu x:Name="lateralMenu" Height="460" Visibility="Visible" Margin="0,56,0,0" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" PaneClosedWidth="100" PaneOpenWidth="{x:Bind Path=OpenWidth,Mode=TwoWay}" IsOpen="false" Background="#99b5cb" FlyoutBase.AttachedFlyout="{StaticResource info}">
+        <controls:LateralMenu x:Name="lateralMenu" Height="460" Visibility="Visible" Margin="0,56,0,0" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" PaneClosedWidth="100" PaneOpenWidth="{x:Bind Path=OpenWidth,Mode=TwoWay}" IsOpen="False" Background="#99b5cb" FlyoutBase.AttachedFlyout="{StaticResource info}">
             <controls:LateralMenu.PaneContent>
                 <Grid>
                     <Grid.ColumnDefinitions>
