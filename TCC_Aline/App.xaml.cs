@@ -9,6 +9,7 @@ using TCC_Aline.Configuration;
 using Windows.Storage;
 using System.Diagnostics;
 using TCC_Aline.Pages;
+using Windows.UI.ViewManagement;
 
 namespace TCC_Aline
 {
@@ -74,6 +75,7 @@ namespace TCC_Aline
                 rootFrame.Navigate(typeof(MainPage), e.Arguments);
             }
             // Ensure the current window is active
+            ApplicationView.GetForCurrentView().Title = "Colher de Chá";
             Window.Current.Activate();
         }
 
