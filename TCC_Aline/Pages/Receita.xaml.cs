@@ -18,6 +18,7 @@ using Windows.Web;
 using Windows.Storage.Streams;
 using TCC_Aline.Helpers;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Core;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -147,6 +148,8 @@ namespace TCC_Aline.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+           AppViewBackButtonVisibility.Visible;
             recpt = (Model.ReceitaData)e.Parameter;
             NavigateToVideo(recpt.Video.Id);
             //Video.Navigate(new Uri("ms-appx///Web/video_page.html"));

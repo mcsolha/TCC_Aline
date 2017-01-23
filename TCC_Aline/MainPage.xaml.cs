@@ -9,6 +9,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using TCC_Aline.Configuration;
 using TCC_Aline.Data;
 using TCC_Aline.Helpers;
+using TCC_Aline.Model;
 using TCC_Aline.Pages;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -269,6 +270,12 @@ namespace TCC_Aline
             {
                 sender.ItemsSource = Instances.Informacoes.Where(x => x.Nome.IndexOf(sender.Text, StringComparison.CurrentCultureIgnoreCase) >= 0).OrderBy(x => x.Nome).ToList().ToObservableCollection();
             }
+        }
+
+        private void suggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+        {
+            sender.Text = ((BuscaData)args.SelectedItem).Nome;
+            DialogHelper.ShowNotImplemented();
         }
     }
 }

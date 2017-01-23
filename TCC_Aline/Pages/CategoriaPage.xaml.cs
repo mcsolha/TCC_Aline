@@ -8,6 +8,7 @@ using TCC_Aline.Helpers;
 using TCC_Aline.Model;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -35,7 +36,9 @@ namespace TCC_Aline.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if(e.Parameter is Categorias)
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+           AppViewBackButtonVisibility.Visible;
+            if (e.Parameter is Categorias)
             {
                 Categorias c = (Categorias)e.Parameter;
                 PageName = EnumHelper.GetEnumDescription(c);

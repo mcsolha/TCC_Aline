@@ -91,7 +91,7 @@
                                 <SymbolIcon Symbol="{Binding ElementName=FavoriteButton, Path=IsChecked, Converter={StaticResource FavoriteConverter}}"/>
                             </ToggleButton.Content>
                         </ToggleButton>
-                        <TextBlock Text="{x:Bind recpt.Nome}" Style="{ThemeResource SubheaderTextBlockStyle}" Foreground="#646464" FontWeight="SemiBold" Padding="5,0,0,0"/>
+                        <TextBlock Text="{x:Bind recpt.Nome}" Style="{ThemeResource SubheaderTextBlockStyle}" Foreground="#808080" FontWeight="SemiBold" Padding="5,0,0,0"/>
                     </StackPanel>
                 </ListViewHeaderItem>
                 <!--<StackPanel Grid.Row="0" Orientation="Horizontal" Padding="20,5">
@@ -163,7 +163,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <ListViewHeaderItem Grid.Row="0" Style="{StaticResource noLine}" >
-                        <TextBlock Text="Ingredientes" Style="{StaticResource SubheaderTextBlockStyle}" FontSize="20" FontWeight="SemiBold" Foreground="#646464"/>
+                        <TextBlock Text="Ingredientes" Style="{StaticResource SubheaderTextBlockStyle}" FontSize="20" FontWeight="SemiBold" Foreground="#808080"/>
                     </ListViewHeaderItem>
                     <ListView Grid.Row="1" SelectionMode="None" ItemsSource="{x:Bind recpt.IngredientesCollection}">
                         <ListView.ItemTemplate>
@@ -194,7 +194,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <ListViewHeaderItem Grid.Row="0" Style="{StaticResource noLine}">
-                        <TextBlock Text="Modo de Preparo" Style="{StaticResource SubheaderTextBlockStyle}" FontSize="20" Foreground="#646464" FontWeight="SemiBold"/>
+                        <TextBlock Text="Modo de Preparo" Style="{StaticResource SubheaderTextBlockStyle}" FontSize="20" Foreground="#808080" FontWeight="SemiBold"/>
                     </ListViewHeaderItem>
                     <ListView Grid.Row="1" SelectionMode="None">
                         <ListViewItem>

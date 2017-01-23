@@ -89,6 +89,11 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="Assets\BadgeLogo.scale-100.png" />
+    <Content Include="Assets\BadgeLogo.scale-125.png" />
+    <Content Include="Assets\BadgeLogo.scale-150.png" />
+    <Content Include="Assets\BadgeLogo.scale-200.png" />
+    <Content Include="Assets\BadgeLogo.scale-400.png" />
     <Content Include="Assets\Images\DicasDoDia\Captura de tela 2016-11-02 18.18.06.png" />
     <Content Include="Assets\Images\DicasDoDia\foto-dica-cocada.png" />
     <Content Include="Assets\Images\DicasDoDia\foto-dica-lasanha.png" />
@@ -165,6 +170,9 @@
     <Content Include="Assets\Images\TodasReceitas\receitas_quindim.png" />
     <Content Include="Assets\Images\TodasReceitas\receitas_sonho_de_padaria.png" />
     <Content Include="Assets\Images\TodasReceitas\receitas_suspiro.png" />
+    <Content Include="Assets\tile-01.scale-100.png" />
+    <Content Include="Assets\tile-01.scale-200.png" />
+    <Content Include="Assets\tile-02.png" />
     <Content Include="Assets\Videos\splash_video.mp4" />
     <Content Include="Data\Receitas.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

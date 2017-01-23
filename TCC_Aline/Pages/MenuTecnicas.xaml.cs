@@ -8,6 +8,7 @@ using TCC_Aline.Helpers;
 using TCC_Aline.Model;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -34,6 +35,8 @@ namespace TCC_Aline.Pages
             {
                 TecnicasDados.Add(item);
             }
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+           AppViewBackButtonVisibility.Visible;
         }
 
         public MenuTecnicas()

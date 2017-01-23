@@ -7,6 +7,7 @@ using TCC_Aline.Data;
 using TCC_Aline.Model;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -80,6 +81,8 @@ namespace TCC_Aline.Pages
         {
             base.OnNavigatedTo(e);
             NavigateToVideo(untarForma.VideoTecnica.Id);
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+           AppViewBackButtonVisibility.Visible;
         }
 
         public VideoTecnica()

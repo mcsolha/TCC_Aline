@@ -10,6 +10,8 @@ using Windows.Storage;
 using System.Diagnostics;
 using TCC_Aline.Pages;
 using Windows.UI.ViewManagement;
+using Windows.UI.Core;
+using TCC_Aline.Helpers;
 
 namespace TCC_Aline
 {
@@ -36,7 +38,8 @@ namespace TCC_Aline
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            Receitas.RetrieveDataFrom("ms-appx:///Data/Receitas.json");
+            Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested +=
+    App_BackRequested;
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
@@ -77,6 +80,11 @@ namespace TCC_Aline
             // Ensure the current window is active
             ApplicationView.GetForCurrentView().Title = "Colher de Chá";
             Window.Current.Activate();
+        }
+
+        private void App_BackRequested(object sender, BackRequestedEventArgs e)
+        {
+            DialogHelper.ShowNotImplemented();
         }
 
         /// <summary>

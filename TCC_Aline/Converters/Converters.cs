@@ -18,7 +18,7 @@ namespace TCC_Aline.Converters
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var obsc = value as ObservableCollection<string>;
-            return obsc != null && obsc.Any() ? new SolidColorBrush(Colors.BlueViolet) : new SolidColorBrush(Color.FromArgb(255, 0x64, 0x64, 0x64));
+            return obsc != null && obsc.Any() ? new SolidColorBrush(Color.FromArgb(255, 0x74, 0x8d, 0xa2)) : new SolidColorBrush(Color.FromArgb(255, 0x64, 0x64, 0x64));
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
